@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SchoolManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Class_Section">
+    <Key>
+      <PropertyRef Name="ClassId" />
+    </Key>
+    <Property Name="ClassId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SchoolId" Type="int" />
+    <Property Name="ClassName" Type="varchar" MaxLength="200" />
+    <Property Name="SectionName" Type="varchar(max)" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="DateAdded" Type="datetime" />
+    <Property Name="DateModified" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Parent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ParentId" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="SchoolId" Type="int" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="200" />
+    <Property Name="FathersName" Type="varchar" MaxLength="2000" />
+    <Property Name="MothersName" Type="varchar" MaxLength="2000" />
+    <Property Name="FathersMailId" Type="varchar" MaxLength="50" />
+    <Property Name="MothersMailId" Type="varchar" MaxLength="50" />
+    <Property Name="NoOfChildren" Type="varchar" MaxLength="10" />
+    <Property Name="FathersMobileNumber" Type="varchar" MaxLength="18" />
+    <Property Name="MothersMobileNumber" Type="varchar" MaxLength="18" />
+    <Property Name="FathersOccupation" Type="varchar" MaxLength="200" />
+    <Property Name="MothersOccupation" Type="varchar" MaxLength="200" />
+    <Property Name="FathersBloodGroup" Type="varchar" MaxLength="10" />
+    <Property Name="MothersBloodGroup" Type="varchar" MaxLength="10" />
+    <Property Name="Address" Type="varchar(max)" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="DateAdded" Type="datetime" />
+    <Property Name="DateModified" Type="datetime" />
+  </EntityType>
+  <EntityType Name="SchoolDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="200" />
+    <Property Name="Email" Type="varchar" MaxLength="200" />
+    <Property Name="Phone" Type="varchar" MaxLength="18" />
+    <Property Name="Pan" Type="varchar" MaxLength="18" />
+    <Property Name="UserType" Type="int" />
+    <Property Name="SchoolName" Type="varchar" MaxLength="200" />
+    <Property Name="SchoolWebsite" Type="varchar" MaxLength="200" />
+    <Property Name="SchoolGst" Type="varchar" MaxLength="50" />
+    <Property Name="SchoolLandline" Type="varchar" MaxLength="18" />
+    <Property Name="SchoolAddress" Type="varchar(max)" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="DateAdded" Type="datetime" />
+    <Property Name="DateModified" Type="datetime" />
+    <Property Name="PlanExpiryDate" Type="datetime" />
+    <Property Name="PlanDays" Type="int" />
+    <Property Name="Password" Type="varchar(max)" />
+    <Property Name="PlanId" Type="int" />
+    <Property Name="NumberOfUsers" Type="int" />
+    <Property Name="PlanAmount" Type="int" />
+    <Property Name="IsOtpVarified" Type="bit" />
+    <Property Name="CompanyUID" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="SchoolStaff">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="SchoolId" Type="int" />
+    <Property Name="FirstName" Type="varchar" MaxLength="2000" />
+    <Property Name="LastName" Type="varchar" MaxLength="2000" />
+    <Property Name="Gender" Type="varchar" MaxLength="18" />
+    <Property Name="Salary" Type="varchar" MaxLength="18" />
+    <Property Name="Experience" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="varchar(max)" />
+    <Property Name="BankName" Type="varchar" MaxLength="1000" />
+    <Property Name="AccountNumber" Type="varchar" MaxLength="50" />
+    <Property Name="IFSCCode" Type="varchar" MaxLength="100" />
+    <Property Name="BranchName" Type="varchar" MaxLength="2000" />
+    <Property Name="ClassId" Type="int" />
+    <Property Name="SubjectId" Type="int" />
+    <Property Name="Designation" Type="varchar(max)" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="DateAdded" Type="datetime" />
+    <Property Name="DateModified" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Section">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SectionId" Type="varchar" MaxLength="2000" />
+    <Property Name="SchoolId" Type="int" />
+    <Property Name="SectionName" Type="varchar(max)" />
+    <Property Name="StreamId" Type="varchar" MaxLength="2000" />
+    <Property Name="TypeStatus" Type="bit" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="DateAdded" Type="datetime" />
+    <Property Name="DateModified" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StudentId" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="SchoolId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="2000" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="18" />
+    <Property Name="StudentType" Type="int" />
+    <Property Name="ParentId" Type="varchar" MaxLength="2000" />
+    <Property Name="ClassId" Type="int" />
+    <Property Name="SectionId" Type="varchar" MaxLength="2000" />
+    <Property Name="Birthday" Type="datetime" />
+    <Property Name="Gender" Type="varchar" MaxLength="200" />
+    <Property Name="BloodGroup" Type="varchar" MaxLength="10" />
+    <Property Name="Address" Type="varchar(max)" />
+    <Property Name="Image" Type="varchar(max)" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="Isdelete" Type="bit" />
+    <Property Name="DateAdded" Type="datetime" />
+    <Property Name="DateModified" Type="datetime" />
+    <Property Name="Password" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Subject">
+    <Key>
+      <PropertyRef Name="SubjectId" />
+    </Key>
+    <Property Name="SubjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClassId" Type="int" />
+    <Property Name="SchoolId" Type="int" />
+    <Property Name="ClassName" Type="varchar" MaxLength="200" />
+    <Property Name="SubjectName" Type="varchar(max)" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="DateAdded" Type="datetime" />
+    <Property Name="DateModified" Type="datetime" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="200" />
+    <Property Name="Email" Type="varchar" MaxLength="200" />
+    <Property Name="MenuRights" Type="varchar(max)" />
+    <Property Name="UserType" Type="int" />
+    <Property Name="SchoolId" Type="int" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="ForgotPasswordCode" Type="varchar(max)" />
+    <Property Name="DateAdded" Type="datetime" />
+    <Property Name="DateModified" Type="datetime" />
+    <Property Name="OTPCode" Type="varchar(max)" />
+    <Property Name="IsOTPVerified" Type="bit" />
+    <Property Name="OTPVerifiedValidDate" Type="datetime" />
+    <Property Name="SchoolUser" Type="int" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="18" />
+    <Property Name="Password" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="UserSubscriptionPlanDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SchoolId" Type="int" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="PlanId" Type="int" />
+    <Property Name="UserEmailId" Type="varchar" MaxLength="200" />
+    <Property Name="UserName" Type="varchar" MaxLength="2000" />
+    <Property Name="Amount" Type="int" />
+    <Property Name="TransactionID" Type="varchar" MaxLength="200" />
+    <Property Name="ExpiryDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="DateAdded" Type="datetime" />
+  </EntityType>
+  <EntityContainer Name="SchoolManagementModelStoreContainer">
+    <EntitySet Name="Class_Section" EntityType="Self.Class_Section" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Parent" EntityType="Self.Parent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SchoolDetails" EntityType="Self.SchoolDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SchoolStaff" EntityType="Self.SchoolStaff" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Section" EntityType="Self.Section" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserSubscriptionPlanDetails" EntityType="Self.UserSubscriptionPlanDetails" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
