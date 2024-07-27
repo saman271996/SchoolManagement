@@ -115,5 +115,10 @@ namespace SchoolManagement
             {
             }
         }
+
+        private void Student_BodyPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

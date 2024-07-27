@@ -257,5 +257,6 @@ namespace SchoolManagement
             return parentdetails;
         }
 
+       
     }
 }

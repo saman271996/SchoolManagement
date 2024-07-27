@@ -1,4 +1,5 @@
 ﻿using Krypton.Toolkit;
+using CsvHelper;
 using SchoolManagement.Helper;
 using SchoolManagement.Model;
 using System;
@@ -16,11 +17,17 @@ using System.Web;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using static SchoolManagement.Helper.Helper;
+using IronXL;
+using DocumentFormat.OpenXml.Office2016.Presentation.Command;
 
 namespace SchoolManagement
 {
     public partial class StudentExcel : Form
     {
+        DataTable getTable = null;
+        public List<Parent> parentexcel = new List<Parent>();
+        public List<Student> studentexcel = new List<Student>();
+        SchoolManagementEntities Db = new SchoolManagementEntities();
         public StudentExcel()
         {
             InitializeComponent();
@@ -37,8 +44,7 @@ namespace SchoolManagement
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DataTable getTable = null;
-           
+
             var processTable = new ProcessTable();
             System.Windows.Forms.OpenFileDialog openfiledialog1 = new System.Windows.Forms.OpenFileDialog();
             openfiledialog1.ShowDialog();
@@ -47,7 +53,7 @@ namespace SchoolManagement
             FileInfo f = new FileInfo(openfiledialog1.FileName);
             f = new FileInfo(openfiledialog1.FileName);
             long postedFile = f.Length;
-           
+
             if (!Helper.Helper.CheckIfFileSizeWithinLimit(postedFile, 25 * 1024 * 1024)) //25 Mb
             {
                 MessageBox.Show("File Shoul not more than be greater than 10 Mb");
@@ -71,8 +77,8 @@ namespace SchoolManagement
                 dt.Columns.Add(new DataColumn("Phone Number", typeof(string)));
                 dt.Columns.Add(new DataColumn("Gender", typeof(string)));
                 dt.Columns.Add(new DataColumn("Student Type", typeof(string)));
-      
-                for (int i=0;i< getTable?.Rows.Count; i++)
+
+                for (int i = 0; i < getTable?.Rows.Count; i++)
                 {
                     DataRow dr = dt.NewRow();
                     if (i == 2)
@@ -85,7 +91,7 @@ namespace SchoolManagement
                     {
                         leadcolumnandcsvcolumn.FieldsInStudent = tryToMappingLeadFieldBasedOnMatchingColumnOFCSV.FirstOrDefault(x => x.label == col.ColumnName)?.value ?? "Do Not Map This Field,Please Check Your Excel";
                         leadcolumnandcsvcolumn.FieldsInCsV = col.ColumnName;
-                     
+
                         leadcolumnandcsvcolumn.Record_1_InFile = getTable.Rows[i][col.ColumnName].ToString();
                         details.Add(getTable.Rows[i][col.ColumnName]);
                         dr[j] = getTable.Rows[i][col.ColumnName];
@@ -95,12 +101,12 @@ namespace SchoolManagement
 
                     dt.Rows.Add(dr);
                     Listleadcolumnandcsvcolumn.Add(leadcolumnandcsvcolumn);
-                    var tabledetail = string.Join(", ", details); 
+                    var tabledetail = string.Join(", ", details);
                 }
                 StudentGridExcel.DataSource = dt;
 
                 processTable.CompareLeadColumnToCSV = Listleadcolumnandcsvcolumn;
-               
+
                 StudentGridExcel.Refresh();
 
             }
@@ -114,129 +120,357 @@ namespace SchoolManagement
 
         private void Upload_Click(object sender, EventArgs e)
         {
-            //try
-            //{
+            try
+            {
                 var postedFile = txtfilepath.Text;
+                WorkBook wb = WorkBook.Create(ExcelFileFormat.XLS);
+                WorkSheet ws = wb.DefaultWorkSheet;
+                if (getTable != null)
+                {
+                    int uniqueOrDuplicateLeads = 0;
 
-                //string ConnString = @"connectionString=""metadata=res://*/Model.SchoolManagement.csdl|res://*/Model.SchoolManagement.ssdl|res://*/Model.SchoolManagement.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=DESKTOP-9T1O73D;initial catalog=SchoolManagement;integrated security=True;multipleactiveresultsets=True;encrypt=True;trustservercertificate=True;"" providerName=""System.Data.SqlClient";
-                //DataTable Data = new DataTable();
+                    var duplicatestudent = CheckLeadsPhoneNumber(getTable);
 
-                //using (OleDbConnection conn = new OleDbConnection(ConnString))
-                //{
-                //    conn.Open();
+                    var path = "File_"+ Guid.NewGuid() + "Test.csv";
+                    string folderPath = "D:\\school\\"+ path;
 
-                //    OleDbCommand cmd = new OleDbCommand(@"SELECT * FROM [dataGridView1_Data$]", conn);
-                //    OleDbDataAdapter adapter = new OleDbDataAdapter(cmd);
-                //    adapter.Fill(Data);
+                    StringBuilder sb = new StringBuilder();
 
+                    IEnumerable<string> columnNames = duplicatestudent.Columns.Cast<DataColumn>().Select(column => column.ColumnName);
+                    sb.AppendLine(string.Join(",", columnNames));
 
+                    foreach (DataRow row in duplicatestudent.Rows)
+                    {
+                        IEnumerable<string> fields = row.ItemArray.Select(field => field.ToString());
+                        sb.AppendLine(string.Join(",", fields));
+                    }
+                    using (System.Windows.Forms.SaveFileDialog saveFileDialog = new System.Windows.Forms.SaveFileDialog())
+                    {
+                        saveFileDialog.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
+                        saveFileDialog.FilterIndex = 1;
+                        saveFileDialog.RestoreDirectory = true;
+                        // Set initial directory to user's Documents folder
+                        string filePath = saveFileDialog.FileName;
 
-                //    conn.Close();
-                //}
-                //string ConnStr = ConnString;
-                //using (SqlBulkCopy bulkCopy = new SqlBulkCopy(ConnStr))
-                //{
-                //    bulkCopy.DestinationTableName = "Student";
-                //    bulkCopy.ColumnMappings.Add("Name", "Name");
-                //    bulkCopy.ColumnMappings.Add("Email", "Email");
-                //    bulkCopy.ColumnMappings.Add("PhoneNumber", "PhoneNumber");
+                        if (!string.IsNullOrWhiteSpace(folderPath))
+                        {
+                            SaveCSVToFile(sb.ToString(), folderPath);
+                            //File.WriteAllText(folderPath, sb.ToString());
+                        }
 
-                //    bulkCopy.WriteToServer(Data);
-                //    MessageBox.Show("UPLOAD SUCCESSFULLY");
-                //}
-                //    DataTable getTable = null;
-                //    var processTable = new ProcessTable();
-                //    if (postedFile != null)
-                //    {
+                    }
 
-                //        try
-                //        {
-                //            getTable = CommonFunctions.GetDataTabletFromCSVFile(postedFile);
-                //        }
-                //        catch (DuplicateNameException ex)
-                //        {
-                //            //TempData["SuccessMessage"] = new SuccessMessageWithDownLoadGuid { IsSuccess = true, fileGuid = "", Message = "The File has duplicate column please make them unique" };
-                //            //return View(nameof(ImportLeadFile), processTable);
-                //        }
+                }
+            }
+            catch (Exception ex)
+            {
 
-
-                //        TempData["OrginalTable"] = getTable; //will user tempdata
-
-                //        var user = SessionHandler.UserData;
-
-
-
-                //        var tryToMappingLeadFieldBasedOnMatchingColumnOFCSV = LeadCSVHelper.GetSuggestionForLeadExcel(LeadCSVHelper.CurrentCompanyCustomQuestion);
-
-                //        var Listleadcolumnandcsvcolumn = new List<LeadColumnAndCSVColumn>();
-
-                //        if (userInput?.TempleteId != null && userInput.TempleteId == -1)//user dint select any templete
-                //        {
-                //            foreach (DataColumn col in getTable.Columns)
-                //            {
-                //                var leadcolumnandcsvcolumn = new LeadColumnAndCSVColumn
-                //                {
-                //                    FieldsInLead = tryToMappingLeadFieldBasedOnMatchingColumnOFCSV.FirstOrDefault(x => x.label == col.ColumnName)?.value ?? "Do Not Map This Field",
-                //                    FieldsInCsV = col.ColumnName
-                //                };
-                //                if (getTable.Rows.Count > 0)
-                //                {
-                //                    leadcolumnandcsvcolumn.Record_1_InFile = getTable.Rows[0][col.ColumnName].ToString();
-                //                }
-                //                if (getTable.Rows.Count > 1)
-                //                {
-                //                    leadcolumnandcsvcolumn.Record_2_InFile = getTable.Rows[1][col.ColumnName].ToString();
-                //                }
-
-                //                Listleadcolumnandcsvcolumn.Add(leadcolumnandcsvcolumn);
-
-                //            }
-                //        }
-                //        else
-                //        {
-                //            var getTemplete = Db.CompanyExcelLeadTempletes.AsNoTracking().FirstOrDefault(x => x.Id == userInput.TempleteId);
-
-                //            var processTableFromTempleteMapping = JsonConvert.DeserializeObject<ProcessTable>(getTemplete.TempleteMapping);
-
-                //            foreach (DataColumn col in getTable.Columns)
-                //            {
-                //                var leadcolumnandcsvcolumn = new LeadColumnAndCSVColumn
-                //                {  //map lead fields from templete saved value
-                //                    FieldsInLead = processTableFromTempleteMapping.CompareLeadColumnToCSV.FirstOrDefault(a => a.FieldsInCsV == col.ColumnName)?.FieldsInLead ?? "Do Not Map This Field",
-                //                    FieldsInCsV = col.ColumnName
-                //                };
-                //                if (getTable.Rows.Count > 0)
-                //                {
-                //                    leadcolumnandcsvcolumn.Record_1_InFile = getTable.Rows[0][col.ColumnName].ToString();
-                //                }
-                //                if (getTable.Rows.Count > 1)
-                //                {
-                //                    leadcolumnandcsvcolumn.Record_2_InFile = getTable.Rows[1][col.ColumnName].ToString();
-                //                }
-                //                Listleadcolumnandcsvcolumn.Add(leadcolumnandcsvcolumn);
-
-                //            }
-                //        }
-
-                //        processTable.CompareLeadColumnToCSV = Listleadcolumnandcsvcolumn;
-                //    }
-                //}
-                //catch (Exception ex)
-                //{
-
-                //}
             }
 
+        }
+        public void SaveCSVToFile(string csvContent, string filePath)
+        {
+            File.WriteAllText(filePath, csvContent);
+        }
         private void StudentExcel_Load(object sender, EventArgs e)
         {
+            getTable = null;
 
         }
 
-        
-    }
-    }
+        public DataTable CheckLeadsPhoneNumber(DataTable leadDataTable)
+        {
 
-        
-    
+            var schoolid = 0;
+            if (GlobalAccount.SchoolId != null)
+            {
+                schoolid = Convert.ToInt32(GlobalAccount.SchoolId);
+            }
+
+            CheckDuplicatePhoneNoModel checkDuplicatePhoneNoModel = new CheckDuplicatePhoneNoModel();
+            var result = true;
+            try
+            {
+                parentexcel.Clear();
+                studentexcel.Clear();
+                //var getorignalTable = TempData["OrginalTable"] as DataTable;
+                var getorignalTable = leadDataTable;
+
+                List<string> phoneNoList = new List<string>();
+
+                var countPhoneNumber = 0;
+
+                var schoolId = Convert.ToInt32(GlobalAccount.SchoolId);
+                //var studendetails = Db.Students.AsNoTracking().Where(x => x.SchoolId == schoolid);
+                //var parentsdetail = Db.Parents.AsNoTracking().Where(x => x.SchoolId == schoolId);
+                getorignalTable.Columns.Add("Reason Behind Failure", typeof(string));
+
+
+                using (var modifiyOrignalTable = new DataTable())
+                {
+                    foreach (DataRow row in getorignalTable.Rows)
+                    {
+                        
+                        int p = 0;
+                        int s = 0;
+                        Random r = new Random();
+                        var student = new Student();
+                        var parent = new Parent();
+                        var ParentId = "";
+
+                        var parentfname = row.Table.Columns.Contains("FatherName");
+                        var parentmname = row.Table.Columns.Contains("MotherName");
+                        var parentfemail = row.Table.Columns.Contains("FatherEmail");
+                        var parenteemail = row.Table.Columns.Contains("MotherEmail");
+                        var parentfmobile = row.Table.Columns.Contains("FatherPhoneNumber");
+                        var parentmmobile = row.Table.Columns.Contains("MotherPhoneNumber");
+      
+                        if (parentfname && parentmname)
+                        {
+                            var parentfs = "";
+                            var parentms = "";
+                            parentfs = row.FieldOrDefault<string>("FatherName");
+                            parentms = row.FieldOrDefault<string>("MotherName");
+                            if (!string.IsNullOrEmpty(parentfs) && !string.IsNullOrEmpty(parentms))
+                            {
+                                ParentId = parentfs.Substring(0, 2) + parentms.Substring(0, 2) + r.Next(0, 100000) + r.Next(0, 1000000);
+                                parent.FathersName = parentfs;
+                                parent.MothersName = parentms;
+                                parent.Password = parentfs.Substring(0, 2) + parentms.Substring(0, 2) + r.Next(0, 100000) + r.Next(0, 1000000); 
+                            }
+                            else
+                            {
+                                row["Reason Behind Failure"] = "Parent Name is empty,please check it!";
+                                row.EndEdit();
+                                p = 1;
+                            }
+                        }
+                        var parentfatheremail = row.Table.Columns.Contains("FatherEmail");
+                        if (parentfatheremail)
+                        {
+                            var fatheremails = "";
+                            fatheremails = row.FieldOrDefault<string>("FatherEmail");
+                            if (!string.IsNullOrEmpty(fatheremails))
+                            {
+                                parent.FathersMailId = fatheremails;
+                            }
+                            else
+                            {
+                                row["Reason Behind Failure"] = "Father Email is empty,please check it!";
+                                row.EndEdit();
+                                p = 1;
+                            }
+                        }
+                      
+                        if (parentfatheremail)
+                        {
+                            var motheremails = "";
+                            motheremails = row.FieldOrDefault<string>("MotherEmail");
+                            if (!string.IsNullOrEmpty(motheremails))
+                            {
+                                parent.MothersMailId = motheremails;
+                            }
+                            else
+                            {
+                                row["Reason Behind Failure"] = "Mother Email is empty,please check it!";
+                                row.EndEdit();
+                                p = 1;
+                            }
+                         
+                        }
+                        if (parentfmobile)
+                        {
+                            var fatherphonenumber = "";
+                            fatherphonenumber = row.FieldOrDefault<string>("FatherPhoneNumber");
+                            if (!string.IsNullOrEmpty(fatherphonenumber))
+                            {
+                                fatherphonenumber = new string(fatherphonenumber.Where(c => char.IsDigit(c)).ToArray());
+                                if (fatherphonenumber.Length == 10)
+                                {
+                                   parent.FathersMobileNumber=fatherphonenumber;    
+                                }
+                                else
+                                {
+                                    var reasons = "";
+                                    var reason = row.Table.Columns.Contains("Reason Behind Failure");
+                                    if (reason)
+                                    {
+                                        row["Reason Behind Failure"] = "Father Phone no. is not correct!";
+                                        row.EndEdit();
+                                        p = 1;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                row["Reason Behind Failure"] = "Father Phone no. is empty!";
+                                row.EndEdit();
+                                p = 1;
+                            }
+                        }
+
+                        if (parentmmobile)
+                        {
+                            var motherphonenumber = "";
+                            motherphonenumber = row.FieldOrDefault<string>("MotherPhoneNumber");
+                            if (!string.IsNullOrEmpty(motherphonenumber))
+                            {
+                                motherphonenumber = new string(motherphonenumber.Where(c => char.IsDigit(c)).ToArray());
+                                if (motherphonenumber.Length == 10)
+                                {
+                                    parent.MothersMobileNumber = motherphonenumber;
+                                }
+                                else
+                                {
+                                    var reasons = "";
+                                    var reason = row.Table.Columns.Contains("Reason Behind Failure");
+                                    if (reason)
+                                    {
+                                        row["Reason Behind Failure"] = "Mother Phone no. is not correct!";
+                                        row.EndEdit();
+                                        p = 1;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                row["Reason Behind Failure"] = "Mother Phone no. is empty!";
+                                row.EndEdit();
+                                p = 1;
+                            }
+                        }
+                        if (p != 1) {
+                            var parentss = Db.Parents.FirstOrDefault(x => x.FathersMobileNumber == parent.FathersMobileNumber || x.MothersMobileNumber == parent.MothersMobileNumber || x.FathersMailId == parent.FathersMailId || x.MothersMailId == parent.MothersMailId);
+                            if (parentss != null)
+                            {
+                                ParentId = parentss.ParentId;
+                                row["Reason Behind Failure"] = "Parent is already added!";
+                                p = 1;
+                            }
+                         
+                        }
+
+
+                        student.SchoolId = Convert.ToInt32(GlobalAccount.SchoolId);
+                        var studentname = row.Table.Columns.Contains("StudentName");
+
+                        if (studentname)
+                        {
+                            var students = "";
+                            students = row.FieldOrDefault<string>("StudentName");
+                            if (!string.IsNullOrEmpty(students))
+                            {
+                                student.StudentId = students.Substring(0, 2) + r.Next(0, 100000) + r.Next(0, 1000000);
+                                student.Name = students;
+                                student.Password= students.Substring(0, 2) + r.Next(0, 100000) + r.Next(0, 1000000);
+                            }
+                            else
+                            {
+                                row["Reason Behind Failure"] = "Student Name is empty,please check it!";
+                                row.EndEdit();
+                                s = 1;
+                            }
+                        }
+                        var studentemail = row.Table.Columns.Contains("StudentEmail");
+                        if (studentemail)
+                        {
+                            var studentemails = "";
+                            studentemails = row.FieldOrDefault<string>("StudentEmail");
+                            if (!string.IsNullOrEmpty(studentemails))
+                            {
+                                student.Email = studentemails;
+                            }
+                            else
+                            {
+                                row["Reason Behind Failure"] = "Student Email is empty,please check it!";
+                                row.EndEdit();
+                                s = 1;
+                            }
+                        }
+                        int? countryId = null;
+                        var studentmobileNo = row.Table.Columns.Contains("StudentPhoneNumber");
+                        var studentphonenumber = "";
+                        if (studentmobileNo)
+                        {
+                            studentphonenumber = row.FieldOrDefault<string>("PhoneNumber");
+                            if (!string.IsNullOrEmpty(studentphonenumber))
+                            {
+                                studentphonenumber = new string(studentphonenumber.Where(c => char.IsDigit(c)).ToArray());
+                                if (studentphonenumber.Length == 10)
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    var reasons = "";
+                                    var reason = row.Table.Columns.Contains("Reason Behind Failure");
+                                    if (reason)
+                                    {
+                                        reasons = row.FieldOrDefault<string>("Reason Behind Failure");
+                                        row["Reason Behind Failure"] = "Phone no. is not correct!";
+                                        row.EndEdit();
+                                        s = 1;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                row["Reason Behind Failure"] = "Phone no. is empty!";
+                                row.EndEdit();
+                                s = 1;
+                            }
+                        }
+                        if (s != 1)
+                        {
+                            var studentss = Db.Students.FirstOrDefault(x => x.PhoneNumber == student.PhoneNumber || x.Email == student.Email);
+                            if (studentss != null)
+                            {
+                               
+                                row["Reason Behind Failure"] = "Student is already added with same mobile and email!";
+                                s = 1;
+                            }
+
+                        }
+                        if (p != 1)
+                        {
+                            parentexcel.Add(parent);
+                        }
+                        if (s != 1)
+                        {
+                            studentexcel.Add(student);
+                        }
+                    }
+                }
+
+                if(parentexcel!=null && parentexcel.Count>0)
+                {
+                    Db.Parents.AddRange(parentexcel);
+                    Db.SaveChanges();
+                }
+                if(studentexcel != null && studentexcel.Count>0)
+                {
+                    Db.Students.AddRange(studentexcel);
+                    Db.SaveChanges();
+                }
+                
+                return getorignalTable;
+            }
+            catch (Exception ex)
+            {
+                //Log.Debug(ex);
+                throw;
+                //return Json(ex);
+            }
+        }
+
+
+
+
+
+    }
+}
+
+
+
 
 

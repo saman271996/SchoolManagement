@@ -322,7 +322,6 @@
             this.Studentadmission.StateCommon.ComboBox.Content.TextH = Krypton.Toolkit.PaletteRelativeAlign.Near;
             this.Studentadmission.TabIndex = 27;
             this.Studentadmission.SelectionChangeCommitted += new System.EventHandler(this.Studentadmission_SelectionChangeCommitted);
-           
             // 
             // kryptonLabel4
             // 
