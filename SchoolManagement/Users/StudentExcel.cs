@@ -28,6 +28,7 @@ namespace SchoolManagement
         public List<Parent> parentexcel = new List<Parent>();
         public List<Student> studentexcel = new List<Student>();
         SchoolManagementEntities Db = new SchoolManagementEntities();
+       
         public StudentExcel()
         {
             InitializeComponent();
@@ -44,8 +45,8 @@ namespace SchoolManagement
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-            var processTable = new ProcessTable();
+        
+           var processTable = new ProcessTable();
             System.Windows.Forms.OpenFileDialog openfiledialog1 = new System.Windows.Forms.OpenFileDialog();
             openfiledialog1.ShowDialog();
             openfiledialog1.Filter = "allfiles|*.xls";
@@ -72,11 +73,16 @@ namespace SchoolManagement
                 getTable = Commonfunction.GetDataTabletFromCSVFile(f, openfiledialog1.FileName);
                 var tryToMappingLeadFieldBasedOnMatchingColumnOFCSV = Commonfunction.GetSuggestionForLeadExcel();
                 DataTable dt = new DataTable();
-                dt.Columns.Add(new DataColumn("Name", typeof(string)));
-                dt.Columns.Add(new DataColumn("Email", typeof(string)));
-                dt.Columns.Add(new DataColumn("Phone Number", typeof(string)));
-                dt.Columns.Add(new DataColumn("Gender", typeof(string)));
-                dt.Columns.Add(new DataColumn("Student Type", typeof(string)));
+                dt.Columns.Add(new DataColumn("StudentName", typeof(string)));
+                dt.Columns.Add(new DataColumn("StudentEmail", typeof(string)));
+                dt.Columns.Add(new DataColumn("StudentPhoneNumber", typeof(string)));
+                //dt.Columns.Add(new DataColumn("Gender", typeof(string)));
+                dt.Columns.Add(new DataColumn("FatherName", typeof(string)));
+                dt.Columns.Add(new DataColumn("MotherName", typeof(string)));
+                dt.Columns.Add(new DataColumn("FatherEmail", typeof(string)));
+                dt.Columns.Add(new DataColumn("MotherEmail", typeof(string)));
+                dt.Columns.Add(new DataColumn("FatherPhoneNumber", typeof(string)));
+                dt.Columns.Add(new DataColumn("MotherPhoneNumber", typeof(string)));
 
                 for (int i = 0; i < getTable?.Rows.Count; i++)
                 {
@@ -122,15 +128,37 @@ namespace SchoolManagement
         {
             try
             {
+                parentexcel.Clear();
+                studentexcel.Clear();
                 var postedFile = txtfilepath.Text;
                 WorkBook wb = WorkBook.Create(ExcelFileFormat.XLS);
                 WorkSheet ws = wb.DefaultWorkSheet;
                 if (getTable != null)
                 {
                     int uniqueOrDuplicateLeads = 0;
+                    var parentfname = getTable.Columns.Contains("FatherName");
+                    var parentmname = getTable.Columns.Contains("MotherName");
+                    var parentfemail = getTable.Columns.Contains("FatherEmail");
+                    var parenteemail = getTable.Columns.Contains("MotherEmail");
+                    var parentfmobile = getTable.Columns.Contains("FatherPhoneNumber");
+                    var parentmmobile = getTable.Columns.Contains("MotherPhoneNumber");
 
+                    if (parentfname == false || parentmname == false || parenteemail == false || parentfemail == false || parentfmobile == false || parentmmobile == false || parentmmobile == false)
+                    {
+                        MessageBox.Show("Parent column not map please check column of excel csv");
+                        return;
+                    }
+                    var studentname=  getTable.Columns.Contains("StudentName");
+                    var studentemail= getTable.Columns.Contains("StudentEmail");
+                    var studentphonenumber= getTable.Columns.Contains("StudentPhoneNumber");
+                    if (studentname==false || studentemail==false || studentphonenumber==false)
+                    {
+                        MessageBox.Show("Student column not map please check column of excel csv");
+                        return;
+                    }    
                     var duplicatestudent = CheckLeadsPhoneNumber(getTable);
-
+                    if(duplicatestudent!=null)
+                    { 
                     var path = "File_"+ Guid.NewGuid() + "Test.csv";
                     string folderPath = "D:\\school\\"+ path;
 
@@ -144,27 +172,35 @@ namespace SchoolManagement
                         IEnumerable<string> fields = row.ItemArray.Select(field => field.ToString());
                         sb.AppendLine(string.Join(",", fields));
                     }
-                    using (System.Windows.Forms.SaveFileDialog saveFileDialog = new System.Windows.Forms.SaveFileDialog())
-                    {
-                        saveFileDialog.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
-                        saveFileDialog.FilterIndex = 1;
-                        saveFileDialog.RestoreDirectory = true;
-                        // Set initial directory to user's Documents folder
-                        string filePath = saveFileDialog.FileName;
-
-                        if (!string.IsNullOrWhiteSpace(folderPath))
+                        using (System.Windows.Forms.SaveFileDialog saveFileDialog = new System.Windows.Forms.SaveFileDialog())
                         {
-                            SaveCSVToFile(sb.ToString(), folderPath);
-                            //File.WriteAllText(folderPath, sb.ToString());
-                        }
+                            saveFileDialog.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
+                            saveFileDialog.FilterIndex = 1;
+                            saveFileDialog.RestoreDirectory = true;
+                            // Set initial directory to user's Documents folder
+                            string filePath = saveFileDialog.FileName;
 
+                            if (!string.IsNullOrWhiteSpace(folderPath))
+                            {
+                                SaveCSVToFile(sb.ToString(), folderPath);
+                                this.Controls.Clear();
+                                this.InitializeComponent();
+                                this.Refresh();
+                                MessageBox.Show("Successfully file uploaded!,if any error please check the excel file with reason column,added to your pc!");
+                                return;
+                                
+                            }
+                        }
                     }
 
                 }
             }
             catch (Exception ex)
             {
-
+                this.Controls.Clear();
+                this.InitializeComponent();
+                this.Refresh();
+                MessageBox.Show(ex.ToString());
             }
 
         }
@@ -203,8 +239,10 @@ namespace SchoolManagement
                 var schoolId = Convert.ToInt32(GlobalAccount.SchoolId);
                 //var studendetails = Db.Students.AsNoTracking().Where(x => x.SchoolId == schoolid);
                 //var parentsdetail = Db.Parents.AsNoTracking().Where(x => x.SchoolId == schoolId);
-                getorignalTable.Columns.Add("Reason Behind Failure", typeof(string));
-
+                if (!getorignalTable.Columns.Contains("Reason Behind Failure"))
+                {
+                    getorignalTable.Columns.Add("Reason Behind Failure", typeof(string));
+                }
 
                 using (var modifiyOrignalTable = new DataTable())
                 {
@@ -224,7 +262,7 @@ namespace SchoolManagement
                         var parenteemail = row.Table.Columns.Contains("MotherEmail");
                         var parentfmobile = row.Table.Columns.Contains("FatherPhoneNumber");
                         var parentmmobile = row.Table.Columns.Contains("MotherPhoneNumber");
-      
+                       
                         if (parentfname && parentmname)
                         {
                             var parentfs = "";
@@ -243,6 +281,7 @@ namespace SchoolManagement
                                 row["Reason Behind Failure"] = "Parent Name is empty,please check it!";
                                 row.EndEdit();
                                 p = 1;
+                                continue;
                             }
                         }
                         var parentfatheremail = row.Table.Columns.Contains("FatherEmail");
@@ -259,6 +298,7 @@ namespace SchoolManagement
                                 row["Reason Behind Failure"] = "Father Email is empty,please check it!";
                                 row.EndEdit();
                                 p = 1;
+                                continue;
                             }
                         }
                       
@@ -275,6 +315,7 @@ namespace SchoolManagement
                                 row["Reason Behind Failure"] = "Mother Email is empty,please check it!";
                                 row.EndEdit();
                                 p = 1;
+                                continue;
                             }
                          
                         }
@@ -298,6 +339,7 @@ namespace SchoolManagement
                                         row["Reason Behind Failure"] = "Father Phone no. is not correct!";
                                         row.EndEdit();
                                         p = 1;
+                                        continue;
                                     }
                                 }
                             }
@@ -306,6 +348,7 @@ namespace SchoolManagement
                                 row["Reason Behind Failure"] = "Father Phone no. is empty!";
                                 row.EndEdit();
                                 p = 1;
+                                continue;
                             }
                         }
 
@@ -329,6 +372,7 @@ namespace SchoolManagement
                                         row["Reason Behind Failure"] = "Mother Phone no. is not correct!";
                                         row.EndEdit();
                                         p = 1;
+                                        continue;
                                     }
                                 }
                             }
@@ -337,6 +381,7 @@ namespace SchoolManagement
                                 row["Reason Behind Failure"] = "Mother Phone no. is empty!";
                                 row.EndEdit();
                                 p = 1;
+                                continue;
                             }
                         }
                         if (p != 1) {
@@ -344,7 +389,7 @@ namespace SchoolManagement
                             if (parentss != null)
                             {
                                 ParentId = parentss.ParentId;
-                                row["Reason Behind Failure"] = "Parent is already added!";
+                               
                                 p = 1;
                             }
                          
@@ -360,6 +405,7 @@ namespace SchoolManagement
                             students = row.FieldOrDefault<string>("StudentName");
                             if (!string.IsNullOrEmpty(students))
                             {
+                                student.ParentId = ParentId;
                                 student.StudentId = students.Substring(0, 2) + r.Next(0, 100000) + r.Next(0, 1000000);
                                 student.Name = students;
                                 student.Password= students.Substring(0, 2) + r.Next(0, 100000) + r.Next(0, 1000000);
@@ -369,6 +415,7 @@ namespace SchoolManagement
                                 row["Reason Behind Failure"] = "Student Name is empty,please check it!";
                                 row.EndEdit();
                                 s = 1;
+                                continue;
                             }
                         }
                         var studentemail = row.Table.Columns.Contains("StudentEmail");
@@ -385,6 +432,7 @@ namespace SchoolManagement
                                 row["Reason Behind Failure"] = "Student Email is empty,please check it!";
                                 row.EndEdit();
                                 s = 1;
+                                continue;
                             }
                         }
                         int? countryId = null;
@@ -392,7 +440,7 @@ namespace SchoolManagement
                         var studentphonenumber = "";
                         if (studentmobileNo)
                         {
-                            studentphonenumber = row.FieldOrDefault<string>("PhoneNumber");
+                            studentphonenumber = row.FieldOrDefault<string>("StudentPhoneNumber");
                             if (!string.IsNullOrEmpty(studentphonenumber))
                             {
                                 studentphonenumber = new string(studentphonenumber.Where(c => char.IsDigit(c)).ToArray());
@@ -410,6 +458,7 @@ namespace SchoolManagement
                                         row["Reason Behind Failure"] = "Phone no. is not correct!";
                                         row.EndEdit();
                                         s = 1;
+                                        continue;
                                     }
                                 }
                             }
@@ -418,6 +467,7 @@ namespace SchoolManagement
                                 row["Reason Behind Failure"] = "Phone no. is empty!";
                                 row.EndEdit();
                                 s = 1;
+                                continue;
                             }
                         }
                         if (s != 1)
@@ -428,6 +478,7 @@ namespace SchoolManagement
                                
                                 row["Reason Behind Failure"] = "Student is already added with same mobile and email!";
                                 s = 1;
+                               
                             }
 
                         }

@@ -61,7 +61,7 @@ namespace SchoolManagement
                     ParentId = GlobalAccount.ParentId,
                     SchoolId = Convert.ToInt32(GlobalAccount.SchoolId),
                     ClassId = 1,
-                    SectionId = 1,
+                    SectionId = "1",
                     Birthday = DateTime.Now,
                     Gender = Gender.Text,
                     BloodGroup = BloodGroup.Text,

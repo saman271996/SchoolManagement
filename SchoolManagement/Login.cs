@@ -98,6 +98,7 @@ namespace SchoolManagement
 
         private void Login_submit_Click(object sender, EventArgs e)
         {
+            
             var message = "";
             try
             {

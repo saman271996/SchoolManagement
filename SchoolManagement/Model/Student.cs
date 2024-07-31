@@ -23,7 +23,7 @@ namespace SchoolManagement.Model
         public Nullable<int> StudentType { get; set; }
         public string ParentId { get; set; }
         public Nullable<int> ClassId { get; set; }
-        public Nullable<int> SectionId { get; set; }
+        public string SectionId { get; set; }
         public Nullable<System.DateTime> Birthday { get; set; }
         public string Gender { get; set; }
         public string BloodGroup { get; set; }

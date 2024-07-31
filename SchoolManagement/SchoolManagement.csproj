@@ -59,6 +59,9 @@
     <Reference Include="CsvHelper, Version=33.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
       <HintPath>..\packages\CsvHelper.33.0.1\lib\net47\CsvHelper.dll</HintPath>
     </Reference>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.1.28\lib\net461\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="DocumentFormat.OpenXml, Version=3.0.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
       <HintPath>..\packages\DocumentFormat.OpenXml.3.0.2\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
@@ -364,6 +367,7 @@
     <Compile Include="Model\Student.cs">
       <DependentUpon>SchoolManagement.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\StudentViewModel.cs" />
     <Compile Include="Model\Subject.cs">
       <DependentUpon>SchoolManagement.tt</DependentUpon>
     </Compile>
@@ -393,6 +397,12 @@
     </Compile>
     <Compile Include="StaffDetails.Designer.cs">
       <DependentUpon>StaffDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudentDetails.Designer.cs">
+      <DependentUpon>StudentDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Users\Bulkstudent.cs">
       <SubType>Form</SubType>
@@ -467,6 +477,9 @@
     <EmbeddedResource Include="StaffDetails.resx">
       <DependentUpon>StaffDetails.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="StudentDetails.resx">
+      <DependentUpon>StudentDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Users\Bulkstudent.resx">
       <DependentUpon>Bulkstudent.cs</DependentUpon>
     </EmbeddedResource>
@@ -504,6 +517,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="edit-icon.png" />
     <Content Include="Model\SchoolManagement.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SchoolManagement.Context.cs</LastGenOutput>

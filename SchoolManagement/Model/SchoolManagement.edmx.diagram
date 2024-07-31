@@ -5,17 +5,17 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="9d6d90b448f24c7ba33f11bc216330c6" Name="Diagram1">
-        <EntityTypeShape EntityType="SchoolManagementModel.Parent" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SchoolManagementModel.SchoolDetail" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SchoolManagementModel.SchoolStaff" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SchoolManagementModel.Subject" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SchoolManagementModel.User" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SchoolManagementModel.UserSubscriptionPlanDetail" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SchoolManagementModel.Class" Width="1.5" PointX="11.75" PointY="0.75" />
-        <EntityTypeShape EntityType="SchoolManagementModel.Class_Section" Width="1.5" PointX="0.75" PointY="11.75" />
-        <EntityTypeShape EntityType="SchoolManagementModel.Section" Width="1.5" PointX="2.75" PointY="11.75" />
-        <EntityTypeShape EntityType="SchoolManagementModel.Student" Width="1.5" PointX="5.375" PointY="7.75" />
-        <EntityTypeShape EntityType="SchoolManagementModel.ClassRoutineAcademic" Width="1.5" PointX="11.375" PointY="4.75" />
+        <EntityTypeShape EntityType="SchoolManagementModel.Class" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SchoolManagementModel.Class_Section" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SchoolManagementModel.ClassRoutineAcademic" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SchoolManagementModel.Parent" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SchoolManagementModel.SchoolDetail" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SchoolManagementModel.SchoolStaff" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SchoolManagementModel.Section" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SchoolManagementModel.Student" Width="1.5" PointX="6.75" PointY="5.75" />
+        <EntityTypeShape EntityType="SchoolManagementModel.Subject" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SchoolManagementModel.User" Width="1.5" PointX="8.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SchoolManagementModel.UserSubscriptionPlanDetail" Width="1.5" PointX="10.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
