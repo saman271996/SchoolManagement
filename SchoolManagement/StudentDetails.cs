@@ -8,12 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Dapper;
 using System.Data.SqlClient;
 using SchoolManagement.Helper;
 using DocumentFormat.OpenXml.Office2010.ExcelAc;
 using DocumentFormat.OpenXml.Bibliography;
 using System.IO;
+using Dapper;
 namespace SchoolManagement
 {
     public partial class StudentDetails : Form
