@@ -234,5 +234,23 @@ namespace SchoolManagement.Academic
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void ClassRoutineDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && e.ColumnIndex < ClassRoutineDataGridView.Columns.Count && ClassRoutineDataGridView.Columns[e.ColumnIndex].HeaderText == "Edit")
+            {
+                string ClassNameEdit, SubjectNameEdit, sectionNameEdit, teacherNameEdit;
+                Id = Convert.ToInt32(ClassRoutineDataGridView.Rows[e.RowIndex].Cells["IdColumn"].Value);
+                ClassNameEdit = Convert.ToString(ClassRoutineDataGridView.Rows[e.RowIndex].Cells["ClassNameColumn"].Value);
+                SubjectNameEdit = Convert.ToString(ClassRoutineDataGridView.Rows[e.RowIndex].Cells["SubjectNameColumn"].Value);
+                ClassNameEdit = Convert.ToString(ClassRoutineDataGridView.Rows[e.RowIndex].Cells["SectionNameColumn"].Value);
+                SubjectNameEdit = Convert.ToString(ClassRoutineDataGridView.Rows[e.RowIndex].Cells["TeacherNameColumn"].Value);
+                classSelect.Text = ClassNameEdit;
+                subjectSelect.Text = SubjectNameEdit;
+                //sectionSelect.Text = sectionNameEdit
+
+                Submit.Text = "Update";
+            }
+        }
     }
 }
