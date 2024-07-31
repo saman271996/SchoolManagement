@@ -68,6 +68,7 @@
             this.SelectClass = new Krypton.Toolkit.KryptonLabel();
             this.Designation = new Krypton.Toolkit.KryptonTextBox();
             this.ChooseImage = new Krypton.Toolkit.KryptonButton();
+            this.IdHiddenCol = new Krypton.Toolkit.KryptonTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.SelectStaff)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BasicStaffDetailPanel)).BeginInit();
@@ -125,6 +126,7 @@
             // 
             // BasicStaffDetailPanel
             // 
+            this.BasicStaffDetailPanel.Controls.Add(this.IdHiddenCol);
             this.BasicStaffDetailPanel.Controls.Add(this.Address);
             this.BasicStaffDetailPanel.Controls.Add(this.kryptonLabel5);
             this.BasicStaffDetailPanel.Controls.Add(this.kryptonLabel20);
@@ -622,6 +624,24 @@
             this.ChooseImage.TabIndex = 6;
             this.ChooseImage.Values.Text = "ChooseImage";
             // 
+            // IdHiddenCol
+            // 
+            this.IdHiddenCol.InputControlStyle = Krypton.Toolkit.InputControlStyle.Ribbon;
+            this.IdHiddenCol.Location = new System.Drawing.Point(437, 9);
+            this.IdHiddenCol.MinimumSize = new System.Drawing.Size(0, 30);
+            this.IdHiddenCol.Name = "IdHiddenCol";
+            this.IdHiddenCol.Size = new System.Drawing.Size(137, 30);
+            this.IdHiddenCol.StateCommon.Border.Color1 = System.Drawing.SystemColors.ActiveBorder;
+            this.IdHiddenCol.StateCommon.Border.Color2 = System.Drawing.SystemColors.ActiveBorder;
+            this.IdHiddenCol.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.IdHiddenCol.StateCommon.Border.Rounding = 2F;
+            this.IdHiddenCol.StateCommon.Content.Color1 = System.Drawing.SystemColors.ActiveCaptionText;
+            this.IdHiddenCol.StateCommon.Content.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IdHiddenCol.TabIndex = 27;
+            this.IdHiddenCol.Visible = false;
+            // 
             // SchoolSatff
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -699,5 +719,6 @@
         private Krypton.Toolkit.KryptonLabel kryptonLabel5;
         private Krypton.Toolkit.KryptonComboBox TeacherSelectClass;
         private Krypton.Toolkit.KryptonComboBox TeacherSelectSubject;
+        private Krypton.Toolkit.KryptonTextBox IdHiddenCol;
     }
 }

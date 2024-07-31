@@ -25,7 +25,9 @@ namespace SchoolManagement.Model
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Class> Classes { get; set; }
         public virtual DbSet<Class_Section> Class_Section { get; set; }
+        public virtual DbSet<ClassRoutineAcademic> ClassRoutineAcademics { get; set; }
         public virtual DbSet<Parent> Parents { get; set; }
         public virtual DbSet<SchoolDetail> SchoolDetails { get; set; }
         public virtual DbSet<SchoolStaff> SchoolStaffs { get; set; }

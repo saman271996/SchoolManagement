@@ -70,7 +70,7 @@ namespace SchoolManagement
         private void SubmitRecord_Click(object sender, EventArgs e)
         {
             var classid =Convert.ToInt32(Class.SelectedValue);
-            var sectionId=Section.SelectedValue;
+            var sectionId= Section.SelectedValue;
             var classdetails = Db.Students.AsNoTracking().Where(x=>x.SchoolId==GlobalAccount.SchoolId && x.ClassId==classid && x.SectionId==sectionId).ToList();
             
            
