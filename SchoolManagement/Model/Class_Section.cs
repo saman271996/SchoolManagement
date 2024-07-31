@@ -14,10 +14,12 @@ namespace SchoolManagement.Model
     
     public partial class Class_Section
     {
-        public int ClassId { get; set; }
+        public int Id { get; set; }
+        public Nullable<int> ClassId { get; set; }
         public Nullable<int> SchoolId { get; set; }
-        public string ClassName { get; set; }
+        public string SectionId { get; set; }
         public string SectionName { get; set; }
+        public string ClassName { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<bool> IsDelete { get; set; }
         public Nullable<System.DateTime> DateAdded { get; set; }

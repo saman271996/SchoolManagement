@@ -263,6 +263,24 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Academic\ClassAcademic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Academic\ClassAcademic.Designer.cs">
+      <DependentUpon>ClassAcademic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Academic\ClassRoutine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Academic\ClassRoutine.Designer.cs">
+      <DependentUpon>ClassRoutine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Academic\SubjectAcademic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Academic\SubjectAcademic.Designer.cs">
+      <DependentUpon>SubjectAcademic.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -270,11 +288,11 @@
       <DependentUpon>AdminDashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="Bloodgroup.cs" />
-    <Compile Include="ClassAcademic.cs">
+    <Compile Include="customchechkbox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ClassAcademic.Designer.cs">
-      <DependentUpon>ClassAcademic.cs</DependentUpon>
+    <Compile Include="customchechkbox.Designer.cs">
+      <DependentUpon>customchechkbox.cs</DependentUpon>
     </Compile>
     <Compile Include="ExtensionMethod.cs" />
     <Compile Include="Form1.cs">
@@ -285,6 +303,7 @@
     </Compile>
     <Compile Include="HelperClasses\UserMailer.cs" />
     <Compile Include="Helper\Commonfunction.cs" />
+    <Compile Include="Helper\EditStaffViewModel.cs" />
     <Compile Include="Helper\GlobalAccount.cs" />
     <Compile Include="Helper\Helper.cs" />
     <Compile Include="Helper\LeadColumnAndCSVColumn.cs" />
@@ -304,6 +323,12 @@
     </Compile>
     <Compile Include="MainLayoutForm.Designer.cs">
       <DependentUpon>MainLayoutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Class.cs">
+      <DependentUpon>SchoolManagement.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ClassRoutineAcademic.cs">
+      <DependentUpon>SchoolManagement.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Class_Section.cs">
       <DependentUpon>SchoolManagement.tt</DependentUpon>
@@ -369,12 +394,6 @@
     <Compile Include="StaffDetails.Designer.cs">
       <DependentUpon>StaffDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="SubjectAcademic.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SubjectAcademic.Designer.cs">
-      <DependentUpon>SubjectAcademic.cs</DependentUpon>
-    </Compile>
     <Compile Include="Users\Bulkstudent.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -409,11 +428,20 @@
     <Compile Include="ViewModel\ParentViewModel.cs" />
     <Compile Include="ViewModel\SchoolViewModel.cs" />
     <Compile Include="ViewModel\StudentAdmissionType.cs" />
+    <EmbeddedResource Include="Academic\ClassAcademic.resx">
+      <DependentUpon>ClassAcademic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Academic\ClassRoutine.resx">
+      <DependentUpon>ClassRoutine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Academic\SubjectAcademic.resx">
+      <DependentUpon>SubjectAcademic.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdminDashboard.resx">
       <DependentUpon>AdminDashboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ClassAcademic.resx">
-      <DependentUpon>ClassAcademic.cs</DependentUpon>
+    <EmbeddedResource Include="customchechkbox.resx">
+      <DependentUpon>customchechkbox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -438,9 +466,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StaffDetails.resx">
       <DependentUpon>StaffDetails.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SubjectAcademic.resx">
-      <DependentUpon>SubjectAcademic.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Users\Bulkstudent.resx">
       <DependentUpon>Bulkstudent.cs</DependentUpon>
@@ -494,6 +519,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets" Condition="Exists('..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

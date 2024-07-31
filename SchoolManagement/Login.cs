@@ -58,7 +58,7 @@ namespace SchoolManagement
             pictureBox2.BorderStyle = BorderStyle.None;
             pictureBox4.BorderStyle = BorderStyle.None;
             label_loginheading.Text = "Reception Login";
-            UserType.Text = "3";
+            UserType.Text = "1";
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)

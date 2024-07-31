@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SchoolManagement.Academic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace SchoolManagement
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new StudentExcel());
+            Application.Run(new ClassRoutine());
         }
     }
 }
