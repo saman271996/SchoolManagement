@@ -232,6 +232,7 @@
             this.ClassRoutineDataGridView.StateCommon.HeaderRow.Content.Color1 = System.Drawing.Color.White;
             this.ClassRoutineDataGridView.StateCommon.HeaderRow.Content.Color2 = System.Drawing.Color.White;
             this.ClassRoutineDataGridView.TabIndex = 34;
+            this.ClassRoutineDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ClassRoutineDataGridView_CellClick);
             // 
             // IdColumn
             // 
