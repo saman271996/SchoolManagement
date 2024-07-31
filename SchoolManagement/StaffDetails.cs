@@ -17,6 +17,8 @@ namespace SchoolManagement
         {
             InitializeComponent();
         }
+
+    
     }
 
 }
