@@ -243,13 +243,40 @@ namespace SchoolManagement.Academic
                 Id = Convert.ToInt32(ClassRoutineDataGridView.Rows[e.RowIndex].Cells["IdColumn"].Value);
                 ClassNameEdit = Convert.ToString(ClassRoutineDataGridView.Rows[e.RowIndex].Cells["ClassNameColumn"].Value);
                 SubjectNameEdit = Convert.ToString(ClassRoutineDataGridView.Rows[e.RowIndex].Cells["SubjectNameColumn"].Value);
-                ClassNameEdit = Convert.ToString(ClassRoutineDataGridView.Rows[e.RowIndex].Cells["SectionNameColumn"].Value);
-                SubjectNameEdit = Convert.ToString(ClassRoutineDataGridView.Rows[e.RowIndex].Cells["TeacherNameColumn"].Value);
+                sectionNameEdit = Convert.ToString(ClassRoutineDataGridView.Rows[e.RowIndex].Cells["SectionNameColumn"].Value);
+                teacherNameEdit = Convert.ToString(ClassRoutineDataGridView.Rows[e.RowIndex].Cells["TeacherNameColumn"].Value);
                 classSelect.Text = ClassNameEdit;
                 subjectSelect.Text = SubjectNameEdit;
-                //sectionSelect.Text = sectionNameEdit
+                sectionSelect.Text = sectionNameEdit;
+                teacherSelect.Text = teacherNameEdit;
 
                 Submit.Text = "Update";
+            }
+
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && e.ColumnIndex < ClassRoutineDataGridView.Columns.Count && ClassRoutineDataGridView.Columns[e.ColumnIndex].HeaderText == "Delete")
+            {
+                Id = Convert.ToInt32(ClassRoutineDataGridView.Rows[e.RowIndex].Cells["IdColumn"].Value);
+                DialogResult result = MessageBox.Show("Are you sure you want to delete", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    var entityToDelete = dbContext.ClassRoutineAcademics.Find(Id);
+
+                    if (entityToDelete != null)
+                    {
+
+                        entityToDelete.IsDelete = true;
+                        dbContext.SaveChanges();
+
+                        GetdataFromDatabase();
+
+                        MessageBox.Show("Record deleted successfully.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Record not found or failed to delete.");
+                    }
+                }
             }
         }
     }
