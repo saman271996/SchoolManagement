@@ -48,6 +48,10 @@ namespace SchoolManagement
 
         private void ClassAcademic_Load(object sender, EventArgs e)
         {
+            classesdataload();
+        }
+        private void classesdataload()
+        {
             flowLayoutPanel.Visible = false;
             flowLayoutPanel.AutoSize = true;
             flowLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -323,7 +327,16 @@ namespace SchoolManagement
         private void ClassName_SelectionChangeCommitted(object sender, EventArgs e)
         {
             SubjectClassDropdlist selectedClass = (SubjectClassDropdlist)ClassName.SelectedItem;
-            if(selectedClass.Value == 11 || selectedClass.Value == 12)
+            if(Submit.Text == "Update")
+            {
+                this.Controls.Clear();
+                this.InitializeComponent();
+                this.Refresh();
+                classesdataload();
+                Submit.Text = "Submit";
+                return;
+            }
+            if (selectedClass.Value == 11 || selectedClass.Value == 12)
             {
                 StreamId = "1";
                 section_streamType.Visible = true;

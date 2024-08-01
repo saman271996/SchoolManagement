@@ -102,7 +102,7 @@ namespace SchoolManagement
             var message = "";
             try
             {
-                var users = Db.Users.AsNoTracking().FirstOrDefault(x => x.IsActive == true && x.IsDelete == false && (x.Email == Email_Mobile.Text || x.PhoneNumber == Email_Mobile.Text));
+                var users = Db.Users.AsNoTracking().FirstOrDefault(x => x.IsActive == true && x.IsDelete == false && (x.Email == Email_Mobile.Text || x.PhoneNumber == Email_Mobile.Text) && x.Password==Password.Text);
                 if (users == null)
                 {
                     MessageBox.Show("Invalid UserName or Password");
@@ -120,9 +120,9 @@ namespace SchoolManagement
                        
                         if (users.UserType == Convert.ToInt32(UserType.Text))
                         {
-                            this.Hide();
                             frm = new MainLayoutForm();
                             frm.Show();
+                            this.Hide();
                         }
                     }
                     else
