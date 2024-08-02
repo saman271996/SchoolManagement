@@ -14,15 +14,17 @@ using System.Reflection.Emit;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
+using Dapper;
 using System.Windows.Forms;
 using static SchoolManagement.Helper.Helper;
+using System.Data.SqlClient;
 
 namespace SchoolManagement
 {
     public partial class ClassAcademic : Form
     {
         private Panel paginationPanel;
-        private List<Section> allData;
+        private List<ClassViewModel> allData;
         private int pageSize = 10;
         private int currentPage = 0;
         private string SectionId;
@@ -31,6 +33,8 @@ namespace SchoolManagement
         private string StreamId;
         private SchoolManagementEntities dbContext;
         validations validates = new validations();
+        private static readonly string ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["SchoolManagementConnectionString"].ConnectionString;
+        protected SqlConnection Con = new SqlConnection(ConnectionString);
         public ClassAcademic()
         {
             InitializeComponent();
@@ -65,11 +69,25 @@ namespace SchoolManagement
         private void GetdataFromDatabase()
         {
             var schoolid = 2008;
-            ClassDataGridView.AutoGenerateColumns = false;
-            allData = dbContext.Sections.Where(m => m.IsDelete != true && m.SchoolId == schoolid).ToList();
-            ClassDataGridView.DataSource = allData;
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                var sql = new StringBuilder($@"select cls.Id,cls.ClassId,cls.SectionId,cls.StreamId,cla.ClassName,scs.SectionName,streamed.StreamName from Class_Section cls
+                left join class cla on cla.ClassId=cls.ClassId left join Section scs on scs.SectionId=cls.SectionId left join streams streamed on streamed.stramId=cls.StreamId 
+                where cls.IsActive=1 and cls.SchoolId={schoolid}");
+                allData = connection.Query<ClassViewModel>(sql.ToString()).ToList();
+                //StudentRecord.DataSource = properties;
+                foreach (var item in allData)
+                {
+                    ClassDataGridView.Rows.Add(item.Id,item.SectionId,item.StreamId,item.ClassName, item.SectionName, item.StreamName);
+                }
 
-            TotalCount.Text = ClassDataGridView.Rows.Count.ToString();
+            }
+            //ClassDataGridView.AutoGenerateColumns = false;
+
+            //allData = dbContext.Sections.Where(m => m.IsDelete != true && m.SchoolId == schoolid).ToList();
+            //ClassDataGridView.DataSource = allData;
+
+            //TotalCount.Text = ClassDataGridView.Rows.Count.ToString();
             UpdateDataGridView();
         }
 
@@ -85,15 +103,19 @@ namespace SchoolManagement
                     Text = select.ClassName,
                     Value = select.ClassId,
                 };
-
+                
                 ClassName.Items.Add(item);
             }
+            
+            
         }
 
         private void Submit_Click(object sender, EventArgs e)
         {
+
             try
             {
+                SubjectClassDropdlist selectedClass = (SubjectClassDropdlist)ClassName.SelectedItem;
                 if (Submit.Text == "Submit")
                 {
                     if (!string.IsNullOrEmpty(ClassName.Text))
@@ -101,9 +123,20 @@ namespace SchoolManagement
                         Random random = new Random();
                         List<string> sectionIds = new List<string>();
                         List<Section> sections = new List<Section>();
-                        SubjectClassDropdlist selectedClass = (SubjectClassDropdlist)ClassName.SelectedItem;
                         List<Class_Section> classSections = new List<Class_Section>();
-
+                        Stream streams = new Stream();
+                        if (!string.IsNullOrEmpty(section_streamType.Text))
+                        {
+                            streams.StreamName = section_streamType.Text;
+                            streams.SchoolId = GlobalAccount.SchoolId;
+                            streams.ClassId = selectedClass.Value;
+                            streams.IsActive = true;
+                            streams.Isdelete = false;
+                            streams.DateAdded = DateTime.Now;
+                            streams.DateModified = DateTime.Now;
+                            dbContext.Streams.Add(streams);
+                            dbContext.SaveChanges();
+                        }
                         foreach (Control control in flowLayoutPanel.Controls)
                         {
                             if (control is FlowLayoutPanel tagPanel)
@@ -114,18 +147,9 @@ namespace SchoolManagement
 
                                     if (innerControl is System.Windows.Forms.Label tagLabel)
                                     {
-                                        if(StreamId == "0")
-                                        {
-                                            SectionId = tagLabel.Text + random.Next(0, 1000000) + random.Next(0, 2000000);
-                                        }
-                                        else
-                                        {
-                                            StreamId = tagLabel.Text + random.Next(0, 1000000) + random.Next(0, 2000000);
-                                        }
+                                        SectionId = tagLabel.Text + random.Next(0, 1000000) + random.Next(0, 2000000);
 
                                         sectioned.SectionId = SectionId;
-                                        sectioned.StreamName = section_streamType.Text;
-                                        sectioned.StreamId = StreamId;
                                         sectioned.ClassId = selectedClass.Value;
                                         sectioned.SectionName = tagLabel.Text;
                                         sectioned.TypeStatus = true;
@@ -144,6 +168,7 @@ namespace SchoolManagement
                                             ClassName = ClassName.Text,
                                             SectionName = tagLabel.Text,
                                             SectionId = SectionId,
+                                            StreamId = streams.StramId,
                                             IsActive = true,
                                             IsDelete = false,
                                             DateAdded = DateTime.Now,
@@ -186,7 +211,34 @@ namespace SchoolManagement
                 }
                 else if (Submit.Text == "Update")
                 {
-                    UpdateSection();
+                    var sectionsed = new Class_Section();
+                    if (!string.IsNullOrEmpty(section_streamType.Text))
+                    {
+                        int str_id = 0;
+                        var sections = section_streamType.Text.Trim();
+                        var streamed = dbContext.Streams.FirstOrDefault(x => x.SchoolId == 2008 && x.ClassId == selectedClass.Value && x.StreamName.Trim() == sections);
+                        if (streamed != null)
+                        {
+                            str_id = streamed.StramId;
+                        }
+                        sectionsed = dbContext.Class_Section.FirstOrDefault(x => x.SectionName.Trim() == ClassSection.Text.Trim() && x.SchoolId == 2008 && x.ClassId == selectedClass.Value && x.StreamId == str_id); 
+                    }
+                    else
+                    {
+                        sectionsed = dbContext.Class_Section.FirstOrDefault(x => x.SectionName.Trim() == ClassSection.Text.Trim() && x.SchoolId == 2008 && x.ClassId == selectedClass.Value);
+
+                    }
+                    if (sectionsed == null)
+                    {
+                        UpdateSection();
+                        MessageBox.Show("updated record sucessfully");
+                    }
+                    else
+                    {
+                        MessageBox.Show("already record added");
+                    }
+                   
+
                 }
             }
             catch (Exception ex)
@@ -205,39 +257,45 @@ namespace SchoolManagement
                 {
                     var sectionToUpdate = dbContext.Sections.FirstOrDefault(s => s.SectionId == SectionId && s.StreamId == StreamId);
                     var classSectionToUpdate = dbContext.Class_Section.FirstOrDefault(cs => cs.SectionId == SectionId);
-                    if (sectionToUpdate != null && classSectionToUpdate != null || sectionToUpdate != null)
+
+                    SubjectClassDropdlist selectedClass = (SubjectClassDropdlist)ClassName.SelectedItem;
+                    if (selectedClass != null)
                     {
-                        SubjectClassDropdlist selectedClass = (SubjectClassDropdlist)ClassName.SelectedItem;
+                        var classdatas = dbContext.Sections.FirstOrDefault(x => (x.ClassId == selectedClass.Value && x.SectionName == ClassSection.Text));
 
-                        sectionToUpdate.SectionName = ClassSection.Text;
-                        sectionToUpdate.StreamName = section_streamType.Text;
-                        sectionToUpdate.ClassId = selectedClass.Value;
-                        sectionToUpdate.DateModified = DateTime.Now;
-                        if (sectionToUpdate != null && classSectionToUpdate != null)
+                        if (sectionToUpdate != null && classSectionToUpdate != null || sectionToUpdate != null)
                         {
-                            classSectionToUpdate.SectionName = ClassSection.Text;
-                            classSectionToUpdate.ClassId = selectedClass.Value;
-                            classSectionToUpdate.ClassName = ClassName.Text;
-                            classSectionToUpdate.DateModified = DateTime.Now;
+
+                            sectionToUpdate.SectionName = ClassSection.Text;
+                            sectionToUpdate.StreamName = section_streamType.Text;
+                            sectionToUpdate.ClassId = selectedClass.Value;
+                            sectionToUpdate.DateModified = DateTime.Now;
+                            if (sectionToUpdate != null && classSectionToUpdate != null)
+                            {
+                                classSectionToUpdate.SectionName = ClassSection.Text;
+                                classSectionToUpdate.ClassId = selectedClass.Value;
+                                classSectionToUpdate.ClassName = ClassName.Text;
+                                classSectionToUpdate.DateModified = DateTime.Now;
+                            }
+
+                            dbContext.SaveChanges();
+                            MessageBox.Show("Data updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            ClassName.SelectedIndex = -1;
+                            ClassSection.Text = "";
+                            section_streamType.Text = "";
+                            Submit.Text = "Submit";
+                            GetdataFromDatabase();
                         }
-
-                        dbContext.SaveChanges();
-                        MessageBox.Show("Data updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        ClassName.SelectedIndex = -1;
-                        ClassSection.Text = "";
-                        section_streamType.Text = "";
-                        Submit.Text = "Submit";
-                        GetdataFromDatabase();
+                        else
+                        {
+                            MessageBox.Show("Record not found or failed to update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Record not found or failed to update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Please select a row to update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                }
-                else
-                {
-                    MessageBox.Show("Please select a row to update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
@@ -323,11 +381,11 @@ namespace SchoolManagement
                 Submit.Text = "Update";
             }
         }
-        
+
         private void ClassName_SelectionChangeCommitted(object sender, EventArgs e)
         {
             SubjectClassDropdlist selectedClass = (SubjectClassDropdlist)ClassName.SelectedItem;
-            if(Submit.Text == "Update")
+            if (Submit.Text == "Update")
             {
                 this.Controls.Clear();
                 this.InitializeComponent();
@@ -349,7 +407,8 @@ namespace SchoolManagement
             }
             else
             {
-                StreamId="0";
+                StreamId = "0";
+                section_streamType.Text = "";
                 section_streamType.Visible = false;
                 kryptonLabel3.Visible = false;
                 this.ClassSection.Location = new System.Drawing.Point(297, 35);
@@ -360,50 +419,7 @@ namespace SchoolManagement
             }
         }
 
-        private void TextBoxClassSection_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == ',' || e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Space)
-            {
-                SubjectClassDropdlist selectedClass = (SubjectClassDropdlist)ClassName.SelectedItem;
-                var schoolid = 2008;
-
-                if (selectedClass != null && !string.IsNullOrEmpty(ClassSection.Text))
-                {
-                    var section = dbContext.Class_Section.FirstOrDefault(x => x.SectionName == ClassSection.Text && x.SchoolId == schoolid && x.ClassId == selectedClass.Value);
-
-                    if (section == null)
-                    {
-                        AddTag(ClassSection.Text.Trim());
-
-                        e.Handled = true;
-
-                        if (flowLayoutPanel.Controls.Count > 0)
-                        {
-                            flowLayoutPanel.Visible = true;
-                            if (widthtag >= flowLayoutPanel.Width)
-                            {
-                                flowLayoutPanel.Height += 26;
-                            }
-                        }
-                        else
-                        {
-                            flowLayoutPanel.Visible = false;
-                        }
-
-                        ClassSection.Clear();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Already Section Exists!!");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Please enter the class and section");
-                }
-            }
-
-        }
+     
 
         private void AddTag(string tag)
         {
@@ -506,7 +522,7 @@ namespace SchoolManagement
             AddNavigationButton("First", 0, currentPage > 0);
             AddNavigationButton("<", currentPage - 1, currentPage > 0);
 
-            int[] pageSizes = { 10, 20, 30, 40 }; 
+            int[] pageSizes = { 10, 20, 30, 40 };
             foreach (var size in pageSizes)
             {
                 Button sizeButton = CreateSizeButton(size);
@@ -515,10 +531,10 @@ namespace SchoolManagement
 
             AddPageButtons();
 
-            AddNavigationButton(">", currentPage + 1, currentPage < TotalPages - 1);
-            AddNavigationButton("Last", TotalPages - 1, currentPage < TotalPages - 1);
+            //AddNavigationButton(">", currentPage + 1, currentPage < TotalPages - 1);
+            //AddNavigationButton("Last", TotalPages - 1, currentPage < TotalPages - 1);
 
-            btnBetweenPg.Text = $"Page {currentPage + 1} / {TotalPages}";
+            //btnBetweenPg.Text = $"Page {currentPage + 1} / {TotalPages}";
         }
 
         private void AddNavigationButton(string text, int pageNumber, bool enabled)
@@ -550,7 +566,7 @@ namespace SchoolManagement
             sizeButton.Click += (s, e) =>
             {
                 pageSize = size;
-                currentPage = 0; 
+                currentPage = 0;
                 UpdateDataGridView();
             };
             return sizeButton;
@@ -558,23 +574,23 @@ namespace SchoolManagement
 
         private void AddPageButtons()
         {
-            int startPage = Math.Max(0, currentPage - 2);
-            int endPage = Math.Min(TotalPages - 1, currentPage + 2);
+            //int startPage = Math.Max(0, currentPage - 2);
+            //int endPage = Math.Min(TotalPages - 1, currentPage + 2);
 
-            if (startPage > 0)
-            {
-                AddPageButton("...", -1, false);
-            }
+            //if (startPage > 0)
+            //{
+            //    AddPageButton("...", -1, false);
+            //}
 
-            for (int i = startPage; i <= endPage; i++)
-            {
-                AddPageButton((i + 1).ToString(), i, true);
-            }
+            //for (int i = startPage; i <= endPage; i++)
+            //{
+            //    AddPageButton((i + 1).ToString(), i, true);
+            //}
 
-            if (endPage < TotalPages - 1)
-            {
-                AddPageButton("...", -1, false); 
-            }
+            //if (endPage < TotalPages - 1)
+            //{
+            //    AddPageButton("...", -1, false);
+            //}
         }
 
         private void AddPageButton(string text, int pageNumber, bool enabled)
@@ -589,7 +605,7 @@ namespace SchoolManagement
             };
             pageButton.Click += (s, e) =>
             {
-                if (pageNumber >= 0) 
+                if (pageNumber >= 0)
                 {
                     currentPage = pageNumber;
                     UpdateDataGridView();
@@ -605,13 +621,13 @@ namespace SchoolManagement
                 ClassDataGridView.DataSource = null;
                 return;
             }
-            var currentPageData = allData.Skip(currentPage * pageSize).Take(pageSize).ToList();
-            ClassDataGridView.DataSource = currentPageData;
+            //var currentPageData = allData.Skip(currentPage * pageSize).Take(pageSize).ToList();
+            //ClassDataGridView.DataSource = currentPageData;
 
-            previousBtn.Enabled = currentPage > 0;
-            nextBtn.Enabled = currentPage < TotalPages - 1;
+            //previousBtn.Enabled = currentPage > 0;
+            //nextBtn.Enabled = currentPage < TotalPages - 1;
 
-            btnBetweenPg.Text = $"Page {currentPage + 1} / {TotalPages}";
+            //btnBetweenPg.Text = $"Page {currentPage + 1} / {TotalPages}";
         }
 
 
@@ -624,15 +640,85 @@ namespace SchoolManagement
             }
         }
 
+
         private void nextBtn_Click(object sender, EventArgs e)
         {
-            if (currentPage < TotalPages - 1)
+            //if (currentPage < TotalPages - 1)
+            //{
+            //    currentPage++;
+            //    UpdateDataGridView();
+            //}
+        }
+
+        private void ClassSection_KeyUp(object sender, KeyEventArgs e)
+        {
+            SubjectClassDropdlist selectedClass = (SubjectClassDropdlist)ClassName.SelectedItem;
+            int str_id = 0;
+            var schoolid = 2008;
+
+            if (selectedClass != null && !string.IsNullOrEmpty(ClassSection.Text))
             {
-                currentPage++;
-                UpdateDataGridView();
+                if (Submit.Text != "Update")
+                {
+                    char space = (char)32;
+                    if (e.KeyCode == Keys.Oemcomma || e.KeyCode == Keys.Enter || e.KeyCode == Keys.Space)
+                    {
+
+                        var section = new Class_Section();
+                        if (!string.IsNullOrEmpty(section_streamType.Text))
+                        {
+                            var sections = section_streamType.Text.Trim();
+                            var streamed = dbContext.Streams.FirstOrDefault(x => x.SchoolId == 2008 && x.ClassId == selectedClass.Value && x.StreamName.Trim() == sections);
+                            section = dbContext.Class_Section.FirstOrDefault(x => x.SectionName.Trim() == ClassSection.Text.Trim() && x.SchoolId == 2008 && x.ClassId == selectedClass.Value && x.StreamId == str_id);
+
+                            if (streamed != null)
+                            {
+                                str_id = streamed.StramId;
+                            }
+                        }
+                        else
+                        {
+                            section = dbContext.Class_Section.FirstOrDefault(x => x.SectionName.Trim() == ClassSection.Text.Trim() && x.SchoolId == 2008 && x.ClassId == selectedClass.Value);
+                        }
+
+
+                        if (section == null)
+                        {
+                            AddTag(ClassSection.Text.Trim());
+
+                            e.Handled = true;
+
+                            if (flowLayoutPanel.Controls.Count > 0)
+                            {
+                                flowLayoutPanel.Visible = true;
+                                if (widthtag >= flowLayoutPanel.Width)
+                                {
+                                    flowLayoutPanel.Height += 26;
+                                }
+                            }
+                            else
+                            {
+                                flowLayoutPanel.Visible = false;
+                            }
+
+                            ClassSection.Clear();
+                        }
+                        else
+                        {
+                            ClassSection.Text = "";
+                            MessageBox.Show("Already Section Exists!!");
+                            return;
+                        }
+                    }
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Please enter the class and section");
             }
         }
-        private int TotalPages => (int)Math.Ceiling((double)allData.Count / pageSize);
+        //private int TotalPages => (int)Math.Ceiling((double)allData.Count / pageSize);
 
 
     }

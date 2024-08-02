@@ -24,5 +24,6 @@ namespace SchoolManagement.Model
         public Nullable<bool> IsDelete { get; set; }
         public Nullable<System.DateTime> DateAdded { get; set; }
         public Nullable<System.DateTime> DateModified { get; set; }
+        public Nullable<int> StreamId { get; set; }
     }
 }

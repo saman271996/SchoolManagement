@@ -339,7 +339,7 @@
     <Compile Include="Model\ClassRoutineAcademic.cs">
       <DependentUpon>SchoolManagement.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\ClassRoutineViewModel.cs" />
+    <Compile Include="Model\ClassViewModel.cs" />
     <Compile Include="Model\Class_Section.cs">
       <DependentUpon>SchoolManagement.tt</DependentUpon>
     </Compile>
@@ -369,6 +369,9 @@
       <DependentUpon>SchoolManagement.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Section.cs">
+      <DependentUpon>SchoolManagement.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Stream.cs">
       <DependentUpon>SchoolManagement.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Student.cs">

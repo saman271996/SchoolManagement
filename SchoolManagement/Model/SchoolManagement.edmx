@@ -31,6 +31,7 @@
           <Property Name="IsDelete" Type="bit" />
           <Property Name="DateAdded" Type="datetime" />
           <Property Name="DateModified" Type="datetime" />
+          <Property Name="StreamId" Type="int" />
         </EntityType>
         <EntityType Name="ClassRoutineAcademic">
           <Key>
@@ -142,6 +143,19 @@
           <Property Name="StreamName" Type="varchar" MaxLength="2000" />
           <Property Name="ClassId" Type="int" />
         </EntityType>
+        <EntityType Name="Streams">
+          <Key>
+            <PropertyRef Name="StramId" />
+          </Key>
+          <Property Name="StramId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SchoolId" Type="int" />
+          <Property Name="ClassId" Type="int" />
+          <Property Name="StreamName" Type="varchar" MaxLength="2000" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="Isdelete" Type="bit" />
+          <Property Name="DateAdded" Type="datetime" />
+          <Property Name="DateModified" Type="datetime" />
+        </EntityType>
         <EntityType Name="Student">
           <Key>
             <PropertyRef Name="Id" />
@@ -228,6 +242,7 @@
           <EntitySet Name="SchoolDetails" EntityType="Self.SchoolDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SchoolStaff" EntityType="Self.SchoolStaff" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Section" EntityType="Self.Section" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Streams" EntityType="Self.Streams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
@@ -249,6 +264,7 @@
           <EntitySet Name="Subjects" EntityType="SchoolManagementModel.Subject" />
           <EntitySet Name="Users" EntityType="SchoolManagementModel.User" />
           <EntitySet Name="UserSubscriptionPlanDetails" EntityType="SchoolManagementModel.UserSubscriptionPlanDetail" />
+          <EntitySet Name="Streams" EntityType="SchoolManagementModel.Stream" />
         </EntityContainer>
         <EntityType Name="Class">
           <Key>
@@ -276,6 +292,7 @@
           <Property Name="IsDelete" Type="Boolean" />
           <Property Name="DateAdded" Type="DateTime" Precision="3" />
           <Property Name="DateModified" Type="DateTime" Precision="3" />
+          <Property Name="StreamId" Type="Int32" />
         </EntityType>
         <EntityType Name="ClassRoutineAcademic">
           <Key>
@@ -465,6 +482,19 @@
           <Property Name="IsDelete" Type="Boolean" />
           <Property Name="DateAdded" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="Stream">
+          <Key>
+            <PropertyRef Name="StramId" />
+          </Key>
+          <Property Name="StramId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SchoolId" Type="Int32" />
+          <Property Name="ClassId" Type="Int32" />
+          <Property Name="StreamName" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="Isdelete" Type="Boolean" />
+          <Property Name="DateAdded" Type="DateTime" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Precision="3" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -487,6 +517,7 @@
           <EntitySetMapping Name="Class_Section">
             <EntityTypeMapping TypeName="SchoolManagementModel.Class_Section">
               <MappingFragment StoreEntitySet="Class_Section">
+                <ScalarProperty Name="StreamId" ColumnName="StreamId" />
                 <ScalarProperty Name="DateModified" ColumnName="DateModified" />
                 <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
                 <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
@@ -694,6 +725,20 @@
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Streams">
+            <EntityTypeMapping TypeName="SchoolManagementModel.Stream">
+              <MappingFragment StoreEntitySet="Streams">
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="Isdelete" ColumnName="Isdelete" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="StreamName" ColumnName="StreamName" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+                <ScalarProperty Name="StramId" ColumnName="StramId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
