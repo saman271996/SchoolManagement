@@ -1,10 +1,12 @@
-﻿using DocumentFormat.OpenXml.VariantTypes;
+﻿using Dapper;
+using DocumentFormat.OpenXml.VariantTypes;
 using SchoolManagement.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,6 +17,8 @@ namespace SchoolManagement.Academic
     public partial class ClassRoutine : Form
     {
         private int Id;
+        private static readonly string ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["SchoolManagementConnectionString"].ConnectionString;
+        protected SqlConnection Con = new SqlConnection(ConnectionString);
         SchoolManagementEntities dbContext = new SchoolManagementEntities();
         public ClassRoutine()
         {
@@ -32,16 +36,31 @@ namespace SchoolManagement.Academic
 
         private void GetdataFromDatabase()
         {
-            var data = dbContext.ClassRoutineAcademics.Where(m => m.IsDelete != true).Select(m => new
+            try
             {
-                m.Id,
-                m.ClassId,
-                m.SubjectId,
-                m.SectionId,
-                m.TeacherId
-            }).ToList();
-            foreach (var item in data) { 
-               ClassRoutineDataGridView.Rows.Add(item.Id,item.ClassId,item.SectionId, item.SubjectId, item.TeacherId);
+                var schoolid = 2008;
+                DataTable dt = new DataTable();
+
+                using (var connection = new SqlConnection(ConnectionString))
+                {
+                    var sql = new StringBuilder($@"select clrout.Id,class.ClassName,sub.SubjectName, concat(schstf.FirstName, ' ', schstf.LastName) as StaffName,clasec.SectionName
+                    from ClassRoutineAcademic clrout left join Class class on class.ClassId=clrout.ClassId left join Subject sub on sub.SubjectId=clrout.SubjectId
+                    left join SchoolStaff schstf on schstf.Id = clrout.TeacherId left join Class_Section clasec on clasec.SectionId =clrout.SectionId 
+                    where clrout.IsActive=1 and clrout.SchoolId={schoolid}");
+                    var properties = connection.Query<ClassRoutineViewModel>(sql.ToString()).ToList();
+
+                    foreach (var item in properties)
+                    {
+                        ClassRoutineDataGridView.Rows.Add(item.Id, item.ClassName, item.SectionName, item.SubjectName, item.StaffName);
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
 
@@ -64,10 +83,10 @@ namespace SchoolManagement.Academic
         
         private void SectionDataIntoComboBox(int classId)
         {
-            var selectSectiion = dbContext.Sections.Where(s => s.IsDelete != true && s.ClassId == classId).AsEnumerable();
+            var selectClass_Section = dbContext.Class_Section.Where(s => s.IsDelete != true && s.ClassId == classId).AsEnumerable();
             sectionSelect.Items.Clear();
 
-            foreach (var select in selectSectiion)
+            foreach (var select in selectClass_Section)
             {
                 SubjectClassDropdlist item = new SubjectClassDropdlist
                 {
@@ -143,6 +162,12 @@ namespace SchoolManagement.Academic
             SchoolStaffDataIntoComboBox(selectedClassId, selectedSubjectId);
         }
 
+        private void RefreshClassRoutineDataGridView()
+        {
+            ClassRoutineDataGridView.Rows.Clear();
+            GetdataFromDatabase();
+        }
+
         private void Submit_Click(object sender, EventArgs e)
         {
             try
@@ -156,6 +181,7 @@ namespace SchoolManagement.Academic
 
                     ClassRoutineAcademic classRoutine = new ClassRoutineAcademic()
                     {
+                        SchoolId = 2008,
                         ClassId = selectedClass.Value,
                         SubjectId = selectedSubject.Value,
                         TeacherId = selectedTeacher.Value,
@@ -211,7 +237,7 @@ namespace SchoolManagement.Academic
                         dbContext.SaveChanges();
                         MessageBox.Show("Data updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        GetdataFromDatabase();
+                        RefreshClassRoutineDataGridView();
                         classSelect.SelectedIndex = -1;
                         subjectSelect.SelectedIndex = -1;
                         teacherSelect.SelectedIndex = -1;
@@ -266,11 +292,11 @@ namespace SchoolManagement.Academic
                     {
 
                         entityToDelete.IsDelete = true;
+                        entityToDelete.IsActive = false;
                         dbContext.SaveChanges();
 
-                        GetdataFromDatabase();
-
                         MessageBox.Show("Record deleted successfully.");
+                        RefreshClassRoutineDataGridView();
                     }
                     else
                     {
