@@ -28,22 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel2 = new Krypton.Toolkit.KryptonLabel();
             this.ClassSection = new Krypton.Toolkit.KryptonTextBox();
             this.ClassDataGridView = new Krypton.Toolkit.KryptonDataGridView();
-            this.SectionIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StreamIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ClassNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StreamNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SectionNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EditColumnButton = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.DeleteColumnButton = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Submit = new Krypton.Toolkit.KryptonButton();
             this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.btnBetweenPg = new Krypton.Toolkit.KryptonLabel();
@@ -53,6 +46,14 @@
             this.kryptonLabel3 = new Krypton.Toolkit.KryptonLabel();
             this.previousBtn = new Krypton.Toolkit.KryptonButton();
             this.nextBtn = new Krypton.Toolkit.KryptonButton();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SectionIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StreamIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ClassNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SectionNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StreamNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EditColumnButton = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.DeleteColumnButton = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ClassDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ClassName)).BeginInit();
             this.SuspendLayout();
@@ -88,34 +89,35 @@
             this.ClassSection.StateCommon.Border.Rounding = 2F;
             this.ClassSection.StateCommon.Content.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ClassSection.TabIndex = 5;
-            this.ClassSection.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxClassSection_KeyPress);
+            this.ClassSection.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ClassSection_KeyUp);
             // 
             // ClassDataGridView
             // 
             this.ClassDataGridView.AllowUserToResizeColumns = false;
             this.ClassDataGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.DodgerBlue;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            this.ClassDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.DodgerBlue;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            this.ClassDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             this.ClassDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ClassDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
             this.SectionIdColumn,
             this.StreamIdColumn,
             this.ClassNameColumn,
-            this.StreamNameColumn,
             this.SectionNameColumn,
+            this.StreamNameColumn,
             this.EditColumnButton,
             this.DeleteColumnButton});
             this.ClassDataGridView.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.ClassDataGridView.Location = new System.Drawing.Point(2, 181);
             this.ClassDataGridView.Name = "ClassDataGridView";
             this.ClassDataGridView.ReadOnly = true;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.DodgerBlue;
-            this.ClassDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.DodgerBlue;
+            this.ClassDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.ClassDataGridView.Size = new System.Drawing.Size(579, 246);
             this.ClassDataGridView.StateCommon.Background.Color1 = System.Drawing.Color.White;
             this.ClassDataGridView.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
@@ -123,67 +125,6 @@
             this.ClassDataGridView.StateCommon.HeaderRow.Content.Color2 = System.Drawing.Color.White;
             this.ClassDataGridView.TabIndex = 6;
             this.ClassDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ClassDataGridView_CellClick);
-            // 
-            // SectionIdColumn
-            // 
-            this.SectionIdColumn.DataPropertyName = "SectionId";
-            this.SectionIdColumn.HeaderText = "SectionId";
-            this.SectionIdColumn.Name = "SectionIdColumn";
-            this.SectionIdColumn.ReadOnly = true;
-            this.SectionIdColumn.Visible = false;
-            // 
-            // StreamIdColumn
-            // 
-            this.StreamIdColumn.DataPropertyName = "StreamId";
-            this.StreamIdColumn.HeaderText = "StreamId";
-            this.StreamIdColumn.Name = "StreamIdColumn";
-            this.StreamIdColumn.ReadOnly = true;
-            this.StreamIdColumn.Visible = false;
-            // 
-            // ClassNameColumn
-            // 
-            this.ClassNameColumn.DataPropertyName = "ClassId";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            this.ClassNameColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ClassNameColumn.HeaderText = "ClassName";
-            this.ClassNameColumn.Name = "ClassNameColumn";
-            this.ClassNameColumn.ReadOnly = true;
-            this.ClassNameColumn.Width = 119;
-            // 
-            // StreamNameColumn
-            // 
-            this.StreamNameColumn.DataPropertyName = "StreamName";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            this.StreamNameColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.StreamNameColumn.HeaderText = "StreamName";
-            this.StreamNameColumn.Name = "StreamNameColumn";
-            this.StreamNameColumn.ReadOnly = true;
-            this.StreamNameColumn.Width = 119;
-            // 
-            // SectionNameColumn
-            // 
-            this.SectionNameColumn.DataPropertyName = "SectionName";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            this.SectionNameColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.SectionNameColumn.HeaderText = "SectionName";
-            this.SectionNameColumn.Name = "SectionNameColumn";
-            this.SectionNameColumn.ReadOnly = true;
-            // 
-            // EditColumnButton
-            // 
-            this.EditColumnButton.HeaderText = "Edit";
-            this.EditColumnButton.Name = "EditColumnButton";
-            this.EditColumnButton.ReadOnly = true;
-            this.EditColumnButton.Text = "Edit";
-            this.EditColumnButton.UseColumnTextForButtonValue = true;
-            // 
-            // DeleteColumnButton
-            // 
-            this.DeleteColumnButton.HeaderText = "Delete";
-            this.DeleteColumnButton.Name = "DeleteColumnButton";
-            this.DeleteColumnButton.ReadOnly = true;
-            this.DeleteColumnButton.Text = "Delete";
-            this.DeleteColumnButton.UseColumnTextForButtonValue = true;
             // 
             // Submit
             // 
@@ -303,6 +244,74 @@
             this.nextBtn.Values.Text = "Next >";
             this.nextBtn.Click += new System.EventHandler(this.nextBtn_Click);
             // 
+            // Id
+            // 
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
+            // 
+            // SectionIdColumn
+            // 
+            this.SectionIdColumn.DataPropertyName = "SectionId";
+            this.SectionIdColumn.HeaderText = "SectionId";
+            this.SectionIdColumn.Name = "SectionIdColumn";
+            this.SectionIdColumn.ReadOnly = true;
+            this.SectionIdColumn.Visible = false;
+            // 
+            // StreamIdColumn
+            // 
+            this.StreamIdColumn.DataPropertyName = "StreamId";
+            this.StreamIdColumn.HeaderText = "StreamId";
+            this.StreamIdColumn.Name = "StreamIdColumn";
+            this.StreamIdColumn.ReadOnly = true;
+            this.StreamIdColumn.Visible = false;
+            // 
+            // ClassNameColumn
+            // 
+            this.ClassNameColumn.DataPropertyName = "ClassId";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            this.ClassNameColumn.DefaultCellStyle = dataGridViewCellStyle7;
+            this.ClassNameColumn.HeaderText = "ClassName";
+            this.ClassNameColumn.Name = "ClassNameColumn";
+            this.ClassNameColumn.ReadOnly = true;
+            this.ClassNameColumn.Width = 119;
+            // 
+            // SectionNameColumn
+            // 
+            this.SectionNameColumn.DataPropertyName = "SectionName";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            this.SectionNameColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            this.SectionNameColumn.HeaderText = "SectionName";
+            this.SectionNameColumn.Name = "SectionNameColumn";
+            this.SectionNameColumn.ReadOnly = true;
+            // 
+            // StreamNameColumn
+            // 
+            this.StreamNameColumn.DataPropertyName = "StreamName";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            this.StreamNameColumn.DefaultCellStyle = dataGridViewCellStyle9;
+            this.StreamNameColumn.HeaderText = "StreamName";
+            this.StreamNameColumn.Name = "StreamNameColumn";
+            this.StreamNameColumn.ReadOnly = true;
+            this.StreamNameColumn.Width = 119;
+            // 
+            // EditColumnButton
+            // 
+            this.EditColumnButton.HeaderText = "Edit";
+            this.EditColumnButton.Name = "EditColumnButton";
+            this.EditColumnButton.ReadOnly = true;
+            this.EditColumnButton.Text = "Edit";
+            this.EditColumnButton.UseColumnTextForButtonValue = true;
+            // 
+            // DeleteColumnButton
+            // 
+            this.DeleteColumnButton.HeaderText = "Delete";
+            this.DeleteColumnButton.Name = "DeleteColumnButton";
+            this.DeleteColumnButton.ReadOnly = true;
+            this.DeleteColumnButton.Text = "Delete";
+            this.DeleteColumnButton.UseColumnTextForButtonValue = true;
+            // 
             // ClassAcademic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -350,11 +359,12 @@
         private Krypton.Toolkit.KryptonLabel kryptonLabel3;
         private Krypton.Toolkit.KryptonButton previousBtn;
         private Krypton.Toolkit.KryptonButton nextBtn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn SectionIdColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn StreamIdColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ClassNameColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StreamNameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn SectionNameColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StreamNameColumn;
         private System.Windows.Forms.DataGridViewButtonColumn EditColumnButton;
         private System.Windows.Forms.DataGridViewButtonColumn DeleteColumnButton;
     }
