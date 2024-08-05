@@ -37,5 +37,6 @@ namespace SchoolManagement.Model
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserSubscriptionPlanDetail> UserSubscriptionPlanDetails { get; set; }
         public virtual DbSet<Stream> Streams { get; set; }
+        public virtual DbSet<StudentAttandance> StudentAttandances { get; set; }
     }
 }

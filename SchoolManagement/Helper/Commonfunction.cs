@@ -23,39 +23,12 @@ namespace SchoolManagement.Helper
             try
             {
                 var csvDataTable = new DataTable();
-
-                // Read bytes from http input stream
                 var csvBody = string.Empty;
-
-                //using (BinaryReader b = new BinaryReader(file.InputStream))
-                //{
-                //    var binData = b.ReadBytes(file.file);
-                //    csvBody = Encoding.UTF8.GetString(binData);
-                //}
-
                 Stream st = null;
-               
-              
                 st = File.Open(inputfilename, FileMode.Open, FileAccess.ReadWrite);
                 BinaryReader bf = new BinaryReader(st);
                 var binData= bf.ReadBytes(Convert.ToInt32(file.Length));
                 csvBody = Encoding.UTF8.GetString(binData);
-
-                //byte[] fileBytes = File.ReadAllBytes(inputfilename);
-                //using (BinaryReader b = new BinaryReader(file))
-                //{
-                //    var binData = b.ReadBytes(st..ContentLength);
-                //    csvBody = Encoding.UTF8.GetString(binData);
-                //}
-
-                //StringBuilder sb = new StringBuilder();
-
-                //foreach (byte b in fileBytes)
-                //{
-                //    sb.Append(Convert.ToString(b, 2).PadLeft(8, '0'));
-                //}
-
-                //csvBody = sb.ToString();
 
                 var memoryStream = new MemoryStream();
                 using (var streamWriter = new StreamWriter(memoryStream))

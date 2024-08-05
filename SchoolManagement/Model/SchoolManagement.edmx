@@ -181,6 +181,23 @@
           <Property Name="DateModified" Type="datetime" />
           <Property Name="Password" Type="varchar(max)" />
         </EntityType>
+        <EntityType Name="StudentAttandance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="SchoolId" Type="int" />
+          <Property Name="StudentId" Type="varchar" MaxLength="200" />
+          <Property Name="Attandance" Type="int" />
+          <Property Name="AttandanceDate" Type="datetime" />
+          <Property Name="Isactive" Type="bit" />
+          <Property Name="Isdelete" Type="bit" />
+          <Property Name="DateAdded" Type="datetime" />
+          <Property Name="DateModified" Type="datetime" />
+          <Property Name="Note" Type="varchar(max)" />
+          <Property Name="ClassId" Type="int" />
+          <Property Name="SectionId" Type="varchar" MaxLength="2000" />
+        </EntityType>
         <EntityType Name="Subject">
           <Key>
             <PropertyRef Name="SubjectId" />
@@ -244,6 +261,7 @@
           <EntitySet Name="Section" EntityType="Self.Section" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Streams" EntityType="Self.Streams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentAttandance" EntityType="Self.StudentAttandance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserSubscriptionPlanDetails" EntityType="Self.UserSubscriptionPlanDetails" Schema="dbo" store:Type="Tables" />
@@ -265,6 +283,7 @@
           <EntitySet Name="Users" EntityType="SchoolManagementModel.User" />
           <EntitySet Name="UserSubscriptionPlanDetails" EntityType="SchoolManagementModel.UserSubscriptionPlanDetail" />
           <EntitySet Name="Streams" EntityType="SchoolManagementModel.Stream" />
+          <EntitySet Name="StudentAttandances" EntityType="SchoolManagementModel.StudentAttandance" />
         </EntityContainer>
         <EntityType Name="Class">
           <Key>
@@ -494,6 +513,23 @@
           <Property Name="Isdelete" Type="Boolean" />
           <Property Name="DateAdded" Type="DateTime" Precision="3" />
           <Property Name="DateModified" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="StudentAttandance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="SchoolId" Type="Int32" />
+          <Property Name="StudentId" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Attandance" Type="Int32" />
+          <Property Name="AttandanceDate" Type="DateTime" Precision="3" />
+          <Property Name="Isactive" Type="Boolean" />
+          <Property Name="Isdelete" Type="Boolean" />
+          <Property Name="DateAdded" Type="DateTime" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Precision="3" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ClassId" Type="Int32" />
+          <Property Name="SectionId" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -739,6 +775,24 @@
                 <ScalarProperty Name="ClassId" ColumnName="ClassId" />
                 <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
                 <ScalarProperty Name="StramId" ColumnName="StramId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentAttandances">
+            <EntityTypeMapping TypeName="SchoolManagementModel.StudentAttandance">
+              <MappingFragment StoreEntitySet="StudentAttandance">
+                <ScalarProperty Name="SectionId" ColumnName="SectionId" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="Isdelete" ColumnName="Isdelete" />
+                <ScalarProperty Name="Isactive" ColumnName="Isactive" />
+                <ScalarProperty Name="AttandanceDate" ColumnName="AttandanceDate" />
+                <ScalarProperty Name="Attandance" ColumnName="Attandance" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

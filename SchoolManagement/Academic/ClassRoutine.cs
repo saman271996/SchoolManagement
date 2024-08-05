@@ -37,6 +37,7 @@ namespace SchoolManagement.Academic
         private void GetdataFromDatabase()
         {
             try
+
             {
                 var schoolid = 2008;
                 DataTable dt = new DataTable();
@@ -131,6 +132,7 @@ namespace SchoolManagement.Academic
                 {
                     Text = subject.SubjectName,
                     Value = subject.SubjectId
+
                 };
 
                 subjectSelect.Items.Add(item);

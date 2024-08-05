@@ -35,16 +35,20 @@
             this.StudentGridExcel = new Krypton.Toolkit.KryptonDataGridView();
             this.txtfilepath = new System.Windows.Forms.Label();
             this.recordlabel = new System.Windows.Forms.Label();
+            this.kryptonPanel1 = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
+            this.kryptonLabel1 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StudentGridExcel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
+            this.kryptonPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(109, 22);
+            this.button1.Location = new System.Drawing.Point(102, 100);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(278, 36);
+            this.button1.Size = new System.Drawing.Size(306, 36);
             this.button1.TabIndex = 0;
             this.button1.Text = "Choose file";
             this.button1.UseVisualStyleBackColor = false;
@@ -53,7 +57,7 @@
             // Upload
             // 
             this.Upload.BackColor = System.Drawing.Color.DodgerBlue;
-            this.Upload.Location = new System.Drawing.Point(435, 22);
+            this.Upload.Location = new System.Drawing.Point(435, 100);
             this.Upload.Name = "Upload";
             this.Upload.Size = new System.Drawing.Size(121, 36);
             this.Upload.TabIndex = 2;
@@ -65,7 +69,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.DodgerBlue;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 22);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 100);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(52, 36);
             this.pictureBox1.TabIndex = 1;
@@ -101,12 +105,31 @@
             this.recordlabel.TabIndex = 20;
             this.recordlabel.Text = "No Record Found";
             // 
+            // kryptonPanel1
+            // 
+            this.kryptonPanel1.Controls.Add(this.kryptonLabel1);
+            this.kryptonPanel1.Location = new System.Drawing.Point(12, 12);
+            this.kryptonPanel1.Name = "kryptonPanel1";
+            this.kryptonPanel1.Size = new System.Drawing.Size(544, 54);
+            this.kryptonPanel1.TabIndex = 21;
+            // 
+            // kryptonLabel1
+            // 
+            this.kryptonLabel1.Location = new System.Drawing.Point(12, 12);
+            this.kryptonLabel1.Name = "kryptonLabel1";
+            this.kryptonLabel1.Size = new System.Drawing.Size(190, 22);
+            this.kryptonLabel1.StateCommon.ShortText.Color1 = System.Drawing.Color.Black;
+            this.kryptonLabel1.StateCommon.ShortText.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kryptonLabel1.TabIndex = 0;
+            this.kryptonLabel1.Values.Text = "Import Student Record ";
+            // 
             // StudentExcel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(568, 403);
+            this.Controls.Add(this.kryptonPanel1);
             this.Controls.Add(this.recordlabel);
             this.Controls.Add(this.txtfilepath);
             this.Controls.Add(this.StudentGridExcel);
@@ -119,6 +142,9 @@
             this.Load += new System.EventHandler(this.StudentExcel_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StudentGridExcel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).EndInit();
+            this.kryptonPanel1.ResumeLayout(false);
+            this.kryptonPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -132,5 +158,7 @@
         public Krypton.Toolkit.KryptonDataGridView StudentGridExcel;
         private System.Windows.Forms.Label txtfilepath;
         private System.Windows.Forms.Label recordlabel;
+        private ComponentFactory.Krypton.Toolkit.KryptonPanel kryptonPanel1;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel1;
     }
 }

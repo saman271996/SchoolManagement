@@ -17,7 +17,7 @@ namespace SchoolManagement.Model
         public int Id { get; set; }
         public string SectionId { get; set; }
         public Nullable<int> SchoolId { get; set; }
-        public string SectionName {  get; set; }
+        public string SectionName { get; set; }
         public string StreamId { get; set; }
         public Nullable<bool> TypeStatus { get; set; }
         public Nullable<bool> IsActive { get; set; }
