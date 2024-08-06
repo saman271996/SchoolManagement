@@ -33,7 +33,6 @@
             this.UserPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.userclick = new System.Windows.Forms.Button();
             this.Student = new System.Windows.Forms.Button();
-            this.Parent = new System.Windows.Forms.Button();
             this.Teacher_Staff = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.Acedmic = new System.Windows.Forms.Button();
@@ -68,7 +67,6 @@
             // 
             this.UserPanel.Controls.Add(this.userclick);
             this.UserPanel.Controls.Add(this.Student);
-            this.UserPanel.Controls.Add(this.Parent);
             this.UserPanel.Controls.Add(this.Teacher_Staff);
             this.UserPanel.Location = new System.Drawing.Point(3, 99);
             this.UserPanel.Name = "UserPanel";
@@ -115,25 +113,6 @@
             this.Student.UseVisualStyleBackColor = false;
             this.Student.Click += new System.EventHandler(this.Student_Click);
             // 
-            // Parent
-            // 
-            this.Parent.BackColor = System.Drawing.Color.White;
-            this.Parent.FlatAppearance.BorderSize = 0;
-            this.Parent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Parent.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Parent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(74)))), ((int)(((byte)(93)))));
-            this.Parent.Image = ((System.Drawing.Image)(resources.GetObject("Parent.Image")));
-            this.Parent.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Parent.Location = new System.Drawing.Point(0, 80);
-            this.Parent.Margin = new System.Windows.Forms.Padding(0);
-            this.Parent.Name = "Parent";
-            this.Parent.Size = new System.Drawing.Size(201, 40);
-            this.Parent.TabIndex = 7;
-            this.Parent.Text = "  Parent\'s";
-            this.Parent.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.Parent.UseVisualStyleBackColor = false;
-            this.Parent.Click += new System.EventHandler(this.Parent_Click);
-            // 
             // Teacher_Staff
             // 
             this.Teacher_Staff.BackColor = System.Drawing.Color.White;
@@ -143,7 +122,7 @@
             this.Teacher_Staff.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(74)))), ((int)(((byte)(93)))));
             this.Teacher_Staff.Image = ((System.Drawing.Image)(resources.GetObject("Teacher_Staff.Image")));
             this.Teacher_Staff.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Teacher_Staff.Location = new System.Drawing.Point(0, 120);
+            this.Teacher_Staff.Location = new System.Drawing.Point(0, 80);
             this.Teacher_Staff.Margin = new System.Windows.Forms.Padding(0);
             this.Teacher_Staff.Name = "Teacher_Staff";
             this.Teacher_Staff.Size = new System.Drawing.Size(201, 40);
@@ -165,7 +144,7 @@
             this.flowLayoutPanel1.Controls.Add(this.Department);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 145);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(201, 40);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(188, 40);
             this.flowLayoutPanel1.TabIndex = 20;
             // 
             // Acedmic
@@ -218,7 +197,6 @@
             this.Syllabus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Syllabus.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Syllabus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
-            //this.Syllabus.Image = global::SchoolManagement.Properties.Resources._289797__1_;
             this.Syllabus.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Syllabus.Location = new System.Drawing.Point(0, 80);
             this.Syllabus.Margin = new System.Windows.Forms.Padding(0);
@@ -399,9 +377,8 @@
             this.HeaderPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.HeaderPanel.Location = new System.Drawing.Point(0, 0);
             this.HeaderPanel.Name = "HeaderPanel";
-            this.HeaderPanel.Size = new System.Drawing.Size(200, 537);
+            this.HeaderPanel.Size = new System.Drawing.Size(210, 537);
             this.HeaderPanel.TabIndex = 10;
-          
             // 
             // pictureBox2
             // 
@@ -436,21 +413,20 @@
             // Sidepanel
             // 
             this.Sidepanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Sidepanel.Location = new System.Drawing.Point(200, 0);
+            this.Sidepanel.Location = new System.Drawing.Point(210, 0);
             this.Sidepanel.Margin = new System.Windows.Forms.Padding(0);
             this.Sidepanel.Name = "Sidepanel";
-            this.Sidepanel.Size = new System.Drawing.Size(584, 59);
+            this.Sidepanel.Size = new System.Drawing.Size(574, 59);
             this.Sidepanel.StateCommon.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
             this.Sidepanel.TabIndex = 11;
             // 
             // MainPanel
             // 
             this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainPanel.Location = new System.Drawing.Point(200, 59);
+            this.MainPanel.Location = new System.Drawing.Point(210, 59);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(584, 478);
+            this.MainPanel.Size = new System.Drawing.Size(574, 478);
             this.MainPanel.TabIndex = 0;
-     
             // 
             // menutransition
             // 
@@ -493,7 +469,6 @@
         private System.Windows.Forms.FlowLayoutPanel UserPanel;
         private System.Windows.Forms.Button userclick;
         private System.Windows.Forms.Button Student;
-        private System.Windows.Forms.Button Parent;
         private System.Windows.Forms.Button Teacher_Staff;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button Acedmic;
@@ -509,7 +484,7 @@
         private System.Windows.Forms.Button button17;
         private System.Windows.Forms.FlowLayoutPanel HeaderPanel;
         private Krypton.Toolkit.KryptonPanel Sidepanel;
-        private System.Windows.Forms.FlowLayoutPanel MainPanel;
+        public System.Windows.Forms.FlowLayoutPanel MainPanel;
         private Krypton.Toolkit.KryptonContextMenu kryptonContextMenu1;
         private System.Windows.Forms.Timer menutransition;
         private System.Windows.Forms.Timer AcedmicTransition;
