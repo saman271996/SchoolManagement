@@ -22,7 +22,7 @@ namespace SchoolManagement
 {
     public partial class Registration : Form
     {
-        SchoolManagementEntities Db = new SchoolManagementEntities();
+        SchoolManagementEntities1 Db = new SchoolManagementEntities1();
         validations validates = new validations();
         Form frm;
         public Registration()

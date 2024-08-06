@@ -24,7 +24,7 @@ namespace SchoolManagement
     public partial class Parents : Form
     {
         validations validates = new validations();
-        SchoolManagementEntities Db = new SchoolManagementEntities();
+        SchoolManagementEntities1 Db = new SchoolManagementEntities1();
         //Student_MainForm stmainform = new Student_MainForm();
         Form form;
         //private Student_MainForm mainForm = null;

@@ -17,11 +17,11 @@ namespace SchoolManagement
     {
         Form form;
         private int Id;
-        SchoolManagementEntities DbContext;
+        SchoolManagementEntities1 DbContext;
         public StaffDetails()
         {
             InitializeComponent();
-            DbContext = new SchoolManagementEntities();
+            DbContext = new SchoolManagementEntities1();
         }
 
         private void StaffDetails_Load(object sender, EventArgs e)

@@ -1,4 +1,6 @@
-﻿namespace SchoolManagement.Academic
+﻿using System.Windows.Forms;
+
+namespace SchoolManagement.Academic
 {
     partial class ClassPeriod
     {
@@ -29,12 +31,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.kryptonLabel2 = new Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel4 = new Krypton.Toolkit.KryptonLabel();
             this.kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
@@ -44,12 +41,14 @@
             this.kryptonLabel5 = new Krypton.Toolkit.KryptonLabel();
             this.Submit = new Krypton.Toolkit.KryptonButton();
             this.period = new Krypton.Toolkit.KryptonTextBox();
+            this.dtp = new System.Windows.Forms.DateTimePicker();
             this.PeriodDataGridView = new Krypton.Toolkit.KryptonDataGridView();
-            this.PeriodColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubjectColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.TeacherNameColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.TimingColumn = new Krypton.Toolkit.KryptonDataGridViewDateTimePickerColumn();
             this.DurationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TimingToColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TimingFromColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TeacherNameColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.SubjectColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.PeriodColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.sectionSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teacherSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.classSelect)).BeginInit();
@@ -162,7 +161,7 @@
             // 
             // Submit
             // 
-            this.Submit.Location = new System.Drawing.Point(10, 433);
+            this.Submit.Location = new System.Drawing.Point(10, 427);
             this.Submit.Name = "Submit";
             this.Submit.Size = new System.Drawing.Size(107, 33);
             this.Submit.StateCommon.Back.Color1 = System.Drawing.Color.DodgerBlue;
@@ -190,9 +189,18 @@
             this.period.TabIndex = 43;
             this.period.KeyUp += new System.Windows.Forms.KeyEventHandler(this.period_KeyUp);
             // 
+            // dtp
+            // 
+            this.dtp.Location = new System.Drawing.Point(0, 0);
+            this.dtp.Name = "dtp";
+            this.dtp.Size = new System.Drawing.Size(200, 20);
+            this.dtp.TabIndex = 0;
+            // 
             // PeriodDataGridView
             // 
+            this.PeriodDataGridView.AllowDrop = true;
             this.PeriodDataGridView.AllowUserToAddRows = false;
+            this.PeriodDataGridView.AllowUserToResizeColumns = false;
             this.PeriodDataGridView.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -205,75 +213,68 @@
             this.PeriodColumn,
             this.SubjectColumn,
             this.TeacherNameColumn,
-            this.TimingColumn,
+            this.TimingFromColumn,
+            this.TimingToColumn,
             this.DurationColumn});
             this.PeriodDataGridView.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.PeriodDataGridView.Location = new System.Drawing.Point(10, 143);
+            this.PeriodDataGridView.Location = new System.Drawing.Point(0, 144);
             this.PeriodDataGridView.Name = "PeriodDataGridView";
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.DodgerBlue;
-            this.PeriodDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle7;
-            this.PeriodDataGridView.Size = new System.Drawing.Size(562, 262);
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DodgerBlue;
+            this.PeriodDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.PeriodDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.PeriodDataGridView.Size = new System.Drawing.Size(583, 256);
             this.PeriodDataGridView.StateCommon.Background.Color1 = System.Drawing.Color.White;
             this.PeriodDataGridView.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
             this.PeriodDataGridView.StateCommon.HeaderRow.Content.Color1 = System.Drawing.Color.White;
             this.PeriodDataGridView.StateCommon.HeaderRow.Content.Color2 = System.Drawing.Color.White;
-            this.PeriodDataGridView.TabIndex = 44;
-            // 
-            // PeriodColumn
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            this.PeriodColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.PeriodColumn.HeaderText = "Period";
-            this.PeriodColumn.Name = "PeriodColumn";
-            // 
-            // SubjectColumn
-            // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.SubjectColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.SubjectColumn.DisplayStyleForCurrentCellOnly = true;
-            this.SubjectColumn.HeaderText = "Subject";
-            this.SubjectColumn.Name = "SubjectColumn";
-            this.SubjectColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.SubjectColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.SubjectColumn.Width = 140;
-            // 
-            // TeacherNameColumn
-            // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            this.TeacherNameColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.TeacherNameColumn.DisplayStyleForCurrentCellOnly = true;
-            this.TeacherNameColumn.HeaderText = "Teacher Name";
-            this.TeacherNameColumn.Name = "TeacherNameColumn";
-            this.TeacherNameColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.TeacherNameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.TeacherNameColumn.Width = 140;
-            // 
-            // TimingColumn
-            // 
-            this.TimingColumn.CalendarCloseOnTodayClick = true;
-            this.TimingColumn.Checked = false;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle5.Format = "t";
-            this.TimingColumn.DefaultCellStyle = dataGridViewCellStyle5;
-            this.TimingColumn.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.TimingColumn.HeaderText = "Timing";
-            this.TimingColumn.Name = "TimingColumn";
-            this.TimingColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.TimingColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.TimingColumn.Width = 110;
+            this.PeriodDataGridView.TabIndex = 45;
+            this.PeriodDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.PeriodDataGridView_CellClick);
             // 
             // DurationColumn
             // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            this.DurationColumn.DefaultCellStyle = dataGridViewCellStyle6;
             this.DurationColumn.HeaderText = "Duration";
             this.DurationColumn.Name = "DurationColumn";
+            this.DurationColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.DurationColumn.Width = 61;
+            // 
+            // TimingToColumn
+            // 
+            this.TimingToColumn.HeaderText = "Timing To";
+            this.TimingToColumn.Name = "TimingToColumn";
+            this.TimingToColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.TimingToColumn.Width = 98;
+            // 
+            // TimingFromColumn
+            // 
+            this.TimingFromColumn.HeaderText = "Timing From";
+            this.TimingFromColumn.Name = "TimingFromColumn";
+            this.TimingFromColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // TeacherNameColumn
+            // 
+            this.TeacherNameColumn.DisplayStyleForCurrentCellOnly = true;
+            this.TeacherNameColumn.HeaderText = "Teacher Name";
+            this.TeacherNameColumn.Name = "TeacherNameColumn";
+            this.TeacherNameColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.TeacherNameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.TeacherNameColumn.Width = 130;
+            // 
+            // SubjectColumn
+            // 
+            this.SubjectColumn.DisplayStyleForCurrentCellOnly = true;
+            this.SubjectColumn.HeaderText = "Subject";
+            this.SubjectColumn.Name = "SubjectColumn";
+            this.SubjectColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.SubjectColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.SubjectColumn.Width = 95;
+            // 
+            // PeriodColumn
+            // 
+            this.PeriodColumn.HeaderText = "Period";
+            this.PeriodColumn.Name = "PeriodColumn";
+            this.PeriodColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.PeriodColumn.Width = 58;
             // 
             // ClassPeriod
             // 
@@ -315,11 +316,13 @@
         private Krypton.Toolkit.KryptonLabel kryptonLabel5;
         private Krypton.Toolkit.KryptonButton Submit;
         private Krypton.Toolkit.KryptonTextBox period;
+        private DateTimePicker dtp;
         private Krypton.Toolkit.KryptonDataGridView PeriodDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PeriodColumn;
-        private System.Windows.Forms.DataGridViewComboBoxColumn SubjectColumn;
-        private System.Windows.Forms.DataGridViewComboBoxColumn TeacherNameColumn;
-        private Krypton.Toolkit.KryptonDataGridViewDateTimePickerColumn TimingColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DurationColumn;
+        private DataGridViewTextBoxColumn PeriodColumn;
+        private DataGridViewComboBoxColumn SubjectColumn;
+        private DataGridViewComboBoxColumn TeacherNameColumn;
+        private DataGridViewTextBoxColumn TimingFromColumn;
+        private DataGridViewTextBoxColumn TimingToColumn;
+        private DataGridViewTextBoxColumn DurationColumn;
     }
 }

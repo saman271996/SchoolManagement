@@ -19,7 +19,7 @@ namespace SchoolManagement
     public partial class SubjectAcademic : Form
     {
         private int SubjectId;
-        SchoolManagementEntities dbContext = new SchoolManagementEntities();
+        SchoolManagementEntities1 dbContext = new SchoolManagementEntities1();
         validations validates = new validations();
         public SubjectAcademic()
         {

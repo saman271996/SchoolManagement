@@ -18,8 +18,8 @@ namespace SchoolManagement
     public partial class StudentAttandence : Form
     {
         DataTable getTable = null;
-        SchoolManagementEntities Db = new SchoolManagementEntities();
-        List <StudentAttandance> studentattandanceexcel=new List<StudentAttandance> ();
+        SchoolManagementEntities1 Db = new SchoolManagementEntities1();
+        List <StudentAttandance> studentattandanceexcel=new List<StudentAttandance>();
         public StudentAttandence()
         {
             InitializeComponent();

@@ -19,7 +19,7 @@ namespace SchoolManagement.Academic
         private int Id;
         private static readonly string ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["SchoolManagementConnectionString"].ConnectionString;
         protected SqlConnection Con = new SqlConnection(ConnectionString);
-        SchoolManagementEntities dbContext = new SchoolManagementEntities();
+        SchoolManagementEntities1 dbContext = new SchoolManagementEntities1();
         public ClassRoutine()
         {
             InitializeComponent(); 

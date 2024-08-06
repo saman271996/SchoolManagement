@@ -27,7 +27,7 @@ namespace SchoolManagement
         DataTable getTable = null;
         public List<Parent> parentexcel = new List<Parent>();
         public List<Student> studentexcel = new List<Student>();
-        SchoolManagementEntities Db = new SchoolManagementEntities();
+        SchoolManagementEntities1 Db = new SchoolManagementEntities1();
        
         public StudentExcel()
         {
