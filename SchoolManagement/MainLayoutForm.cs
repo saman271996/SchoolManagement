@@ -97,11 +97,14 @@ namespace SchoolManagement
     
 
         private void Student_Click(object sender, EventArgs e)
+         
         {
             form.Hide();
-            form = new Student_MainForm();
+            form = new StudentDetails();
+            Application.OpenForms.OfType<MainLayoutForm>().First().MainPanel.Dock = DockStyle.Fill;
             form.TopLevel = false;
-            MainPanel.Controls.Add(form);
+            form.Visible = true;
+            Application.OpenForms.OfType<MainLayoutForm>().First().MainPanel.Controls.Add(form);
             form.Show();
 
         }
@@ -112,17 +115,23 @@ namespace SchoolManagement
         {
             form.Hide();
             form = new Parents();
+            Application.OpenForms.OfType<MainLayoutForm>().First().MainPanel.Dock = DockStyle.Fill;
             form.TopLevel = false;
-            MainPanel.Controls.Add(form);
+            form.Visible = true;
+            Application.OpenForms.OfType<MainLayoutForm>().First().MainPanel.Controls.Add(form);
             form.Show();
         }
 
         private void Teacher_Staff_Click(object sender, EventArgs e)
         {
             form.Hide();
-            form = new SchoolSatff();
+            form = new StaffDetails();
+            Application.OpenForms.OfType<MainLayoutForm>().First().MainPanel.Dock=DockStyle.None;
+            Application.OpenForms.OfType<MainLayoutForm>().First().MainPanel.Dock = DockStyle.Fill;
             form.TopLevel = false;
-            MainPanel.Controls.Add(form);
+            form.Visible = true;
+            form.BringToFront();
+            Application.OpenForms.OfType<MainLayoutForm>().First().MainPanel.Controls.Add(form);
             form.Show();
 
         }
@@ -141,8 +150,10 @@ namespace SchoolManagement
         {
             form.Hide();
             form = new SubjectAcademic();
+            Application.OpenForms.OfType<MainLayoutForm>().First().MainPanel.Dock = DockStyle.Fill;
             form.TopLevel = false;
-            MainPanel.Controls.Add(form);
+            form.Visible = true;
+            Application.OpenForms.OfType<MainLayoutForm>().First().MainPanel.Controls.Add(form);
             form.Show();
         }
 
@@ -150,8 +161,10 @@ namespace SchoolManagement
         {
             form.Hide();
             form = new ClassAcademic();
+            Application.OpenForms.OfType<MainLayoutForm>().First().MainPanel.Dock = DockStyle.Fill;
             form.TopLevel = false;
-            MainPanel.Controls.Add(form);
+            form.Visible = true;
+            Application.OpenForms.OfType<MainLayoutForm>().First().MainPanel.Controls.Add(form);
             form.Show();
         }
 
@@ -165,6 +178,7 @@ namespace SchoolManagement
 
         }
 
+       
         private void userclick_Click(object sender, EventArgs e)
         {
             menutransition.Start();

@@ -21,6 +21,7 @@ namespace SchoolManagement
         private static readonly string ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["SchoolManagementConnectionString"].ConnectionString;
         protected SqlConnection Con = new SqlConnection(ConnectionString);
         SchoolManagementEntities1 Db = new SchoolManagementEntities1();
+        Form frm;
         public StudentDetails()
         {
             InitializeComponent();
@@ -66,7 +67,15 @@ namespace SchoolManagement
 
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            frm = new Student_MainForm();
+            Application.OpenForms.OfType<MainLayoutForm>().First().MainPanel.Dock = DockStyle.Fill;
+            frm.TopLevel = false;
+            frm.Visible = true;
+            Application.OpenForms.OfType<MainLayoutForm>().First().MainPanel.Controls.Add(frm);
+           
+            frm.Show();
+ 
         }
     }
 }
