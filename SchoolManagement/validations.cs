@@ -229,26 +229,6 @@ namespace SchoolManagement
         }
         //Prashant work
 
-        //public MessageValidate ValidateClassSection(Class_Section classSection)
-        //{
-        //    MessageValidate message = new MessageValidate();
-        //    message.Status = false;
-        //    if (string.IsNullOrEmpty(classSection.ClassName))
-        //    {
-        //        message.Status = true;
-        //        message.Message = "Class Name Cannot filled, Please Check it!!";
-        //        return message;
-        //    }
-        //    else if (string.IsNullOrEmpty(classSection.SectionId))
-        //    {
-        //        message.Status = true;
-        //        message.Message = "Section Cannot filled, Please Check it!!";
-        //        return message;
-        //    }
-
-        //    return message;
-        //}
-
         public MessageValidate ValidateSubject(Subject subject)
         {
             MessageValidate message = new MessageValidate();
@@ -359,6 +339,44 @@ namespace SchoolManagement
                 return message;
             }
             //}
+            return message;
+        }
+
+        public MessageValidate ValidateStudentAttandance(ClassPeriodAcademic classperiod)
+        {
+            MessageValidate message = new MessageValidate();
+            message.Status = false;
+            if(string.IsNullOrEmpty(classperiod.Period))
+            {
+                message.Status = true;
+                message.Message = "Period Cannot filled, Please Check it!!";
+                return message;
+            }
+            if(classperiod.SubjectId == null || classperiod.SubjectId==0)
+            {
+                message.Status = true;
+                message.Message = "Subject Cannot filled, Please Check it!!";
+                return message;
+            }
+            if(classperiod.TeacherId == null || classperiod.TeacherId==0)
+            {
+                message.Status = true;
+                message.Message = "Teacher Name Cannot filled, Please Check it!!";
+                return message;
+            }
+            if(string.IsNullOrEmpty(classperiod.TimingFrom) && string.IsNullOrEmpty(classperiod.TimingTo))
+            {
+                message.Status = true;
+                message.Message = "time Cannot filled, Please Check it!!";
+                return message;
+            }
+            if(string.IsNullOrEmpty(classperiod.Duration))
+            {
+                message.Status = true;
+                message.Message = "time Cannot filled, Please Check it!!";
+                return message;
+            }
+
             return message;
         }
 

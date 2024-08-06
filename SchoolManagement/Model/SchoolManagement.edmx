@@ -33,6 +33,26 @@
           <Property Name="DateModified" Type="datetime" />
           <Property Name="StreamId" Type="int" />
         </EntityType>
+        <EntityType Name="ClassPeriodAcademic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SchoolId" Type="int" />
+          <Property Name="Period" Type="varchar" MaxLength="20" />
+          <Property Name="SectionId" Type="varchar" MaxLength="2000" />
+          <Property Name="ClassId" Type="int" />
+          <Property Name="SubjectId" Type="int" />
+          <Property Name="TeacherId" Type="int" />
+          <Property Name="ClassTeacher" Type="int" />
+          <Property Name="TimingFrom" Type="varchar" MaxLength="50" />
+          <Property Name="TimingTo" Type="varchar" MaxLength="50" />
+          <Property Name="Duration" Type="varchar" MaxLength="20" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="DateAdded" Type="datetime" />
+          <Property Name="DateModified" Type="datetime" />
+        </EntityType>
         <EntityType Name="ClassRoutineAcademic">
           <Key>
             <PropertyRef Name="Id" />
@@ -43,6 +63,20 @@
           <Property Name="SubjectId" Type="int" />
           <Property Name="SectionId" Type="varchar" MaxLength="2000" />
           <Property Name="TeacherId" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="DateAdded" Type="datetime" />
+          <Property Name="DateModified" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ClassTeacherAcademic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SchoolId" Type="int" />
+          <Property Name="ClassId" Type="int" />
+          <Property Name="SectionId" Type="varchar" MaxLength="2000" />
+          <Property Name="ClassTeacher" Type="int" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="IsDelete" Type="bit" />
           <Property Name="DateAdded" Type="datetime" />
@@ -237,7 +271,9 @@
         <EntityContainer Name="SchoolManagementModelStoreContainer">
           <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Class_Section" EntityType="Self.Class_Section" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClassPeriodAcademic" EntityType="Self.ClassPeriodAcademic" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ClassRoutineAcademic" EntityType="Self.ClassRoutineAcademic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClassTeacherAcademic" EntityType="Self.ClassTeacherAcademic" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Parent" EntityType="Self.Parent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SchoolDetails" EntityType="Self.SchoolDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SchoolStaff" EntityType="Self.SchoolStaff" Schema="dbo" store:Type="Tables" />
@@ -260,11 +296,13 @@
           <EntitySet Name="SchoolDetails" EntityType="SchoolManagementModel.SchoolDetail" />
           <EntitySet Name="SchoolStaffs" EntityType="SchoolManagementModel.SchoolStaff" />
           <EntitySet Name="Sections" EntityType="SchoolManagementModel.Section" />
-          <EntitySet Name="Students" EntityType="SchoolManagementModel.Student" />
           <EntitySet Name="Subjects" EntityType="SchoolManagementModel.Subject" />
           <EntitySet Name="Users" EntityType="SchoolManagementModel.User" />
           <EntitySet Name="UserSubscriptionPlanDetails" EntityType="SchoolManagementModel.UserSubscriptionPlanDetail" />
           <EntitySet Name="Streams" EntityType="SchoolManagementModel.Stream" />
+          <EntitySet Name="Students" EntityType="SchoolManagementModel.Student" />
+          <EntitySet Name="ClassPeriodAcademics" EntityType="SchoolManagementModel.ClassPeriodAcademic" />
+          <EntitySet Name="ClassTeacherAcademics" EntityType="SchoolManagementModel.ClassTeacherAcademic" />
         </EntityContainer>
         <EntityType Name="Class">
           <Key>
@@ -404,31 +442,6 @@
           <Property Name="StreamName" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="ClassId" Type="Int32" />
         </EntityType>
-        <EntityType Name="Student">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StudentId" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="SchoolId" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
-          <Property Name="StudentType" Type="Int32" />
-          <Property Name="ParentId" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="ClassId" Type="Int32" />
-          <Property Name="SectionId" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="Birthday" Type="DateTime" Precision="3" />
-          <Property Name="Gender" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="BloodGroup" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="Isdelete" Type="Boolean" />
-          <Property Name="DateAdded" Type="DateTime" Precision="3" />
-          <Property Name="DateModified" Type="DateTime" Precision="3" />
-          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="Subject">
           <Key>
             <PropertyRef Name="SubjectId" />
@@ -492,6 +505,65 @@
           <Property Name="StreamName" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="Isdelete" Type="Boolean" />
+          <Property Name="DateAdded" Type="DateTime" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentId" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="SchoolId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+          <Property Name="StudentType" Type="Int32" />
+          <Property Name="ParentId" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="ClassId" Type="Int32" />
+          <Property Name="SectionId" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Birthday" Type="DateTime" Precision="3" />
+          <Property Name="Gender" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="BloodGroup" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="Isdelete" Type="Boolean" />
+          <Property Name="DateAdded" Type="DateTime" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Precision="3" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ClassPeriodAcademic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SchoolId" Type="Int32" />
+          <Property Name="Period" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SectionId" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="ClassId" Type="Int32" />
+          <Property Name="SubjectId" Type="Int32" />
+          <Property Name="TeacherId" Type="Int32" />
+          <Property Name="ClassTeacher" Type="Int32" />
+          <Property Name="TimingFrom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TimingTo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Duration" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="DateAdded" Type="DateTime" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ClassTeacherAcademic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SchoolId" Type="Int32" />
+          <Property Name="ClassId" Type="Int32" />
+          <Property Name="SectionId" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="ClassTeacher" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDelete" Type="Boolean" />
           <Property Name="DateAdded" Type="DateTime" Precision="3" />
           <Property Name="DateModified" Type="DateTime" Precision="3" />
         </EntityType>
@@ -646,32 +718,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Students">
-            <EntityTypeMapping TypeName="SchoolManagementModel.Student">
-              <MappingFragment StoreEntitySet="Student">
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
-                <ScalarProperty Name="Isdelete" ColumnName="Isdelete" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="BloodGroup" ColumnName="BloodGroup" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
-                <ScalarProperty Name="SectionId" ColumnName="SectionId" />
-                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
-                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
-                <ScalarProperty Name="StudentType" ColumnName="StudentType" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
-                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Subjects">
             <EntityTypeMapping TypeName="SchoolManagementModel.Subject">
               <MappingFragment StoreEntitySet="Subject">
@@ -739,6 +785,68 @@
                 <ScalarProperty Name="ClassId" ColumnName="ClassId" />
                 <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
                 <ScalarProperty Name="StramId" ColumnName="StramId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="SchoolManagementModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="Isdelete" ColumnName="Isdelete" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="BloodGroup" ColumnName="BloodGroup" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="SectionId" ColumnName="SectionId" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="StudentType" ColumnName="StudentType" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClassPeriodAcademics">
+            <EntityTypeMapping TypeName="SchoolManagementModel.ClassPeriodAcademic">
+              <MappingFragment StoreEntitySet="ClassPeriodAcademic">
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="TimingTo" ColumnName="TimingTo" />
+                <ScalarProperty Name="TimingFrom" ColumnName="TimingFrom" />
+                <ScalarProperty Name="ClassTeacher" ColumnName="ClassTeacher" />
+                <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+                <ScalarProperty Name="SectionId" ColumnName="SectionId" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClassTeacherAcademics">
+            <EntityTypeMapping TypeName="SchoolManagementModel.ClassTeacherAcademic">
+              <MappingFragment StoreEntitySet="ClassTeacherAcademic">
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ClassTeacher" ColumnName="ClassTeacher" />
+                <ScalarProperty Name="SectionId" ColumnName="SectionId" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

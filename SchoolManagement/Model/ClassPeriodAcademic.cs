@@ -12,19 +12,22 @@ namespace SchoolManagement.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Section
+    public partial class ClassPeriodAcademic
     {
         public int Id { get; set; }
-        public string SectionId { get; set; }
         public Nullable<int> SchoolId { get; set; }
-        public string SectionName { get; set; }
-        public string StreamId { get; set; }
-        public Nullable<bool> TypeStatus { get; set; }
+        public string Period { get; set; }
+        public string SectionId { get; set; }
+        public Nullable<int> ClassId { get; set; }
+        public Nullable<int> SubjectId { get; set; }
+        public Nullable<int> TeacherId { get; set; }
+        public Nullable<int> ClassTeacher { get; set; }
+        public string TimingFrom { get; set; }
+        public string TimingTo { get; set; }
+        public string Duration { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<bool> IsDelete { get; set; }
         public Nullable<System.DateTime> DateAdded { get; set; }
         public Nullable<System.DateTime> DateModified { get; set; }
-        public string StreamName { get; set; }
-        public Nullable<int> ClassId { get; set; }
     }
 }

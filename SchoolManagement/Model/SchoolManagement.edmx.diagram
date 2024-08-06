@@ -12,11 +12,13 @@
         <EntityTypeShape EntityType="SchoolManagementModel.SchoolDetail" Width="1.5" PointX="2.75" PointY="4.75" />
         <EntityTypeShape EntityType="SchoolManagementModel.SchoolStaff" Width="1.5" PointX="4.75" PointY="4.75" />
         <EntityTypeShape EntityType="SchoolManagementModel.Section" Width="1.5" PointX="6.75" PointY="0.75" />
-        <EntityTypeShape EntityType="SchoolManagementModel.Student" Width="1.5" PointX="6.75" PointY="5.75" />
         <EntityTypeShape EntityType="SchoolManagementModel.Subject" Width="1.5" PointX="8.75" PointY="0.75" />
         <EntityTypeShape EntityType="SchoolManagementModel.User" Width="1.5" PointX="8.75" PointY="4.75" />
         <EntityTypeShape EntityType="SchoolManagementModel.UserSubscriptionPlanDetail" Width="1.5" PointX="10.75" PointY="0.75" />
-        <EntityTypeShape EntityType="SchoolManagementModel.Stream" Width="1.5" PointX="9.375" PointY="10.75" />
+        <EntityTypeShape EntityType="SchoolManagementModel.Stream" Width="1.5" PointX="10.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SchoolManagementModel.Student" Width="1.5" PointX="6.625" PointY="4.75" />
+        <EntityTypeShape EntityType="SchoolManagementModel.ClassPeriodAcademic" Width="1.5" PointX="0.75" PointY="11.25" />
+        <EntityTypeShape EntityType="SchoolManagementModel.ClassTeacherAcademic" Width="1.5" PointX="5.375" PointY="10.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

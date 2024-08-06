@@ -97,7 +97,7 @@ namespace SchoolManagement
                     Db.SaveChanges();
 
                 }
-            }
+        }
     }
 }
 

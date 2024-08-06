@@ -336,7 +336,14 @@
     <Compile Include="Model\Class.cs">
       <DependentUpon>SchoolManagement.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\ClassPeriodAcademic.cs">
+      <DependentUpon>SchoolManagement.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\ClassRoutineAcademic.cs">
+      <DependentUpon>SchoolManagement.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ClassRoutineViewModel.cs" />
+    <Compile Include="Model\ClassTeacherAcademic.cs">
       <DependentUpon>SchoolManagement.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ClassViewModel.cs" />

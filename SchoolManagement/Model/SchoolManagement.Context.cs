@@ -32,10 +32,12 @@ namespace SchoolManagement.Model
         public virtual DbSet<SchoolDetail> SchoolDetails { get; set; }
         public virtual DbSet<SchoolStaff> SchoolStaffs { get; set; }
         public virtual DbSet<Section> Sections { get; set; }
-        public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserSubscriptionPlanDetail> UserSubscriptionPlanDetails { get; set; }
         public virtual DbSet<Stream> Streams { get; set; }
+        public virtual DbSet<Student> Students { get; set; }
+        public virtual DbSet<ClassPeriodAcademic> ClassPeriodAcademics { get; set; }
+        public virtual DbSet<ClassTeacherAcademic> ClassTeacherAcademics { get; set; }
     }
 }
