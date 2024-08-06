@@ -19,7 +19,7 @@ namespace SchoolManagement.Academic
         private int Id;
         private static readonly string ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["SchoolManagementConnectionString"].ConnectionString;
         protected SqlConnection Con = new SqlConnection(ConnectionString);
-        SchoolManagementEntities dbContext = new SchoolManagementEntities();
+        SchoolManagementEntities1 dbContext = new SchoolManagementEntities1();
         public ClassRoutine()
         {
             InitializeComponent(); 
@@ -37,6 +37,7 @@ namespace SchoolManagement.Academic
         private void GetdataFromDatabase()
         {
             try
+
             {
                 var schoolid = 2008;
                 DataTable dt = new DataTable();
@@ -131,6 +132,7 @@ namespace SchoolManagement.Academic
                 {
                     Text = subject.SubjectName,
                     Value = subject.SubjectId
+
                 };
 
                 subjectSelect.Items.Add(item);

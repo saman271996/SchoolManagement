@@ -31,7 +31,7 @@ namespace SchoolManagement
         private int widthtag = 0;
         private int widthtagnew = 1;
         private string StreamId;
-        private SchoolManagementEntities dbContext;
+        private SchoolManagementEntities1 dbContext;
         validations validates = new validations();
         private static readonly string ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["SchoolManagementConnectionString"].ConnectionString;
         protected SqlConnection Con = new SqlConnection(ConnectionString);
@@ -47,7 +47,7 @@ namespace SchoolManagement
             };
 
             this.Controls.Add(paginationPanel);
-            dbContext = new SchoolManagementEntities();
+            dbContext = new SchoolManagementEntities1();
         }
 
         private void ClassAcademic_Load(object sender, EventArgs e)

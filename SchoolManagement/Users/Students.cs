@@ -17,7 +17,7 @@ namespace SchoolManagement
 {
     public partial class Students : Form
     {
-        SchoolManagementEntities Db = new SchoolManagementEntities();
+        SchoolManagementEntities1 Db = new SchoolManagementEntities1();
         Helper.Helper helper = new Helper.Helper();
         validations validates = new validations(); 
         Form form;

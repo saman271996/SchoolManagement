@@ -13,10 +13,10 @@ namespace SchoolManagement.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SchoolManagementEntities : DbContext
+    public partial class SchoolManagementEntities1 : DbContext
     {
-        public SchoolManagementEntities()
-            : base("name=SchoolManagementEntities")
+        public SchoolManagementEntities1()
+            : base("name=SchoolManagementEntities1")
         {
         }
     
@@ -27,17 +27,18 @@ namespace SchoolManagement.Model
     
         public virtual DbSet<Class> Classes { get; set; }
         public virtual DbSet<Class_Section> Class_Section { get; set; }
+        public virtual DbSet<ClassPeriodAcademic> ClassPeriodAcademics { get; set; }
         public virtual DbSet<ClassRoutineAcademic> ClassRoutineAcademics { get; set; }
+        public virtual DbSet<ClassTeacherAcademic> ClassTeacherAcademics { get; set; }
         public virtual DbSet<Parent> Parents { get; set; }
         public virtual DbSet<SchoolDetail> SchoolDetails { get; set; }
         public virtual DbSet<SchoolStaff> SchoolStaffs { get; set; }
         public virtual DbSet<Section> Sections { get; set; }
+        public virtual DbSet<Stream> Streams { get; set; }
+        public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserSubscriptionPlanDetail> UserSubscriptionPlanDetails { get; set; }
-        public virtual DbSet<Stream> Streams { get; set; }
-        public virtual DbSet<Student> Students { get; set; }
-        public virtual DbSet<ClassPeriodAcademic> ClassPeriodAcademics { get; set; }
-        public virtual DbSet<ClassTeacherAcademic> ClassTeacherAcademics { get; set; }
+        public virtual DbSet<StudentAttandance> StudentAttandances { get; set; }
     }
 }

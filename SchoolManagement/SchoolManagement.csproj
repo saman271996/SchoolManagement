@@ -384,6 +384,10 @@
     <Compile Include="Model\Student.cs">
       <DependentUpon>SchoolManagement.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\StudentAttandance.cs">
+      <DependentUpon>SchoolManagement.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\StudentAttandanceView.cs" />
     <Compile Include="Model\StudentViewModel.cs" />
     <Compile Include="Model\Subject.cs">
       <DependentUpon>SchoolManagement.tt</DependentUpon>
@@ -414,6 +418,12 @@
     </Compile>
     <Compile Include="StaffDetails.Designer.cs">
       <DependentUpon>StaffDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentAttandence.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudentAttandence.Designer.cs">
+      <DependentUpon>StudentAttandence.cs</DependentUpon>
     </Compile>
     <Compile Include="StudentDetails.cs">
       <SubType>Form</SubType>
@@ -497,6 +507,9 @@
     <EmbeddedResource Include="StaffDetails.resx">
       <DependentUpon>StaffDetails.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="StudentAttandence.resx">
+      <DependentUpon>StudentAttandence.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="StudentDetails.resx">
       <DependentUpon>StudentDetails.cs</DependentUpon>
     </EmbeddedResource>
@@ -540,8 +553,8 @@
     <Content Include="edit-icon.png" />
     <Content Include="Model\SchoolManagement.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SchoolManagement.Context.cs</LastGenOutput>
       <DependentUpon>SchoolManagement.edmx</DependentUpon>
+      <LastGenOutput>SchoolManagement.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Model\SchoolManagement.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

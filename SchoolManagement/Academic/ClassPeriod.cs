@@ -21,7 +21,7 @@ namespace SchoolManagement.Academic
     public partial class ClassPeriod : Form
     {
         private int subjectId;
-        private SchoolManagementEntities dbContext = new SchoolManagementEntities();
+        private SchoolManagementEntities1 dbContext = new SchoolManagementEntities1();
         validations validate = new validations();
         public ClassPeriod()
         {

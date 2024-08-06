@@ -19,7 +19,7 @@ namespace SchoolManagement
     {
        
         DataTable dt = new DataTable();
-        SchoolManagementEntities Db = new SchoolManagementEntities();
+        SchoolManagementEntities1 Db = new SchoolManagementEntities1();
         public Bulkstudent()
         {
             InitializeComponent();

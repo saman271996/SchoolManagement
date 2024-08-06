@@ -21,7 +21,7 @@ namespace SchoolManagement
     public partial class SchoolSatff : Form
     {
         Form form;
-        SchoolManagementEntities dbContext = new SchoolManagementEntities();
+        SchoolManagementEntities1 dbContext = new SchoolManagementEntities1();
         validations validates = new validations();
         private int staffIdToUpdate;
         public SchoolSatff()

@@ -19,7 +19,7 @@ namespace SchoolManagement
 {
     public partial class customchechkbox : Form
     {
-        SchoolManagementEntities Db = new SchoolManagementEntities();
+        SchoolManagementEntities1 Db = new SchoolManagementEntities1();
         public customchechkbox()
         {
             InitializeComponent();

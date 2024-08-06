@@ -27,7 +27,7 @@ namespace SchoolManagement
         DataTable getTable = null;
         public List<Parent> parentexcel = new List<Parent>();
         public List<Student> studentexcel = new List<Student>();
-        SchoolManagementEntities Db = new SchoolManagementEntities();
+        SchoolManagementEntities1 Db = new SchoolManagementEntities1();
        
         public StudentExcel()
         {
@@ -188,7 +188,6 @@ namespace SchoolManagement
                                 this.Refresh();
                                 MessageBox.Show("Successfully file uploaded!,if any error please check the excel file with reason column,added to your pc!");
                                 return;
-                                
                             }
                         }
                     }
@@ -211,7 +210,6 @@ namespace SchoolManagement
         private void StudentExcel_Load(object sender, EventArgs e)
         {
             getTable = null;
-
         }
 
         public DataTable CheckLeadsPhoneNumber(DataTable leadDataTable)
