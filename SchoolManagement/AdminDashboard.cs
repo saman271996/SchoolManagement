@@ -18,10 +18,7 @@ namespace SchoolManagement
             InitializeComponent();
         }
 
-        private void AdminDashboard_Load(object sender, EventArgs e)
-        {
+      
 
-
-        }
     }
 }

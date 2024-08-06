@@ -427,6 +427,7 @@
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Size = new System.Drawing.Size(574, 478);
             this.MainPanel.TabIndex = 0;
+           
             // 
             // menutransition
             // 

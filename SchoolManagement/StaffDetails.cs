@@ -26,28 +26,12 @@ namespace SchoolManagement
 
         private void StaffDetails_Load(object sender, EventArgs e)
         {
+            
             GetdataFromDatabase();
         }
 
         private void GetdataFromDatabase()
         {
-            //var data = from m in dbContext.SchoolStaffs
-            //           join cl in dbContext.Classes on m.ClassId equals cl.ClassId
-            //           join sb in dbContext.Subjects on m.SubjectId equals sb.SubjectId
-            //           where m.IsDelete != true
-            //           select new
-            //           {
-            //               m.Id,
-            //               FullName = m.FirstName + " " + m.LastName,
-            //               m.Gender,
-            //               m.Address,
-            //               ClassName = cl.ClassName,
-            //               SubjectName = sb.SubjectName,
-            //               m.Designation,
-            //           };
-            //SchoolStaffDataGridView.DataSource = data;
-
-
             var data = DbContext.SchoolStaffs.Where(m => m.IsDelete != true).Select(m => new
             {
                 m.Id,

@@ -21,7 +21,7 @@ namespace SchoolManagement
 
         private void MainLayoutForm_Load(object sender, EventArgs e)
         {
-            form= new AdminDashboard();
+            form = new AdminDashboard();
             form.TopLevel = false;
             MainPanel.Controls.Add(form);
             form.Show();
@@ -93,11 +93,10 @@ namespace SchoolManagement
             }
         }
 
-     
-    
+
+
 
         private void Student_Click(object sender, EventArgs e)
-         
         {
             form.Hide();
             form = new StudentDetails();
@@ -109,7 +108,7 @@ namespace SchoolManagement
 
         }
 
-     
+
 
         private void Parent_Click(object sender, EventArgs e)
         {
@@ -124,15 +123,20 @@ namespace SchoolManagement
 
         private void Teacher_Staff_Click(object sender, EventArgs e)
         {
-            form.Hide();
-            form = new StaffDetails();
-            Application.OpenForms.OfType<MainLayoutForm>().First().MainPanel.Dock=DockStyle.None;
-            Application.OpenForms.OfType<MainLayoutForm>().First().MainPanel.Dock = DockStyle.Fill;
-            form.TopLevel = false;
-            form.Visible = true;
-            form.BringToFront();
-            Application.OpenForms.OfType<MainLayoutForm>().First().MainPanel.Controls.Add(form);
-            form.Show();
+            try
+            {
+                this.Hide();
+                form.ShowDialog();
+                this.Close();
+                form = new StaffDetails();
+                Application.OpenForms.OfType<MainLayoutForm>().First().MainPanel.Dock = DockStyle.Fill;
+                form.TopLevel = false;
+                form.Visible = true;
+                form.BringToFront();
+                Application.OpenForms.OfType<MainLayoutForm>().First().MainPanel.Controls.Add(form);
+                form.Show();
+            }
+            catch (Exception ex) { }
 
         }
 
@@ -178,7 +182,7 @@ namespace SchoolManagement
 
         }
 
-       
+
         private void userclick_Click(object sender, EventArgs e)
         {
             menutransition.Start();
