@@ -109,7 +109,7 @@
             this.Student_BodyPanel.Name = "Student_BodyPanel";
             this.Student_BodyPanel.Size = new System.Drawing.Size(584, 442);
             this.Student_BodyPanel.TabIndex = 1;
-            this.Student_BodyPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.Student_BodyPanel_Paint);
+            
             // 
             // Student_MainForm
             // 

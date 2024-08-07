@@ -67,15 +67,26 @@ namespace SchoolManagement
 
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            frm = new Student_MainForm();
+            //frm.Hide();
+            //frm = new Student_MainForm();
+            //Application.OpenForms.OfType<MainLayoutForm>().First().MainPanel.Dock = DockStyle.Fill;
+            //frm.TopLevel = false;
+            //frm.Visible = true;
+            ////frm.BringToFront();
+            //Application.OpenForms.OfType<MainLayoutForm>().First().MainPanel.Controls.Add(frm);
+            //frm.Show();
+            frm = (Student_MainForm)Application.OpenForms["Student_MainForm"];
+            if (frm == null)
+            {
+                frm = new Student_MainForm();
+            }
             Application.OpenForms.OfType<MainLayoutForm>().First().MainPanel.Dock = DockStyle.Fill;
             frm.TopLevel = false;
             frm.Visible = true;
             Application.OpenForms.OfType<MainLayoutForm>().First().MainPanel.Controls.Add(frm);
-           
+            frm.BringToFront();
             frm.Show();
- 
+
         }
     }
 }
