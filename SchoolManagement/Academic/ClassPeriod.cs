@@ -2,6 +2,7 @@
 using Microsoft.VisualBasic.ApplicationServices;
 using SchoolManagement.Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -138,17 +139,19 @@ namespace SchoolManagement.Academic
         {
             if (e.RowIndex >= 0 && e.ColumnIndex == PeriodDataGridView.Columns["TimingFromColumn"]?.Index)
             {
-                DateTimePicker dtpTimeArrived = new DateTimePicker
+                DateTimePicker dtpTime = new DateTimePicker
                 {
                     ShowUpDown = true,
                     Format = DateTimePickerFormat.Time,
                     CustomFormat = "hh:mm tt",
                 };
+                string currentTime = DateTime.Now.ToString("hh:mm tt");
 
+                PeriodDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = currentTime;
                 DataGridViewCell cell = PeriodDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
                 Rectangle cellRectangle = PeriodDataGridView.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
-                dtpTimeArrived.Location = new Point(cellRectangle.X, cellRectangle.Y);
-                dtpTimeArrived.Size = new Size(cellRectangle.Width, cellRectangle.Height);
+                dtpTime.Location = new Point(cellRectangle.X, cellRectangle.Y);
+                dtpTime.Size = new Size(cellRectangle.Width, cellRectangle.Height);
 
                 foreach (Control control in PeriodDataGridView.Controls)
                 {
@@ -159,28 +162,37 @@ namespace SchoolManagement.Academic
                     }
                 }
 
-                PeriodDataGridView.Controls.Add(dtpTimeArrived);
-                dtpTimeArrived.Focus();
+                PeriodDataGridView.Controls.Add(dtpTime);
+                dtpTime.Focus();
 
-                dtpTimeArrived.ValueChanged += (s, evt) =>
+                dtpTime.ValueChanged += (s, evt) =>
                 {
-                    PeriodDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = dtpTimeArrived.Value.ToString("hh:mm tt");
+                    PeriodDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = dtpTime.Value.ToString("hh:mm tt");
+                };
+
+                dtpTime.Leave += (s, evt) =>
+                {
+                    PeriodDataGridView.Controls.Remove(dtpTime);
+                    dtpTime.Dispose();
                 };
 
             }
+
             if (e.RowIndex >= 0 && e.ColumnIndex == PeriodDataGridView.Columns["TimingToColumn"]?.Index)
             {
-                DateTimePicker dtpTimeArrived = new DateTimePicker
+                DateTimePicker dtpTime = new DateTimePicker
                 {
                     ShowUpDown = true,
                     Format = DateTimePickerFormat.Time,
                     CustomFormat = "hh:mm tt",
                 };
+                string currentTime = DateTime.Now.ToString("hh:mm tt");
 
+                PeriodDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = currentTime;
                 DataGridViewCell cell = PeriodDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
                 Rectangle cellRectangle = PeriodDataGridView.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
-                dtpTimeArrived.Location = new Point(cellRectangle.X, cellRectangle.Y);
-                dtpTimeArrived.Size = new Size(cellRectangle.Width, cellRectangle.Height);
+                dtpTime.Location = new Point(cellRectangle.X, cellRectangle.Y);
+                dtpTime.Size = new Size(cellRectangle.Width, cellRectangle.Height);
 
                 foreach (Control control in PeriodDataGridView.Controls)
                 {
@@ -191,48 +203,75 @@ namespace SchoolManagement.Academic
                     }
                 }
 
-                PeriodDataGridView.Controls.Add(dtpTimeArrived);
-                dtpTimeArrived.Focus();
+                PeriodDataGridView.Controls.Add(dtpTime);
+                dtpTime.Focus();
 
-                dtpTimeArrived.ValueChanged += (s, evt) =>
+                dtpTime.ValueChanged += (s, evt) =>
                 {
-                    PeriodDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = dtpTimeArrived.Value.ToString("hh:mm tt");
+                    PeriodDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = dtpTime.Value.ToString("hh:mm tt");
+                };
+
+                dtpTime.Leave += (s, evt) =>
+                {
+                    PeriodDataGridView.Controls.Remove(dtpTime);
+                    dtpTime.Dispose();
                 };
 
             }
 
-            if (e.RowIndex >= 0 && e.ColumnIndex == PeriodDataGridView.Columns["SubjectColumn"]?.Index)
+            foreach (DataGridViewRow row in PeriodDataGridView.Rows)
             {
-                DataGridViewComboBoxCell l_objGridDropbox = new DataGridViewComboBoxCell();
-
-
-                if (PeriodDataGridView.Columns[e.ColumnIndex].Name.Contains("SubjectColumn"))
+                if (e.RowIndex >= 0 && e.ColumnIndex == PeriodDataGridView.Columns["SubjectColumn"]?.Index)
                 {
-                    PeriodDataGridView[e.ColumnIndex, e.RowIndex] = l_objGridDropbox;
-                    l_objGridDropbox.DataSource = SubjectDataIntoComboBox(GetSelectedClassId());
-                    l_objGridDropbox.ValueMember = "Value";
-                    l_objGridDropbox.DisplayMember = "Text";
+                    DataGridViewComboBoxCell comboBoxCell = new DataGridViewComboBoxCell();
 
+
+                    if (PeriodDataGridView.Columns[e.ColumnIndex].Name.Contains("SubjectColumn"))
+                    {
+                        comboBoxCell.DataSource = SubjectDataIntoComboBox(GetSelectedClassId());
+                        comboBoxCell.ValueMember = "Value";
+                        comboBoxCell.DisplayMember = "Text";
+
+                        var dataSourceList = comboBoxCell.DataSource as IList;
+                        if (dataSourceList != null && dataSourceList.Count > 0)
+                        {
+                            var defaultValue = ((dynamic)dataSourceList[0]).Value;
+
+                            comboBoxCell.Value = defaultValue;
+                        }
+
+                        PeriodDataGridView[e.ColumnIndex, e.RowIndex] = comboBoxCell;
+                    }
                 }
             }
 
-            if (e.RowIndex >= 0 && e.ColumnIndex == PeriodDataGridView.Columns["TeacherNameColumn"]?.Index)
+            foreach (DataGridViewRow row in PeriodDataGridView.Rows)
             {
-                DataGridViewComboBoxCell l_objGridDropbox = new DataGridViewComboBoxCell();
-
-                if (PeriodDataGridView.Columns[e.ColumnIndex].Name.Contains("TeacherNameColumn"))
+                if (e.RowIndex >= 0 && e.ColumnIndex == PeriodDataGridView.Columns["TeacherNameColumn"]?.Index)
                 {
-                    PeriodDataGridView[e.ColumnIndex, e.RowIndex] = l_objGridDropbox;
+                    DataGridViewComboBoxCell comboBoxCell = new DataGridViewComboBoxCell();
 
-                    var subjects = SubjectDataIntoComboBox(GetSelectedClassId());
+                    if (PeriodDataGridView.Columns[e.ColumnIndex].Name.Contains("TeacherNameColumn"))
+                    {
+                        var subjects = SubjectDataIntoComboBox(GetSelectedClassId());
 
-                    int subjectCellValue = Convert.ToInt32(PeriodDataGridView.Rows[e.RowIndex].Cells["SubjectColumn"].Value);
-                    subjectId = subjectCellValue;
+                        int subjectCellValue = Convert.ToInt32(PeriodDataGridView.Rows[e.RowIndex].Cells["SubjectColumn"].Value);
+                        subjectId = subjectCellValue;
 
-                    l_objGridDropbox.DataSource = SchoolStaffDataIntoComboBoxGridView(GetSelectedClassId(), subjectId);
-                    l_objGridDropbox.ValueMember = "Value";
-                    l_objGridDropbox.DisplayMember = "Text";
+                        comboBoxCell.DataSource = SchoolStaffDataIntoComboBoxGridView(GetSelectedClassId(), subjectId);
+                        comboBoxCell.ValueMember = "Value";
+                        comboBoxCell.DisplayMember = "Text";
 
+                        var dataSourceList = comboBoxCell.DataSource as IList;
+                        if (dataSourceList != null && dataSourceList.Count > 0)
+                        {
+                            var defaultValue = ((dynamic)dataSourceList[0]).Value;
+
+                            comboBoxCell.Value = defaultValue;
+                        }
+
+                        PeriodDataGridView[e.ColumnIndex, e.RowIndex] = comboBoxCell;
+                    }
                 }
             }
         }
@@ -242,16 +281,23 @@ namespace SchoolManagement.Academic
             var selectSchoolStaff = dbContext.SchoolStaffs.Where(s => s.IsDelete != true && s.ClassId == classId && s.SubjectId == subjectId).AsEnumerable();
 
             List<SubjectClassDropdlist> items = new List<SubjectClassDropdlist>();
+            SubjectClassDropdlist item = new SubjectClassDropdlist
+            {
+                Text = "select a techer",
+                Values = "",
+            };
+
+            items.Add(item);
 
             foreach (var selectStaff in selectSchoolStaff)
             {
-                SubjectClassDropdlist item = new SubjectClassDropdlist
+                SubjectClassDropdlist dropitem = new SubjectClassDropdlist
                 {
                     Text = $"{selectStaff.FirstName} {selectStaff.LastName}",
                     Value = selectStaff.Id
                 };
 
-                items.Add(item);
+                items.Add(dropitem);
             }
 
             return items;
@@ -264,15 +310,22 @@ namespace SchoolManagement.Academic
                 var selectSubject = dbContext.Subjects.Where(s => s.IsDelete != true && s.ClassId == classId).AsEnumerable();
 
                 List<SubjectClassDropdlist> items = new List<SubjectClassDropdlist>();
+                SubjectClassDropdlist item = new SubjectClassDropdlist
+                {
+                    Text = "select a sub",
+                    Values = "",
+                };
+
+                items.Add(item);
 
                 foreach (var subject in selectSubject)
                 {
-                    SubjectClassDropdlist item = new SubjectClassDropdlist
+                    SubjectClassDropdlist dropitem = new SubjectClassDropdlist
                     {
                         Text = subject.SubjectName,
                         Value = subject.SubjectId
                     };
-                    items.Add(item);
+                    items.Add(dropitem);
                 }
 
                 return items;
@@ -280,6 +333,60 @@ namespace SchoolManagement.Academic
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        private void PeriodDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                if (e.ColumnIndex == PeriodDataGridView.Columns["TimingFromColumn"]?.Index ||
+                    e.ColumnIndex == PeriodDataGridView.Columns["TimingToColumn"]?.Index)
+                {
+                    CalculateAndSetDuration(e.RowIndex);
+                }
+            }
+        }
+        private void CalculateAndSetDuration(int rowIndex)
+        {
+            string fromTimeString = PeriodDataGridView.Rows[rowIndex].Cells["TimingFromColumn"].Value?.ToString();
+            string toTimeString = PeriodDataGridView.Rows[rowIndex].Cells["TimingToColumn"].Value?.ToString();
+
+            if (DateTime.TryParseExact(fromTimeString, "hh:mm tt", null, System.Globalization.DateTimeStyles.None, out DateTime fromTime) &&
+                DateTime.TryParseExact(toTimeString, "hh:mm tt", null, System.Globalization.DateTimeStyles.None, out DateTime toTime))
+            {
+                TimeSpan duration = toTime - fromTime;
+                int hours = duration.Hours;
+                int minutes = duration.Minutes;
+
+                if (duration.TotalMinutes == 0)
+                {
+                    PeriodDataGridView.Rows[rowIndex].Cells["DurationColumn"].Value = "0 minute";
+                }
+                else
+                {
+                    string durationString = string.Empty;
+
+                    if (hours > 0)
+                    {
+                        durationString += $"{hours}hr";
+                    }
+
+                    if (minutes > 0)
+                    {
+                        if (hours > 0)
+                        {
+                            durationString += " ";
+                        }
+                        durationString += $"{minutes}minute";
+                    }
+
+                    PeriodDataGridView.Rows[rowIndex].Cells["DurationColumn"].Value = durationString;
+                }
+            }
+            else
+            {
+                PeriodDataGridView.Rows[rowIndex].Cells["DurationColumn"].Value = string.Empty;
             }
         }
 
@@ -352,6 +459,12 @@ namespace SchoolManagement.Academic
                     dbContext.ClassTeacherAcademics.AddRange(classteacher);
                     dbContext.SaveChanges();
                     MessageBox.Show("Data inserted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    classSelect.SelectedIndex = -1;
+                    teacherSelect.SelectedIndex = -1;
+                    sectionSelect.SelectedIndex = -1;
+                    period.Text = "";
+                    PeriodDataGridView.Rows.Clear();
 
                 }
                 else

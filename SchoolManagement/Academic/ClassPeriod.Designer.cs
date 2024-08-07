@@ -43,12 +43,12 @@ namespace SchoolManagement.Academic
             this.period = new Krypton.Toolkit.KryptonTextBox();
             this.dtp = new System.Windows.Forms.DateTimePicker();
             this.PeriodDataGridView = new Krypton.Toolkit.KryptonDataGridView();
-            this.DurationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TimingToColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TimingFromColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TeacherNameColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.SubjectColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.PeriodColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubjectColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.TeacherNameColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.TimingFromColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TimingToColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DurationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.sectionSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teacherSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.classSelect)).BeginInit();
@@ -230,35 +230,14 @@ namespace SchoolManagement.Academic
             this.PeriodDataGridView.StateCommon.HeaderRow.Content.Color2 = System.Drawing.Color.White;
             this.PeriodDataGridView.TabIndex = 45;
             this.PeriodDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.PeriodDataGridView_CellClick);
+            this.PeriodDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.PeriodDataGridView_CellValueChanged);
             // 
-            // DurationColumn
+            // PeriodColumn
             // 
-            this.DurationColumn.HeaderText = "Duration";
-            this.DurationColumn.Name = "DurationColumn";
-            this.DurationColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.DurationColumn.Width = 61;
-            // 
-            // TimingToColumn
-            // 
-            this.TimingToColumn.HeaderText = "Timing To";
-            this.TimingToColumn.Name = "TimingToColumn";
-            this.TimingToColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.TimingToColumn.Width = 98;
-            // 
-            // TimingFromColumn
-            // 
-            this.TimingFromColumn.HeaderText = "Timing From";
-            this.TimingFromColumn.Name = "TimingFromColumn";
-            this.TimingFromColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // TeacherNameColumn
-            // 
-            this.TeacherNameColumn.DisplayStyleForCurrentCellOnly = true;
-            this.TeacherNameColumn.HeaderText = "Teacher Name";
-            this.TeacherNameColumn.Name = "TeacherNameColumn";
-            this.TeacherNameColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.TeacherNameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.TeacherNameColumn.Width = 130;
+            this.PeriodColumn.HeaderText = "Period";
+            this.PeriodColumn.Name = "PeriodColumn";
+            this.PeriodColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.PeriodColumn.Width = 58;
             // 
             // SubjectColumn
             // 
@@ -269,12 +248,34 @@ namespace SchoolManagement.Academic
             this.SubjectColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.SubjectColumn.Width = 95;
             // 
-            // PeriodColumn
+            // TeacherNameColumn
             // 
-            this.PeriodColumn.HeaderText = "Period";
-            this.PeriodColumn.Name = "PeriodColumn";
-            this.PeriodColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.PeriodColumn.Width = 58;
+            this.TeacherNameColumn.DisplayStyleForCurrentCellOnly = true;
+            this.TeacherNameColumn.HeaderText = "Teacher Name";
+            this.TeacherNameColumn.Name = "TeacherNameColumn";
+            this.TeacherNameColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.TeacherNameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.TeacherNameColumn.Width = 130;
+            // 
+            // TimingFromColumn
+            // 
+            this.TimingFromColumn.HeaderText = "Timing From";
+            this.TimingFromColumn.Name = "TimingFromColumn";
+            this.TimingFromColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // TimingToColumn
+            // 
+            this.TimingToColumn.HeaderText = "Timing To";
+            this.TimingToColumn.Name = "TimingToColumn";
+            this.TimingToColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.TimingToColumn.Width = 98;
+            // 
+            // DurationColumn
+            // 
+            this.DurationColumn.HeaderText = "Duration";
+            this.DurationColumn.Name = "DurationColumn";
+            this.DurationColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.DurationColumn.Width = 61;
             // 
             // ClassPeriod
             // 

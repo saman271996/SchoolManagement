@@ -20,6 +20,7 @@ namespace SchoolManagement.Academic
         private static readonly string ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["SchoolManagementConnectionString"].ConnectionString;
         protected SqlConnection Con = new SqlConnection(ConnectionString);
         SchoolManagementEntities1 dbContext = new SchoolManagementEntities1();
+        validations validates = new validations();
         public ClassRoutine()
         {
             InitializeComponent(); 
@@ -176,33 +177,46 @@ namespace SchoolManagement.Academic
             {
                 if (Submit.Text == "Submit")
                 {
-                    SubjectClassDropdlist selectedClass = (SubjectClassDropdlist)classSelect.SelectedItem;
-                    SubjectClassDropdlist selectedSubject = (SubjectClassDropdlist)subjectSelect.SelectedItem;
-                    SubjectClassDropdlist selectedTeacher = (SubjectClassDropdlist)teacherSelect.SelectedItem;
-                    SubjectClassDropdlist selectedSection = (SubjectClassDropdlist)sectionSelect.SelectedItem;
-
-                    ClassRoutineAcademic classRoutine = new ClassRoutineAcademic()
+                    SubjectClassDropdlist selectedClass = (SubjectClassDropdlist)classSelect?.SelectedItem;
+                    SubjectClassDropdlist selectedSubject = (SubjectClassDropdlist)subjectSelect?.SelectedItem;
+                    SubjectClassDropdlist selectedTeacher = (SubjectClassDropdlist)teacherSelect?.SelectedItem;
+                    SubjectClassDropdlist selectedSection = (SubjectClassDropdlist)sectionSelect?.SelectedItem;
+                    if (selectedClass != null && selectedSubject != null && selectedTeacher != null && selectedSection != null)
                     {
-                        SchoolId = 2008,
-                        ClassId = selectedClass.Value,
-                        SubjectId = selectedSubject.Value,
-                        TeacherId = selectedTeacher.Value,
-                        SectionId = selectedSection.Values,
-                        IsActive = true,
-                        IsDelete = false,
-                        DateAdded = DateTime.Now,
-                        DateModified = DateTime.Now,
-                    };
+                        var classRoutine = new ClassRoutineAcademic
+                        {
+                            SchoolId = 2008,
+                            ClassId = selectedClass.Value,
+                            SubjectId = selectedSubject.Value,
+                            TeacherId = selectedTeacher.Value,
+                            SectionId = selectedSection.Values,
+                            IsActive = true,
+                            IsDelete = false,
+                            DateAdded = DateTime.Now,
+                            DateModified = DateTime.Now,
+                        };
+                        var message_classRoutine = validates.ValidateClassRoutine(classRoutine);
+                        if (message_classRoutine.Status == true)
+                        {
+                            MessageBox.Show(message_classRoutine.Message);
+                        }
+                        else
+                        {
+                            dbContext.ClassRoutineAcademics.Add(classRoutine);
+                            dbContext.SaveChanges();
+                            MessageBox.Show("Data inserted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    dbContext.ClassRoutineAcademics.Add(classRoutine);
-                    dbContext.SaveChanges();
-                    MessageBox.Show("Data inserted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    GetdataFromDatabase();
-                    classSelect.SelectedIndex = -1;
-                    subjectSelect.SelectedIndex = -1;
-                    teacherSelect.SelectedIndex = -1;
-                    sectionSelect.SelectedIndex = -1;
+                            GetdataFromDatabase();
+                            classSelect.SelectedIndex = -1;
+                            subjectSelect.SelectedIndex = -1;
+                            teacherSelect.SelectedIndex = -1;
+                            sectionSelect.SelectedIndex = -1;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("please fill the above fields");
+                    }
                 }
                 else if(Submit.Text == "Update")
                 {
