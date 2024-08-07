@@ -1,4 +1,5 @@
-﻿using SchoolManagement.Helper;
+﻿using SchoolManagement.Academic;
+using SchoolManagement.Helper;
 using SchoolManagement.Model;
 using SchoolManagement.ViewModel;
 using System;
@@ -374,6 +375,38 @@ namespace SchoolManagement
             {
                 message.Status = true;
                 message.Message = "time Cannot filled, Please Check it!!";
+                return message;
+            }
+
+            return message;
+        }
+
+        public MessageValidate ValidateClassRoutine(ClassRoutineAcademic classRoutine)
+        {
+            MessageValidate message = new MessageValidate();
+            message.Status = false;
+            if (classRoutine.ClassId == null || classRoutine.ClassId == 0)
+            {
+                message.Status = true;
+                message.Message = "Class Cannot filled, Please Check it!!";
+                return message;
+            }
+            if (string.IsNullOrEmpty(classRoutine.SectionId))
+            {
+                message.Status = true;
+                message.Message = "section Cannot filled, Please Check it!!";
+                return message;
+            }
+            if (classRoutine.SubjectId == null || classRoutine.SubjectId == 0)
+            {
+                message.Status = true;
+                message.Message = "Subject Cannot filled, Please Check it!!";
+                return message;
+            }
+            if (classRoutine.TeacherId == null || classRoutine.TeacherId == 0)
+            {
+                message.Status = true;
+                message.Message = "Teacher Cannot filled, Please Check it!!";
                 return message;
             }
 

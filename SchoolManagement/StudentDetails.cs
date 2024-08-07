@@ -73,9 +73,9 @@ namespace SchoolManagement
             frm.TopLevel = false;
             frm.Visible = true;
             Application.OpenForms.OfType<MainLayoutForm>().First().MainPanel.Controls.Add(frm);
-           
+
             frm.Show();
- 
+
         }
     }
 }
