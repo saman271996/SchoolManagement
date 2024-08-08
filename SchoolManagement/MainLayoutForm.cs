@@ -75,7 +75,7 @@ namespace SchoolManagement
             if (acedmicexpand == false)
             {
                 flowLayoutPanel1.Height += 40;
-                if (flowLayoutPanel1.Height >= 280)
+                if (flowLayoutPanel1.Height >= 240)
                 {
                     AcedmicTransition.Stop();
                     acedmicexpand = true;
@@ -98,13 +98,22 @@ namespace SchoolManagement
 
         private void Student_Click(object sender, EventArgs e)
         {
-            form.Hide();
-            form = new StudentDetails();
-            Application.OpenForms.OfType<MainLayoutForm>().First().MainPanel.Dock = DockStyle.Fill;
-            form.TopLevel = false;
-            form.Visible = true;
-            Application.OpenForms.OfType<MainLayoutForm>().First().MainPanel.Controls.Add(form);
-            form.Show();
+            try
+            {
+                form = (StudentDetails)Application.OpenForms["StudentDetails"];
+                if (form == null)
+                {
+                    form = new StudentDetails();
+                }
+                Application.OpenForms.OfType<MainLayoutForm>().First().MainPanel.Dock = DockStyle.Fill;
+                form.TopLevel = false;
+                form.Visible = true;
+                Application.OpenForms.OfType<MainLayoutForm>().First().MainPanel.Controls.Add(form);
+                form.BringToFront();
+                form.Show();
+
+            }
+            catch (Exception ex) { }
 
         }
 
@@ -199,7 +208,7 @@ namespace SchoolManagement
             if (menuexpand == false)
             {
                 UserPanel.Height += 40;
-                if (UserPanel.Height >= 160)
+                if (UserPanel.Height >= 120)
                 {
                     menutransition.Stop();
                     menuexpand = true;

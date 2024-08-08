@@ -37,7 +37,6 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.Acedmic = new System.Windows.Forms.Button();
             this.Daily_attandance = new System.Windows.Forms.Button();
-            this.Syllabus = new System.Windows.Forms.Button();
             this.Subject = new System.Windows.Forms.Button();
             this.Class = new System.Windows.Forms.Button();
             this.Class_Routine = new System.Windows.Forms.Button();
@@ -70,7 +69,7 @@
             this.UserPanel.Controls.Add(this.Teacher_Staff);
             this.UserPanel.Location = new System.Drawing.Point(3, 99);
             this.UserPanel.Name = "UserPanel";
-            this.UserPanel.Size = new System.Drawing.Size(201, 40);
+            this.UserPanel.Size = new System.Drawing.Size(210, 40);
             this.UserPanel.TabIndex = 13;
             // 
             // userclick
@@ -85,7 +84,7 @@
             this.userclick.Location = new System.Drawing.Point(0, 0);
             this.userclick.Margin = new System.Windows.Forms.Padding(0);
             this.userclick.Name = "userclick";
-            this.userclick.Size = new System.Drawing.Size(201, 40);
+            this.userclick.Size = new System.Drawing.Size(210, 40);
             this.userclick.TabIndex = 3;
             this.userclick.Text = "  User";
             this.userclick.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -105,7 +104,7 @@
             this.Student.Location = new System.Drawing.Point(0, 40);
             this.Student.Margin = new System.Windows.Forms.Padding(0);
             this.Student.Name = "Student";
-            this.Student.Size = new System.Drawing.Size(201, 40);
+            this.Student.Size = new System.Drawing.Size(210, 40);
             this.Student.TabIndex = 5;
             this.Student.Text = "  Student ";
             this.Student.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -125,7 +124,7 @@
             this.Teacher_Staff.Location = new System.Drawing.Point(0, 80);
             this.Teacher_Staff.Margin = new System.Windows.Forms.Padding(0);
             this.Teacher_Staff.Name = "Teacher_Staff";
-            this.Teacher_Staff.Size = new System.Drawing.Size(201, 40);
+            this.Teacher_Staff.Size = new System.Drawing.Size(210, 40);
             this.Teacher_Staff.TabIndex = 5;
             this.Teacher_Staff.Text = "  Teacher/Staff";
             this.Teacher_Staff.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -137,14 +136,13 @@
             this.flowLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.flowLayoutPanel1.Controls.Add(this.Acedmic);
             this.flowLayoutPanel1.Controls.Add(this.Daily_attandance);
-            this.flowLayoutPanel1.Controls.Add(this.Syllabus);
             this.flowLayoutPanel1.Controls.Add(this.Subject);
             this.flowLayoutPanel1.Controls.Add(this.Class);
             this.flowLayoutPanel1.Controls.Add(this.Class_Routine);
             this.flowLayoutPanel1.Controls.Add(this.Department);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 145);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(188, 40);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(210, 40);
             this.flowLayoutPanel1.TabIndex = 20;
             // 
             // Acedmic
@@ -160,7 +158,7 @@
             this.Acedmic.Location = new System.Drawing.Point(0, 0);
             this.Acedmic.Margin = new System.Windows.Forms.Padding(0);
             this.Acedmic.Name = "Acedmic";
-            this.Acedmic.Size = new System.Drawing.Size(201, 40);
+            this.Acedmic.Size = new System.Drawing.Size(210, 40);
             this.Acedmic.TabIndex = 9;
             this.Acedmic.Text = "  Acedmic";
             this.Acedmic.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -181,33 +179,13 @@
             this.Daily_attandance.Location = new System.Drawing.Point(0, 40);
             this.Daily_attandance.Margin = new System.Windows.Forms.Padding(0);
             this.Daily_attandance.Name = "Daily_attandance";
-            this.Daily_attandance.Size = new System.Drawing.Size(201, 40);
+            this.Daily_attandance.Size = new System.Drawing.Size(210, 40);
             this.Daily_attandance.TabIndex = 6;
             this.Daily_attandance.Text = "  Daily Attandance";
             this.Daily_attandance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Daily_attandance.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.Daily_attandance.UseVisualStyleBackColor = false;
             this.Daily_attandance.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // Syllabus
-            // 
-            this.Syllabus.AllowDrop = true;
-            this.Syllabus.BackColor = System.Drawing.Color.White;
-            this.Syllabus.FlatAppearance.BorderSize = 0;
-            this.Syllabus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Syllabus.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Syllabus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
-            this.Syllabus.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Syllabus.Location = new System.Drawing.Point(0, 80);
-            this.Syllabus.Margin = new System.Windows.Forms.Padding(0);
-            this.Syllabus.Name = "Syllabus";
-            this.Syllabus.Size = new System.Drawing.Size(201, 40);
-            this.Syllabus.TabIndex = 9;
-            this.Syllabus.Text = "  Syllabus";
-            this.Syllabus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Syllabus.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.Syllabus.UseVisualStyleBackColor = false;
-            this.Syllabus.Click += new System.EventHandler(this.button10_Click);
             // 
             // Subject
             // 
@@ -219,10 +197,10 @@
             this.Subject.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
             this.Subject.Image = ((System.Drawing.Image)(resources.GetObject("Subject.Image")));
             this.Subject.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Subject.Location = new System.Drawing.Point(0, 120);
+            this.Subject.Location = new System.Drawing.Point(0, 80);
             this.Subject.Margin = new System.Windows.Forms.Padding(0);
             this.Subject.Name = "Subject";
-            this.Subject.Size = new System.Drawing.Size(201, 40);
+            this.Subject.Size = new System.Drawing.Size(210, 40);
             this.Subject.TabIndex = 8;
             this.Subject.Text = "  Subject";
             this.Subject.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -240,10 +218,10 @@
             this.Class.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
             this.Class.Image = ((System.Drawing.Image)(resources.GetObject("Class.Image")));
             this.Class.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Class.Location = new System.Drawing.Point(0, 160);
+            this.Class.Location = new System.Drawing.Point(0, 120);
             this.Class.Margin = new System.Windows.Forms.Padding(0);
             this.Class.Name = "Class";
-            this.Class.Size = new System.Drawing.Size(201, 40);
+            this.Class.Size = new System.Drawing.Size(210, 40);
             this.Class.TabIndex = 10;
             this.Class.Text = "  Class";
             this.Class.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -261,10 +239,10 @@
             this.Class_Routine.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
             this.Class_Routine.Image = ((System.Drawing.Image)(resources.GetObject("Class_Routine.Image")));
             this.Class_Routine.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Class_Routine.Location = new System.Drawing.Point(0, 200);
+            this.Class_Routine.Location = new System.Drawing.Point(0, 160);
             this.Class_Routine.Margin = new System.Windows.Forms.Padding(0);
             this.Class_Routine.Name = "Class_Routine";
-            this.Class_Routine.Size = new System.Drawing.Size(201, 40);
+            this.Class_Routine.Size = new System.Drawing.Size(210, 40);
             this.Class_Routine.TabIndex = 7;
             this.Class_Routine.Text = "  Class Routine";
             this.Class_Routine.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -282,12 +260,12 @@
             this.Department.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
             this.Department.Image = ((System.Drawing.Image)(resources.GetObject("Department.Image")));
             this.Department.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Department.Location = new System.Drawing.Point(0, 240);
+            this.Department.Location = new System.Drawing.Point(0, 200);
             this.Department.Margin = new System.Windows.Forms.Padding(0);
             this.Department.Name = "Department";
-            this.Department.Size = new System.Drawing.Size(201, 40);
+            this.Department.Size = new System.Drawing.Size(210, 40);
             this.Department.TabIndex = 11;
-            this.Department.Text = "  Department";
+            this.Department.Text = "  Class Period";
             this.Department.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Department.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.Department.UseVisualStyleBackColor = false;
@@ -301,7 +279,7 @@
             this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 188);
             this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(201, 40);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(210, 40);
             this.flowLayoutPanel3.TabIndex = 14;
             // 
             // Accounting
@@ -317,7 +295,7 @@
             this.Accounting.Location = new System.Drawing.Point(2, 0);
             this.Accounting.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.Accounting.Name = "Accounting";
-            this.Accounting.Size = new System.Drawing.Size(198, 40);
+            this.Accounting.Size = new System.Drawing.Size(210, 38);
             this.Accounting.TabIndex = 5;
             this.Accounting.Text = "  Accounting";
             this.Accounting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -335,10 +313,10 @@
             this.button16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
             this.button16.Image = ((System.Drawing.Image)(resources.GetObject("button16.Image")));
             this.button16.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button16.Location = new System.Drawing.Point(0, 40);
+            this.button16.Location = new System.Drawing.Point(0, 38);
             this.button16.Margin = new System.Windows.Forms.Padding(0);
             this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(201, 40);
+            this.button16.Size = new System.Drawing.Size(210, 40);
             this.button16.TabIndex = 6;
             this.button16.Text = "  Student Fee Manager";
             this.button16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -356,10 +334,10 @@
             this.button17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
             this.button17.Image = ((System.Drawing.Image)(resources.GetObject("button17.Image")));
             this.button17.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button17.Location = new System.Drawing.Point(0, 80);
+            this.button17.Location = new System.Drawing.Point(0, 78);
             this.button17.Margin = new System.Windows.Forms.Padding(0);
             this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(201, 40);
+            this.button17.Size = new System.Drawing.Size(210, 40);
             this.button17.TabIndex = 7;
             this.button17.Text = "  Expense Manager";
             this.button17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -387,7 +365,7 @@
             this.pictureBox2.Location = new System.Drawing.Point(0, 0);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(201, 56);
+            this.pictureBox2.Size = new System.Drawing.Size(210, 56);
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
             // 
@@ -402,7 +380,7 @@
             this.Dashboard.Location = new System.Drawing.Point(0, 56);
             this.Dashboard.Margin = new System.Windows.Forms.Padding(0);
             this.Dashboard.Name = "Dashboard";
-            this.Dashboard.Size = new System.Drawing.Size(201, 40);
+            this.Dashboard.Size = new System.Drawing.Size(210, 40);
             this.Dashboard.TabIndex = 0;
             this.Dashboard.Text = "  Dashboard";
             this.Dashboard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -416,16 +394,17 @@
             this.Sidepanel.Location = new System.Drawing.Point(210, 0);
             this.Sidepanel.Margin = new System.Windows.Forms.Padding(0);
             this.Sidepanel.Name = "Sidepanel";
-            this.Sidepanel.Size = new System.Drawing.Size(574, 59);
+            this.Sidepanel.Size = new System.Drawing.Size(574, 56);
             this.Sidepanel.StateCommon.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
             this.Sidepanel.TabIndex = 11;
             // 
             // MainPanel
             // 
             this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainPanel.Location = new System.Drawing.Point(210, 59);
+            this.MainPanel.Location = new System.Drawing.Point(210, 56);
+            this.MainPanel.Margin = new System.Windows.Forms.Padding(0);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(574, 478);
+            this.MainPanel.Size = new System.Drawing.Size(574, 481);
             this.MainPanel.TabIndex = 0;
             this.MainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.MainPanel_Paint);
             // 
@@ -474,7 +453,6 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button Acedmic;
         private System.Windows.Forms.Button Daily_attandance;
-        private System.Windows.Forms.Button Syllabus;
         private System.Windows.Forms.Button Subject;
         private System.Windows.Forms.Button Class;
         private System.Windows.Forms.Button Class_Routine;

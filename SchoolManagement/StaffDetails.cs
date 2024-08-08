@@ -86,7 +86,20 @@ namespace SchoolManagement
             }
         }
 
-    
+        private void kryptonButton1_Click(object sender, EventArgs e)
+        {
+            form = (SchoolSatff)Application.OpenForms["SchoolSatff"];
+            if (form == null)
+            {
+                form = new SchoolSatff();
+            }
+            Application.OpenForms.OfType<MainLayoutForm>().First().MainPanel.Dock = DockStyle.Fill;
+            form.TopLevel = false;
+            form.Visible = true;
+            Application.OpenForms.OfType<MainLayoutForm>().First().MainPanel.Controls.Add(form);
+            form.BringToFront();
+            form.Show();
+        }
     }
 
 }

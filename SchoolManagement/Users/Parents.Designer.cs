@@ -62,7 +62,7 @@
             // 
             // FathersName
             // 
-            this.FathersName.Location = new System.Drawing.Point(12, 27);
+            this.FathersName.Location = new System.Drawing.Point(3, 27);
             this.FathersName.Name = "FathersName";
             this.FathersName.Size = new System.Drawing.Size(79, 16);
             this.FathersName.StateCommon.LongText.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -73,10 +73,10 @@
             // FatherEmail
             // 
             this.FatherEmail.InputControlStyle = Krypton.Toolkit.InputControlStyle.Ribbon;
-            this.FatherEmail.Location = new System.Drawing.Point(15, 107);
+            this.FatherEmail.Location = new System.Drawing.Point(6, 107);
             this.FatherEmail.MinimumSize = new System.Drawing.Size(0, 30);
             this.FatherEmail.Name = "FatherEmail";
-            this.FatherEmail.Size = new System.Drawing.Size(263, 30);
+            this.FatherEmail.Size = new System.Drawing.Size(260, 30);
             this.FatherEmail.StateCommon.Border.Color1 = System.Drawing.SystemColors.ActiveBorder;
             this.FatherEmail.StateCommon.Border.Color2 = System.Drawing.SystemColors.ActiveBorder;
             this.FatherEmail.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -89,7 +89,7 @@
             // 
             // MothersName
             // 
-            this.MothersName.Location = new System.Drawing.Point(301, 27);
+            this.MothersName.Location = new System.Drawing.Point(292, 27);
             this.MothersName.Name = "MothersName";
             this.MothersName.Size = new System.Drawing.Size(82, 16);
             this.MothersName.StateCommon.LongText.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -99,7 +99,7 @@
             // 
             // FathersMail
             // 
-            this.FathersMail.Location = new System.Drawing.Point(12, 85);
+            this.FathersMail.Location = new System.Drawing.Point(3, 85);
             this.FathersMail.Name = "FathersMail";
             this.FathersMail.Size = new System.Drawing.Size(91, 16);
             this.FathersMail.StateCommon.LongText.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -109,7 +109,7 @@
             // 
             // MothersMail
             // 
-            this.MothersMail.Location = new System.Drawing.Point(301, 85);
+            this.MothersMail.Location = new System.Drawing.Point(292, 85);
             this.MothersMail.Name = "MothersMail";
             this.MothersMail.Size = new System.Drawing.Size(95, 16);
             this.MothersMail.StateCommon.LongText.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -119,7 +119,7 @@
             // 
             // kryptonLabel1
             // 
-            this.kryptonLabel1.Location = new System.Drawing.Point(12, 143);
+            this.kryptonLabel1.Location = new System.Drawing.Point(3, 143);
             this.kryptonLabel1.Name = "kryptonLabel1";
             this.kryptonLabel1.Size = new System.Drawing.Size(130, 16);
             this.kryptonLabel1.StateCommon.LongText.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -129,7 +129,7 @@
             // 
             // MothersMobileNumber
             // 
-            this.MothersMobileNumber.Location = new System.Drawing.Point(301, 143);
+            this.MothersMobileNumber.Location = new System.Drawing.Point(292, 143);
             this.MothersMobileNumber.Name = "MothersMobileNumber";
             this.MothersMobileNumber.Size = new System.Drawing.Size(133, 16);
             this.MothersMobileNumber.StateCommon.LongText.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -139,7 +139,7 @@
             // 
             // FatherOccupa
             // 
-            this.FatherOccupa.Location = new System.Drawing.Point(12, 201);
+            this.FatherOccupa.Location = new System.Drawing.Point(3, 201);
             this.FatherOccupa.Name = "FatherOccupa";
             this.FatherOccupa.Size = new System.Drawing.Size(110, 16);
             this.FatherOccupa.StateCommon.LongText.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -149,7 +149,7 @@
             // 
             // MotherOccupa
             // 
-            this.MotherOccupa.Location = new System.Drawing.Point(301, 201);
+            this.MotherOccupa.Location = new System.Drawing.Point(292, 201);
             this.MotherOccupa.Name = "MotherOccupa";
             this.MotherOccupa.Size = new System.Drawing.Size(113, 16);
             this.MotherOccupa.StateCommon.LongText.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -159,7 +159,7 @@
             // 
             // kryptonLabel2
             // 
-            this.kryptonLabel2.Location = new System.Drawing.Point(12, 259);
+            this.kryptonLabel2.Location = new System.Drawing.Point(3, 259);
             this.kryptonLabel2.Name = "kryptonLabel2";
             this.kryptonLabel2.Size = new System.Drawing.Size(117, 16);
             this.kryptonLabel2.StateCommon.LongText.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -186,11 +186,11 @@
             "AB-",
             "O-",
             "O+"});
-            this.FatherBloodGroup.Location = new System.Drawing.Point(15, 281);
+            this.FatherBloodGroup.Location = new System.Drawing.Point(6, 281);
             this.FatherBloodGroup.MinimumSize = new System.Drawing.Size(0, 30);
             this.FatherBloodGroup.Name = "FatherBloodGroup";
             this.FatherBloodGroup.PaletteMode = Krypton.Toolkit.PaletteMode.Office2007White;
-            this.FatherBloodGroup.Size = new System.Drawing.Size(263, 30);
+            this.FatherBloodGroup.Size = new System.Drawing.Size(260, 30);
             this.FatherBloodGroup.StateCommon.ComboBox.Border.Color1 = System.Drawing.SystemColors.ActiveBorder;
             this.FatherBloodGroup.StateCommon.ComboBox.Border.Color2 = System.Drawing.SystemColors.ActiveBorder;
             this.FatherBloodGroup.StateCommon.ComboBox.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -204,7 +204,7 @@
             // 
             // kryptonLabel3
             // 
-            this.kryptonLabel3.Location = new System.Drawing.Point(301, 259);
+            this.kryptonLabel3.Location = new System.Drawing.Point(292, 259);
             this.kryptonLabel3.Name = "kryptonLabel3";
             this.kryptonLabel3.Size = new System.Drawing.Size(120, 16);
             this.kryptonLabel3.StateCommon.LongText.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -230,11 +230,11 @@
             "B-",
             "O+",
             "O-"});
-            this.MotherBloodGroup.Location = new System.Drawing.Point(305, 281);
+            this.MotherBloodGroup.Location = new System.Drawing.Point(296, 281);
             this.MotherBloodGroup.MinimumSize = new System.Drawing.Size(0, 30);
             this.MotherBloodGroup.Name = "MotherBloodGroup";
             this.MotherBloodGroup.PaletteMode = Krypton.Toolkit.PaletteMode.Office2007White;
-            this.MotherBloodGroup.Size = new System.Drawing.Size(263, 30);
+            this.MotherBloodGroup.Size = new System.Drawing.Size(260, 30);
             this.MotherBloodGroup.StateCommon.ComboBox.Border.Color1 = System.Drawing.SystemColors.ActiveBorder;
             this.MotherBloodGroup.StateCommon.ComboBox.Border.Color2 = System.Drawing.SystemColors.ActiveBorder;
             this.MotherBloodGroup.StateCommon.ComboBox.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -249,7 +249,7 @@
             // 
             // kryptonLabel10
             // 
-            this.kryptonLabel10.Location = new System.Drawing.Point(12, 316);
+            this.kryptonLabel10.Location = new System.Drawing.Point(3, 316);
             this.kryptonLabel10.Name = "kryptonLabel10";
             this.kryptonLabel10.Size = new System.Drawing.Size(56, 16);
             this.kryptonLabel10.StateCommon.LongText.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -259,10 +259,10 @@
             // 
             // Address
             // 
-            this.Address.Location = new System.Drawing.Point(15, 338);
+            this.Address.Location = new System.Drawing.Point(6, 338);
             this.Address.Multiline = true;
             this.Address.Name = "Address";
-            this.Address.Size = new System.Drawing.Size(263, 51);
+            this.Address.Size = new System.Drawing.Size(260, 51);
             this.Address.StateCommon.Border.Color1 = System.Drawing.SystemColors.ActiveBorder;
             this.Address.StateCommon.Border.Color2 = System.Drawing.SystemColors.ActiveBorder;
             this.Address.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -274,7 +274,7 @@
             // 
             // Next
             // 
-            this.Next.Location = new System.Drawing.Point(15, 395);
+            this.Next.Location = new System.Drawing.Point(6, 397);
             this.Next.Name = "Next";
             this.Next.Size = new System.Drawing.Size(107, 33);
             this.Next.StateCommon.Back.Color1 = System.Drawing.Color.DodgerBlue;
@@ -305,11 +305,11 @@
             "B-",
             "O+",
             "O-"});
-            this.Studentadmission.Location = new System.Drawing.Point(305, 339);
+            this.Studentadmission.Location = new System.Drawing.Point(296, 339);
             this.Studentadmission.MinimumSize = new System.Drawing.Size(0, 30);
             this.Studentadmission.Name = "Studentadmission";
             this.Studentadmission.PaletteMode = Krypton.Toolkit.PaletteMode.Office2007White;
-            this.Studentadmission.Size = new System.Drawing.Size(263, 30);
+            this.Studentadmission.Size = new System.Drawing.Size(260, 30);
             this.Studentadmission.StateCommon.ComboBox.Border.Color1 = System.Drawing.SystemColors.ActiveBorder;
             this.Studentadmission.StateCommon.ComboBox.Border.Color2 = System.Drawing.SystemColors.ActiveBorder;
             this.Studentadmission.StateCommon.ComboBox.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -325,7 +325,7 @@
             // 
             // kryptonLabel4
             // 
-            this.kryptonLabel4.Location = new System.Drawing.Point(301, 317);
+            this.kryptonLabel4.Location = new System.Drawing.Point(292, 317);
             this.kryptonLabel4.Name = "kryptonLabel4";
             this.kryptonLabel4.Size = new System.Drawing.Size(113, 16);
             this.kryptonLabel4.StateCommon.LongText.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -335,21 +335,22 @@
             // 
             // kryptonLabel5
             // 
-            this.kryptonLabel5.Location = new System.Drawing.Point(12, 2);
+            this.kryptonLabel5.Location = new System.Drawing.Point(3, 2);
             this.kryptonLabel5.Name = "kryptonLabel5";
             this.kryptonLabel5.Size = new System.Drawing.Size(103, 19);
             this.kryptonLabel5.StateCommon.LongText.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonLabel5.StateCommon.ShortText.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonLabel5.TabIndex = 29;
             this.kryptonLabel5.Values.Text = "Parent\'s Detail";
+            this.kryptonLabel5.Paint += new System.Windows.Forms.PaintEventHandler(this.kryptonLabel5_Paint);
             // 
             // MotherEmail
             // 
             this.MotherEmail.InputControlStyle = Krypton.Toolkit.InputControlStyle.Ribbon;
-            this.MotherEmail.Location = new System.Drawing.Point(305, 107);
+            this.MotherEmail.Location = new System.Drawing.Point(296, 107);
             this.MotherEmail.MinimumSize = new System.Drawing.Size(0, 30);
             this.MotherEmail.Name = "MotherEmail";
-            this.MotherEmail.Size = new System.Drawing.Size(263, 30);
+            this.MotherEmail.Size = new System.Drawing.Size(260, 30);
             this.MotherEmail.StateCommon.Border.Color1 = System.Drawing.SystemColors.ActiveBorder;
             this.MotherEmail.StateCommon.Border.Color2 = System.Drawing.SystemColors.ActiveBorder;
             this.MotherEmail.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -363,10 +364,10 @@
             // FatherName
             // 
             this.FatherName.InputControlStyle = Krypton.Toolkit.InputControlStyle.Ribbon;
-            this.FatherName.Location = new System.Drawing.Point(15, 49);
+            this.FatherName.Location = new System.Drawing.Point(6, 49);
             this.FatherName.MinimumSize = new System.Drawing.Size(0, 30);
             this.FatherName.Name = "FatherName";
-            this.FatherName.Size = new System.Drawing.Size(263, 30);
+            this.FatherName.Size = new System.Drawing.Size(260, 30);
             this.FatherName.StateCommon.Border.Color1 = System.Drawing.SystemColors.ActiveBorder;
             this.FatherName.StateCommon.Border.Color2 = System.Drawing.SystemColors.ActiveBorder;
             this.FatherName.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -380,10 +381,10 @@
             // MotherName
             // 
             this.MotherName.InputControlStyle = Krypton.Toolkit.InputControlStyle.Ribbon;
-            this.MotherName.Location = new System.Drawing.Point(305, 49);
+            this.MotherName.Location = new System.Drawing.Point(296, 49);
             this.MotherName.MinimumSize = new System.Drawing.Size(0, 30);
             this.MotherName.Name = "MotherName";
-            this.MotherName.Size = new System.Drawing.Size(263, 30);
+            this.MotherName.Size = new System.Drawing.Size(260, 30);
             this.MotherName.StateCommon.Border.Color1 = System.Drawing.SystemColors.ActiveBorder;
             this.MotherName.StateCommon.Border.Color2 = System.Drawing.SystemColors.ActiveBorder;
             this.MotherName.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -397,10 +398,10 @@
             // FatherMobile
             // 
             this.FatherMobile.InputControlStyle = Krypton.Toolkit.InputControlStyle.Ribbon;
-            this.FatherMobile.Location = new System.Drawing.Point(15, 165);
+            this.FatherMobile.Location = new System.Drawing.Point(6, 165);
             this.FatherMobile.MinimumSize = new System.Drawing.Size(0, 30);
             this.FatherMobile.Name = "FatherMobile";
-            this.FatherMobile.Size = new System.Drawing.Size(263, 30);
+            this.FatherMobile.Size = new System.Drawing.Size(260, 30);
             this.FatherMobile.StateCommon.Border.Color1 = System.Drawing.SystemColors.ActiveBorder;
             this.FatherMobile.StateCommon.Border.Color2 = System.Drawing.SystemColors.ActiveBorder;
             this.FatherMobile.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -414,10 +415,10 @@
             // MotherMobile
             // 
             this.MotherMobile.InputControlStyle = Krypton.Toolkit.InputControlStyle.Ribbon;
-            this.MotherMobile.Location = new System.Drawing.Point(305, 165);
+            this.MotherMobile.Location = new System.Drawing.Point(296, 165);
             this.MotherMobile.MinimumSize = new System.Drawing.Size(0, 30);
             this.MotherMobile.Name = "MotherMobile";
-            this.MotherMobile.Size = new System.Drawing.Size(263, 30);
+            this.MotherMobile.Size = new System.Drawing.Size(260, 30);
             this.MotherMobile.StateCommon.Border.Color1 = System.Drawing.SystemColors.ActiveBorder;
             this.MotherMobile.StateCommon.Border.Color2 = System.Drawing.SystemColors.ActiveBorder;
             this.MotherMobile.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -431,10 +432,10 @@
             // FatherOccupation
             // 
             this.FatherOccupation.InputControlStyle = Krypton.Toolkit.InputControlStyle.Ribbon;
-            this.FatherOccupation.Location = new System.Drawing.Point(15, 223);
+            this.FatherOccupation.Location = new System.Drawing.Point(6, 223);
             this.FatherOccupation.MinimumSize = new System.Drawing.Size(0, 30);
             this.FatherOccupation.Name = "FatherOccupation";
-            this.FatherOccupation.Size = new System.Drawing.Size(263, 30);
+            this.FatherOccupation.Size = new System.Drawing.Size(260, 30);
             this.FatherOccupation.StateCommon.Border.Color1 = System.Drawing.SystemColors.ActiveBorder;
             this.FatherOccupation.StateCommon.Border.Color2 = System.Drawing.SystemColors.ActiveBorder;
             this.FatherOccupation.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -448,10 +449,10 @@
             // MotherOccupation
             // 
             this.MotherOccupation.InputControlStyle = Krypton.Toolkit.InputControlStyle.Ribbon;
-            this.MotherOccupation.Location = new System.Drawing.Point(305, 223);
+            this.MotherOccupation.Location = new System.Drawing.Point(296, 223);
             this.MotherOccupation.MinimumSize = new System.Drawing.Size(0, 30);
             this.MotherOccupation.Name = "MotherOccupation";
-            this.MotherOccupation.Size = new System.Drawing.Size(263, 30);
+            this.MotherOccupation.Size = new System.Drawing.Size(260, 30);
             this.MotherOccupation.StateCommon.Border.Color1 = System.Drawing.SystemColors.ActiveBorder;
             this.MotherOccupation.StateCommon.Border.Color2 = System.Drawing.SystemColors.ActiveBorder;
             this.MotherOccupation.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -467,7 +468,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(584, 442);
+            this.ClientSize = new System.Drawing.Size(574, 442);
             this.Controls.Add(this.MotherOccupation);
             this.Controls.Add(this.FatherOccupation);
             this.Controls.Add(this.MotherMobile);

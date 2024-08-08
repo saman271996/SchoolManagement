@@ -69,6 +69,7 @@ namespace SchoolManagement
                 form.TopLevel = false;
                 Student_BodyPanel.Controls.Add(form);
             }
+            form.BringToFront();
             form.Show();
         }
 
@@ -87,6 +88,7 @@ namespace SchoolManagement
             }
             form.TopLevel = false;
             Student_BodyPanel.Controls.Add(form);
+            form.BringToFront();
             form.Show();
         }
 

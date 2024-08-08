@@ -118,31 +118,7 @@ namespace SchoolManagement
                             ParentAccount.MothersBloodGroup = MotherBloodGroup.Text;
                             ParentAccount.Address = Address.Text;
                             ParentAccount.Password = password;
-                         
-
-                            //var parents = Db.Parents.FirstOrDefault(x => (x.FathersMailId == FatherEmail.Text || x.MothersMailId == MotherEmail.Text || x.FathersMobileNumber == FatherMobile.Text || x.MothersMobileNumber == MotherMobile.Text));
-                            //if (parents != null)
-                            //{
-                            //    parents.DateModified = DateTime.Now;
-                            //    parents.FathersName = FatherName.Text;
-                            //    parents.MothersName = MotherName.Text;
-                            //    parents.FathersMailId = FatherEmail.Text;
-                            //    parents.MothersMailId = MotherEmail.Text;
-                            //    parents.FathersMobileNumber = FatherMobile.Text;
-                            //    parents.MothersMobileNumber = MotherMobile.Text;
-                            //    parents.FathersOccupation = FatherOccupation.Text;
-                            //    parents.MothersOccupation = MotherOccupation.Text;
-                            //    parents.FathersBloodGroup = FatherBloodGroup.Text;
-                            //    parents.MothersBloodGroup = MotherBloodGroup.Text;
-                            //    parents.Address = Address.Text;
-
-                            //}
-                            //else
-                            //{
-                            //    Db.Parents.Add(parentdetails);
-                            //    Db.SaveChanges();
-                            //}
-
+                        
 
                             Application.OpenForms.OfType<Student_MainForm>().First().Student_Admission.StateCommon.Back.Color1 = Color.RosyBrown;
                             Application.OpenForms.OfType<Student_MainForm>().First().kryptonButton4.StateCommon.Back.Color1 = Color.White;
@@ -257,6 +233,9 @@ namespace SchoolManagement
             return parentdetails;
         }
 
-       
+        private void kryptonLabel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

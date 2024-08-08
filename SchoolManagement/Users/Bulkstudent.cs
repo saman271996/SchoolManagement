@@ -62,10 +62,7 @@ namespace SchoolManagement
             Multistudent.ReadOnly = false;
         }
 
-        private void kryptonPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+        
 
         private void SubmitRecord_Click(object sender, EventArgs e)
         {

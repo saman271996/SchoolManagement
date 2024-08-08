@@ -396,7 +396,7 @@ namespace SchoolManagement
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(584, 442);
+            this.ClientSize = new System.Drawing.Size(574, 442);
             this.Controls.Add(this.kryptonLabel4);
             this.Controls.Add(this.Student_Register);
             this.Controls.Add(this.pictureBox1);
