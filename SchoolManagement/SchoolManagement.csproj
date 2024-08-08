@@ -278,6 +278,12 @@
     <Compile Include="Academic\ClassPeriod.Designer.cs">
       <DependentUpon>ClassPeriod.cs</DependentUpon>
     </Compile>
+    <Compile Include="Academic\ClassPeriodDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Academic\ClassPeriodDetails.Designer.cs">
+      <DependentUpon>ClassPeriodDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Academic\ClassRoutine.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -470,6 +476,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Academic\ClassPeriod.resx">
       <DependentUpon>ClassPeriod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Academic\ClassPeriodDetails.resx">
+      <DependentUpon>ClassPeriodDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Academic\ClassRoutine.resx">
       <DependentUpon>ClassRoutine.cs</DependentUpon>
