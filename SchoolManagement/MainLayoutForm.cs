@@ -125,16 +125,18 @@ namespace SchoolManagement
         {
             try
             {
-                this.Hide();
-                form.ShowDialog();
-                this.Close();
-                form = new StaffDetails();
+                form = (StaffDetails)Application.OpenForms["StaffDetails"];
+                if (form == null)
+                {
+                    form = new StaffDetails();
+                }
                 Application.OpenForms.OfType<MainLayoutForm>().First().MainPanel.Dock = DockStyle.Fill;
                 form.TopLevel = false;
                 form.Visible = true;
-                form.BringToFront();
                 Application.OpenForms.OfType<MainLayoutForm>().First().MainPanel.Controls.Add(form);
+                form.BringToFront();
                 form.Show();
+
             }
             catch (Exception ex) { }
 
@@ -182,6 +184,10 @@ namespace SchoolManagement
 
         }
 
+        private void MainPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
 
         private void userclick_Click(object sender, EventArgs e)
         {
