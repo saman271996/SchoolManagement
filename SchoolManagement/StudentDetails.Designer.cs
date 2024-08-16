@@ -65,9 +65,9 @@
             this.MotherPhone,
             this.Edit});
             this.StudentRecord.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
-            this.StudentRecord.Location = new System.Drawing.Point(12, 102);
+            this.StudentRecord.Location = new System.Drawing.Point(12, 119);
             this.StudentRecord.Name = "StudentRecord";
-            this.StudentRecord.Size = new System.Drawing.Size(528, 250);
+            this.StudentRecord.Size = new System.Drawing.Size(550, 292);
             this.StudentRecord.StateCommon.Background.Color1 = System.Drawing.Color.White;
             this.StudentRecord.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
             this.StudentRecord.TabIndex = 18;
@@ -142,7 +142,7 @@
             this.kryptonPanel1.Controls.Add(this.kryptonLabel1);
             this.kryptonPanel1.Location = new System.Drawing.Point(12, 12);
             this.kryptonPanel1.Name = "kryptonPanel1";
-            this.kryptonPanel1.Size = new System.Drawing.Size(528, 72);
+            this.kryptonPanel1.Size = new System.Drawing.Size(550, 72);
             this.kryptonPanel1.StateCommon.Color1 = System.Drawing.Color.White;
             this.kryptonPanel1.TabIndex = 19;
             // 
@@ -170,7 +170,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(552, 364);
+            this.ClientSize = new System.Drawing.Size(574, 478);
             this.Controls.Add(this.kryptonPanel1);
             this.Controls.Add(this.StudentRecord);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

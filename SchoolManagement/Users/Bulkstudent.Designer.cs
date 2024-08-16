@@ -78,17 +78,16 @@
             this.kryptonPanel1.Controls.Add(this.label1);
             this.kryptonPanel1.Controls.Add(this.Section);
             this.kryptonPanel1.Controls.Add(this.Class);
-            this.kryptonPanel1.Location = new System.Drawing.Point(0, 0);
+            this.kryptonPanel1.Location = new System.Drawing.Point(2, 3);
             this.kryptonPanel1.Name = "kryptonPanel1";
-            this.kryptonPanel1.Size = new System.Drawing.Size(569, 399);
+            this.kryptonPanel1.Size = new System.Drawing.Size(574, 478);
             this.kryptonPanel1.StateCommon.Color1 = System.Drawing.Color.Gainsboro;
             this.kryptonPanel1.TabIndex = 0;
-            this.kryptonPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.kryptonPanel1_Paint);
             // 
             // SubmitRecord
             // 
             this.SubmitRecord.BackColor = System.Drawing.Color.DodgerBlue;
-            this.SubmitRecord.Location = new System.Drawing.Point(3, 363);
+            this.SubmitRecord.Location = new System.Drawing.Point(12, 395);
             this.SubmitRecord.Name = "SubmitRecord";
             this.SubmitRecord.Size = new System.Drawing.Size(116, 28);
             this.SubmitRecord.TabIndex = 18;
@@ -108,9 +107,9 @@
             this.StudentParents,
             this.Action});
             this.Multistudent.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
-            this.Multistudent.Location = new System.Drawing.Point(3, 230);
+            this.Multistudent.Location = new System.Drawing.Point(12, 230);
             this.Multistudent.Name = "Multistudent";
-            this.Multistudent.Size = new System.Drawing.Size(566, 127);
+            this.Multistudent.Size = new System.Drawing.Size(532, 146);
             this.Multistudent.StateCommon.Background.Color1 = System.Drawing.Color.White;
             this.Multistudent.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
             this.Multistudent.TabIndex = 17;
@@ -319,7 +318,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(568, 403);
+            this.ClientSize = new System.Drawing.Size(574, 478);
             this.Controls.Add(this.kryptonPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Bulkstudent";

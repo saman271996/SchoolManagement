@@ -282,7 +282,7 @@ namespace SchoolManagement
             this.kryptonPanel4.Controls.Add(this.label5);
             this.kryptonPanel4.Location = new System.Drawing.Point(333, 12);
             this.kryptonPanel4.Name = "kryptonPanel4";
-            this.kryptonPanel4.Size = new System.Drawing.Size(245, 100);
+            this.kryptonPanel4.Size = new System.Drawing.Size(232, 100);
             this.kryptonPanel4.StateNormal.Color1 = System.Drawing.Color.CornflowerBlue;
             this.kryptonPanel4.TabIndex = 19;
             // 
@@ -319,7 +319,7 @@ namespace SchoolManagement
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(223, 4);
+            this.label6.Location = new System.Drawing.Point(207, 4);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(22, 25);
             this.label6.TabIndex = 21;
@@ -453,7 +453,7 @@ namespace SchoolManagement
             this.kryptonPanel7.Controls.Add(this.kryptonLabel1);
             this.kryptonPanel7.Location = new System.Drawing.Point(333, 150);
             this.kryptonPanel7.Name = "kryptonPanel7";
-            this.kryptonPanel7.Size = new System.Drawing.Size(238, 77);
+            this.kryptonPanel7.Size = new System.Drawing.Size(232, 77);
             this.kryptonPanel7.StateCommon.Color1 = System.Drawing.Color.Transparent;
             this.kryptonPanel7.TabIndex = 22;
             // 
@@ -536,9 +536,9 @@ namespace SchoolManagement
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Expenses,
             this.Amount});
-            this.dataGridView2.Location = new System.Drawing.Point(369, 332);
+            this.dataGridView2.Location = new System.Drawing.Point(356, 336);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(209, 134);
+            this.dataGridView2.Size = new System.Drawing.Size(209, 130);
             this.dataGridView2.TabIndex = 24;
             // 
             // Expenses
@@ -558,7 +558,7 @@ namespace SchoolManagement
             this.panel1.Controls.Add(this.pictureBox12);
             this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.kryptonLabel2);
-            this.panel1.Location = new System.Drawing.Point(4, 293);
+            this.panel1.Location = new System.Drawing.Point(4, 291);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(259, 40);
@@ -601,7 +601,7 @@ namespace SchoolManagement
             this.panel2.Controls.Add(this.pictureBox13);
             this.panel2.Controls.Add(this.label13);
             this.panel2.Controls.Add(this.kryptonLabel3);
-            this.panel2.Location = new System.Drawing.Point(369, 293);
+            this.panel2.Location = new System.Drawing.Point(356, 291);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(199, 40);
@@ -645,7 +645,7 @@ namespace SchoolManagement
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(584, 478);
+            this.ClientSize = new System.Drawing.Size(574, 478);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridView2);
