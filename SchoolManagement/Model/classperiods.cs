@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SchoolManagement.Helper
+namespace SchoolManagement.Model
 {
-    public static  class EditStaffViewModel
+    public static class classperiods
     {
-        public static int Id { get; set; }
-        public static int ClassId { get; set; }
         public static int SchoolId { get; set; }
+        public static int Classid { get; set; }
         public static string SectionId { get; set; }
+        public static int TeacherId { get; set; }
+        public static string TotalPeriod { get; set; }
 
     }
 }

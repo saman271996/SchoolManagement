@@ -29,7 +29,6 @@ namespace SchoolManagement.Model
         public virtual DbSet<Class_Section> Class_Section { get; set; }
         public virtual DbSet<ClassPeriodAcademic> ClassPeriodAcademics { get; set; }
         public virtual DbSet<ClassRoutineAcademic> ClassRoutineAcademics { get; set; }
-        public virtual DbSet<ClassTeacherAcademic> ClassTeacherAcademics { get; set; }
         public virtual DbSet<Parent> Parents { get; set; }
         public virtual DbSet<SchoolDetail> SchoolDetails { get; set; }
         public virtual DbSet<SchoolStaff> SchoolStaffs { get; set; }
@@ -40,5 +39,6 @@ namespace SchoolManagement.Model
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserSubscriptionPlanDetail> UserSubscriptionPlanDetails { get; set; }
         public virtual DbSet<StudentAttandance> StudentAttandances { get; set; }
+        public virtual DbSet<ClassTeacherAcademic> ClassTeacherAcademics { get; set; }
     }
 }

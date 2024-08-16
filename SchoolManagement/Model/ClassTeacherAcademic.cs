@@ -23,5 +23,6 @@ namespace SchoolManagement.Model
         public Nullable<bool> IsDelete { get; set; }
         public Nullable<System.DateTime> DateAdded { get; set; }
         public Nullable<System.DateTime> DateModified { get; set; }
+        public string Period { get; set; }
     }
 }

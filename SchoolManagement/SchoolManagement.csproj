@@ -345,6 +345,8 @@
     <Compile Include="Model\ClassPeriodAcademic.cs">
       <DependentUpon>SchoolManagement.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\classperiods.cs" />
+    <Compile Include="Model\ClassPeriodViewModel.cs" />
     <Compile Include="Model\ClassRoutineAcademic.cs">
       <DependentUpon>SchoolManagement.tt</DependentUpon>
     </Compile>

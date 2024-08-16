@@ -38,6 +38,10 @@
             this.SectionColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ClassTeacherColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalPeriodColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ClassIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SectionIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SchoolIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TeacherIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EditColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ViewPeriodColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DetailPeriodDataGridView)).BeginInit();
@@ -64,10 +68,14 @@
             this.SectionColumn,
             this.ClassTeacherColumn,
             this.TotalPeriodColumn,
+            this.ClassIdColumn,
+            this.SectionIdColumn,
+            this.SchoolIdColumn,
+            this.TeacherIdColumn,
             this.EditColumn,
             this.ViewPeriodColumn});
             this.DetailPeriodDataGridView.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.DetailPeriodDataGridView.Location = new System.Drawing.Point(12, 123);
+            this.DetailPeriodDataGridView.Location = new System.Drawing.Point(16, 122);
             this.DetailPeriodDataGridView.Name = "DetailPeriodDataGridView";
             this.DetailPeriodDataGridView.ReadOnly = true;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -79,11 +87,12 @@
             this.DetailPeriodDataGridView.StateCommon.HeaderRow.Content.Color1 = System.Drawing.Color.White;
             this.DetailPeriodDataGridView.StateCommon.HeaderRow.Content.Color2 = System.Drawing.Color.White;
             this.DetailPeriodDataGridView.TabIndex = 46;
+            this.DetailPeriodDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DetailPeriodDataGridView_CellClick);
             // 
             // kryptonPanel1
             // 
             this.kryptonPanel1.Controls.Add(this.kryptonLabel1);
-            this.kryptonPanel1.Location = new System.Drawing.Point(12, 24);
+            this.kryptonPanel1.Location = new System.Drawing.Point(16, 24);
             this.kryptonPanel1.Name = "kryptonPanel1";
             this.kryptonPanel1.Size = new System.Drawing.Size(552, 72);
             this.kryptonPanel1.StateCommon.Color1 = System.Drawing.Color.White;
@@ -103,6 +112,7 @@
             this.IdColumn.HeaderText = "Id";
             this.IdColumn.Name = "IdColumn";
             this.IdColumn.ReadOnly = true;
+            this.IdColumn.Visible = false;
             // 
             // ClassColumn
             // 
@@ -124,21 +134,58 @@
             // 
             // TotalPeriodColumn
             // 
+            this.TotalPeriodColumn.DataPropertyName = "(none)";
             this.TotalPeriodColumn.HeaderText = "TotalPeriod";
             this.TotalPeriodColumn.Name = "TotalPeriodColumn";
             this.TotalPeriodColumn.ReadOnly = true;
+            // 
+            // ClassIdColumn
+            // 
+            this.ClassIdColumn.DataPropertyName = "ClassId";
+            this.ClassIdColumn.HeaderText = "ClassId";
+            this.ClassIdColumn.Name = "ClassIdColumn";
+            this.ClassIdColumn.ReadOnly = true;
+            this.ClassIdColumn.Visible = false;
+            // 
+            // SectionIdColumn
+            // 
+            this.SectionIdColumn.DataPropertyName = "SectionId";
+            this.SectionIdColumn.HeaderText = "SectionId";
+            this.SectionIdColumn.Name = "SectionIdColumn";
+            this.SectionIdColumn.ReadOnly = true;
+            this.SectionIdColumn.Visible = false;
+            // 
+            // SchoolIdColumn
+            // 
+            this.SchoolIdColumn.DataPropertyName = "SchoolId";
+            this.SchoolIdColumn.HeaderText = "SchoolId";
+            this.SchoolIdColumn.Name = "SchoolIdColumn";
+            this.SchoolIdColumn.ReadOnly = true;
+            this.SchoolIdColumn.Visible = false;
+            // 
+            // TeacherIdColumn
+            // 
+            this.TeacherIdColumn.DataPropertyName = "ClassTeacher";
+            this.TeacherIdColumn.HeaderText = "TeacherId";
+            this.TeacherIdColumn.Name = "TeacherIdColumn";
+            this.TeacherIdColumn.ReadOnly = true;
+            this.TeacherIdColumn.Visible = false;
             // 
             // EditColumn
             // 
             this.EditColumn.HeaderText = "Edit";
             this.EditColumn.Name = "EditColumn";
             this.EditColumn.ReadOnly = true;
+            this.EditColumn.Text = "Edit";
+            this.EditColumn.UseColumnTextForButtonValue = true;
             // 
             // ViewPeriodColumn
             // 
             this.ViewPeriodColumn.HeaderText = "ViewPeriod";
             this.ViewPeriodColumn.Name = "ViewPeriodColumn";
             this.ViewPeriodColumn.ReadOnly = true;
+            this.ViewPeriodColumn.Text = "ViewPeriod";
+            this.ViewPeriodColumn.UseColumnTextForButtonValue = true;
             // 
             // ClassPeriodDetails
             // 
@@ -170,6 +217,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SectionColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ClassTeacherColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalPeriodColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ClassIdColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SectionIdColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SchoolIdColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TeacherIdColumn;
         private System.Windows.Forms.DataGridViewButtonColumn EditColumn;
         private System.Windows.Forms.DataGridViewButtonColumn ViewPeriodColumn;
     }

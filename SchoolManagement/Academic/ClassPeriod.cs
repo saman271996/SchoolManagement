@@ -1,5 +1,9 @@
-﻿using DocumentFormat.OpenXml.VariantTypes;
+﻿using Dapper;
+using DocumentFormat.OpenXml.Office2010.Excel;
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
+using DocumentFormat.OpenXml.VariantTypes;
 using Microsoft.VisualBasic.ApplicationServices;
+using SchoolManagement.Helper;
 using SchoolManagement.Model;
 using System;
 using System.Collections;
@@ -8,10 +12,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static SchoolManagement.Helper.Helper;
@@ -21,9 +27,15 @@ namespace SchoolManagement.Academic
 {
     public partial class ClassPeriod : Form
     {
+        private int Id;
+        private int SchoolId;
         private int subjectId;
+        private List<int> selectedSubjects = new List<int>();
+        private static readonly string ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["SchoolManagementConnectionString"].ConnectionString;
+        protected SqlConnection Con = new SqlConnection(ConnectionString);
         private SchoolManagementEntities1 dbContext = new SchoolManagementEntities1();
         validations validate = new validations();
+        Form form;
         public ClassPeriod()
         {
             InitializeComponent();
@@ -35,8 +47,8 @@ namespace SchoolManagement.Academic
             SectionDataIntoComboBox(GetSelectedClassId());
             SchoolStaffDataIntoComboBox(GetSelectedClassId());
 
-            PeriodDataGridView.Visible = false;
-            Submit.Visible = false;
+            period.Text = classperiods.TotalPeriod;
+            SchoolId = EditStaffViewModel.SchoolId;
         }
 
         private void ClassDataIntoComboBox()
@@ -44,6 +56,7 @@ namespace SchoolManagement.Academic
             var selectClass = dbContext.Classes.Where(s => s.Isdelete != true).AsEnumerable();
             classSelect.Items.Clear();
 
+            classSelect.Text = "Please select a value";
             foreach (var select in selectClass)
             {
                 SubjectClassDropdlist item = new SubjectClassDropdlist
@@ -53,6 +66,13 @@ namespace SchoolManagement.Academic
                 };
 
                 classSelect.Items.Add(item);
+            }
+
+            int classes = classperiods.Classid;
+            var selectedItem = classSelect.Items.Cast<SubjectClassDropdlist>().FirstOrDefault(i => i.Value == classes);
+            if (selectedItem != null)
+            {
+                classSelect.SelectedItem = selectedItem;
             }
         }
 
@@ -71,6 +91,13 @@ namespace SchoolManagement.Academic
 
                 sectionSelect.Items.Add(item);
             }
+            var sectionIds = classperiods.SectionId;
+            var selectedItem = sectionSelect.Items.Cast<SubjectClassDropdlist>().FirstOrDefault(i => i.Values == sectionIds);
+
+            if (selectedItem != null)
+            {
+                sectionSelect.SelectedItem = selectedItem;
+            }
         }
 
         private void SchoolStaffDataIntoComboBox(int classId)
@@ -87,6 +114,13 @@ namespace SchoolManagement.Academic
                 };
 
                 teacherSelect.Items.Add(item);
+            }
+            var teacherIds = classperiods.TeacherId;
+            var selectedItem = teacherSelect.Items.Cast<SubjectClassDropdlist>().FirstOrDefault(i => i.Value == teacherIds);
+
+            if (selectedItem != null)
+            {
+                teacherSelect.SelectedItem = selectedItem;
             }
         }
 
@@ -114,20 +148,17 @@ namespace SchoolManagement.Academic
 
                 if (isValidNumber && newRow > 0)
                 {
-                    PeriodDataGridView.Rows.Clear();
                     for (int i = 0; i < newRow; i++)
                     {
 
                         PeriodDataGridView.Rows.Add();
-                        PeriodDataGridView.Rows[i].Cells[0].Value = (i + 1) + " Period";
+                        PeriodDataGridView.Rows[i].Cells[1].Value = "Period "+(i + 1);
                     }
                 }
                 else
                 {
                     MessageBox.Show("Please enter a valid number", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                PeriodDataGridView.Visible = true;
-                Submit.Visible = true;
             }
             else
             {
@@ -255,9 +286,20 @@ namespace SchoolManagement.Academic
                     {
                         var subjects = SubjectDataIntoComboBox(GetSelectedClassId());
 
-                        int subjectCellValue = Convert.ToInt32(PeriodDataGridView.Rows[e.RowIndex].Cells["SubjectColumn"].Value);
-                        subjectId = subjectCellValue;
-
+                        object cellValue = PeriodDataGridView.Rows[e.RowIndex].Cells["SubjectColumn"].Value;
+                        if (cellValue != null)
+                        {
+                            int subjectCellValue;
+                            if (int.TryParse(cellValue.ToString(), out subjectCellValue))
+                            {
+                                subjectId = subjectCellValue;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("please select your subject first.", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
                         comboBoxCell.DataSource = SchoolStaffDataIntoComboBoxGridView(GetSelectedClassId(), subjectId);
                         comboBoxCell.ValueMember = "Value";
                         comboBoxCell.DisplayMember = "Text";
@@ -346,7 +388,23 @@ namespace SchoolManagement.Academic
                     CalculateAndSetDuration(e.RowIndex);
                 }
             }
+
+            if (e.RowIndex >= 0 && e.ColumnIndex == PeriodDataGridView.Columns["SubjectColumn"].Index)
+            {
+                int selectedSubject = Convert.ToInt32(PeriodDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex]?.Value);
+
+                if (selectedSubjects.Contains(selectedSubject))
+                {
+                    MessageBox.Show("This subject is already selected please check it.");
+                    PeriodDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = null;
+                }
+                else
+                {
+                    selectedSubjects.Add(selectedSubject);
+                }
+            }
         }
+
         private void CalculateAndSetDuration(int rowIndex)
         {
             string fromTimeString = PeriodDataGridView.Rows[rowIndex].Cells["TimingFromColumn"].Value?.ToString();
@@ -394,81 +452,180 @@ namespace SchoolManagement.Academic
         {
             try
             {
-                List<ClassPeriodAcademic> classacedmic = new List<ClassPeriodAcademic>();
-                var selectedClass = (SubjectClassDropdlist)classSelect.SelectedItem;
-                var selectedTeacher = (SubjectClassDropdlist)teacherSelect.SelectedItem;
-                var selectedSection = (SubjectClassDropdlist)sectionSelect.SelectedItem;
-                if (selectedClass != null && selectedTeacher != null && selectedSection != null)
+                if (Submit.Text == "Submit")
                 {
-                    bool classTeach = dbContext.ClassTeacherAcademics.Any(s => s.SectionId == selectedSection.Values && s.ClassId == selectedClass.Value && s.IsActive == true);
-                    if (!classTeach)
+                    List<ClassPeriodAcademic> classacedmic = new List<ClassPeriodAcademic>();
+                    var selectedClass = (SubjectClassDropdlist)classSelect.SelectedItem;
+                    var selectedTeacher = (SubjectClassDropdlist)teacherSelect.SelectedItem;
+                    var selectedSection = (SubjectClassDropdlist)sectionSelect.SelectedItem;
+                    if (selectedClass != null && selectedTeacher != null && selectedSection != null)
                     {
-                        var newClassTeacher = new ClassTeacherAcademic
+                        bool classTeach = dbContext.ClassTeacherAcademics.Any(s => s.SectionId == selectedSection.Values && s.ClassId == selectedClass.Value && s.IsActive == true);
+                        if (!classTeach)
                         {
-                            SchoolId = 2008,
-                            ClassId = selectedClass.Value,
-                            SectionId = selectedSection.Values,
-                            ClassTeacher = selectedTeacher.Value,
-                            IsActive = true,
-                            IsDelete = false,
-                            DateAdded = DateTime.Now,
-                            DateModified = DateTime.Now,
-                        };
-                        dbContext.ClassTeacherAcademics.Add(newClassTeacher);
-                        dbContext.SaveChanges();
-                        foreach (DataGridViewRow row in PeriodDataGridView.Rows)
-                        {
-
-                            string periodNumber = row.Cells["PeriodColumn"]?.Value?.ToString();
-                            int subject = Convert.ToInt32(row.Cells["SubjectColumn"]?.Value);
-                            int teacher = Convert.ToInt32(row.Cells["TeacherNameColumn"]?.Value);
-                            string timingFrom = row.Cells["TimingFromColumn"]?.Value?.ToString();
-                            string timingTo = row.Cells["TimingToColumn"]?.Value?.ToString();
-                            string duration = row.Cells["DurationColumn"]?.Value?.ToString();
-
-
-                            var newClassPeriod = new ClassPeriodAcademic
+                            var newClassTeacher = new ClassTeacherAcademic
                             {
                                 SchoolId = 2008,
-                                ClassId = selectedClass?.Value,
-                                SectionId = selectedSection?.Values,
-                                Period = periodNumber,
-                                SubjectId = subject,
-                                TeacherId = teacher,
-                                TimingFrom = timingFrom,
-                                TimingTo = timingTo,
-                                Duration = duration,
+                                ClassId = selectedClass.Value,
+                                SectionId = selectedSection.Values,
+                                ClassTeacher = selectedTeacher.Value,
+                                Period = period.Text,
                                 IsActive = true,
                                 IsDelete = false,
                                 DateAdded = DateTime.Now,
                                 DateModified = DateTime.Now,
                             };
-
-                            var isrowmessage = validate.ValidateStudentAttandance(newClassPeriod);
-                            if (isrowmessage.Status == true)
+                            dbContext.ClassTeacherAcademics.Add(newClassTeacher);
+                            dbContext.SaveChanges();
+                            foreach (DataGridViewRow row in PeriodDataGridView.Rows)
                             {
-                                classacedmic.Clear();
-                                int rowIndex = row.Index + 1;
-                                MessageBox.Show("Data is not filled in row" + " " + rowIndex + " " + "please check it!");
-                                return;
+
+                                string periodNumber = row.Cells["PeriodColumn"]?.Value?.ToString();
+                                int subject = Convert.ToInt32(row.Cells["SubjectColumn"]?.Value);
+                                int teacher = Convert.ToInt32(row.Cells["TeacherNameColumn"]?.Value);
+                                string timingFrom = row.Cells["TimingFromColumn"]?.Value?.ToString();
+                                string timingTo = row.Cells["TimingToColumn"]?.Value?.ToString();
+                                string duration = row.Cells["DurationColumn"]?.Value?.ToString();
+
+
+                                var newClassPeriod = new ClassPeriodAcademic
+                                {
+                                    SchoolId = 2008,
+                                    ClassId = selectedClass?.Value,
+                                    SectionId = selectedSection?.Values,
+                                    Period = periodNumber,
+                                    SubjectId = subject,
+                                    TeacherId = teacher,
+                                    TimingFrom = timingFrom,
+                                    TimingTo = timingTo,
+                                    Duration = duration,
+                                    IsActive = true,
+                                    IsDelete = false,
+                                    DateAdded = DateTime.Now,
+                                    DateModified = DateTime.Now,
+                                };
+
+                                var isrowmessage = validate.ValidateStudentAttandance(newClassPeriod);
+                                if (isrowmessage.Status == true)
+                                {
+                                    classacedmic.Clear();
+                                    int rowIndex = row.Index + 1;
+                                    MessageBox.Show("Data is not filled in row" + " " + rowIndex + " " + "please check it!");
+                                    return;
+                                }
+
+                                classacedmic.Add(newClassPeriod);
                             }
 
-                            classacedmic.Add(newClassPeriod);
+                            dbContext.ClassPeriodAcademics.AddRange(classacedmic);
+                            dbContext.SaveChanges();
+                            MessageBox.Show("Data inserted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            classSelect.SelectedIndex = -1;
+                            teacherSelect.SelectedIndex = -1;
+                            sectionSelect.SelectedIndex = -1;
+                            period.Text = "";
+                            PeriodDataGridView.Rows.Clear();
                         }
+                        else
+                        {
+                            MessageBox.Show("Record already exist");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please enter the above details!!");
+                        return;
+                    }
+                }
+                else if (Submit.Text == "Update")
+                {
+                    UpdateSection();
+                }
+            }
+            catch (Exception ex)
+            {
 
-                        dbContext.ClassPeriodAcademics.AddRange(classacedmic);
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void UpdateSection()
+        {
+            try
+            {
+                var selectedClass = (SubjectClassDropdlist)classSelect.SelectedItem;
+                var selectedTeacher = (SubjectClassDropdlist)teacherSelect.SelectedItem;
+                var selectedSection = (SubjectClassDropdlist)sectionSelect.SelectedItem;
+
+                if (selectedClass != null && selectedTeacher != null && selectedSection != null)
+                {
+                    var ClassTeacherToUpdate = dbContext.ClassTeacherAcademics.AsNoTracking().FirstOrDefault(x => x.SchoolId == SchoolId && x.ClassId == selectedClass.Value && x.SectionId == selectedSection.Values);
+                    if (ClassTeacherToUpdate != null)
+                    {
+                        ClassTeacherToUpdate.ClassId = selectedClass.Value;
+                        ClassTeacherToUpdate.SectionId = selectedSection.Values;
+                        ClassTeacherToUpdate.ClassTeacher = selectedTeacher.Value;
+                        ClassTeacherToUpdate.Period = period.Text;
+                        ClassTeacherToUpdate.DateModified = DateTime.Now;
+                        dbContext.Entry(ClassTeacherToUpdate).State = EntityState.Modified;
                         dbContext.SaveChanges();
-                        MessageBox.Show("Data inserted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        foreach (DataGridViewRow row in PeriodDataGridView.Rows)
+                        {
+                            if (row.Cells["IdColumn"].Value != null)
+                            {
+                                Id = Convert.ToInt32(row.Cells["IdColumn"].Value);
+                                var classPeriodToUpdate = dbContext.ClassPeriodAcademics.AsNoTracking().FirstOrDefault(x => x.Id == Id && x.SchoolId == ClassTeacherToUpdate.SchoolId && x.ClassId == selectedClass.Value && x.SectionId == selectedSection.Values);
+                                if (classPeriodToUpdate != null)
+                                {
+                                    string periodNumber = row.Cells["PeriodColumn"]?.Value?.ToString();
+                                    int subject = Convert.ToInt32(row.Cells["SubjectColumn"]?.Value);
+                                    int teacher = Convert.ToInt32(row.Cells["TeacherNameColumn"]?.Value);
+                                    string timingFrom = row.Cells["TimingFromColumn"]?.Value?.ToString();
+                                    string timingTo = row.Cells["TimingToColumn"]?.Value?.ToString();
+                                    string duration = row.Cells["DurationColumn"]?.Value?.ToString();
+                                    classPeriodToUpdate.ClassId = selectedClass?.Value;
+                                    classPeriodToUpdate.SectionId = selectedSection?.Values;
+                                    classPeriodToUpdate.Period = periodNumber;
+                                    classPeriodToUpdate.SubjectId = subject;
+                                    classPeriodToUpdate.TeacherId = teacher;
+                                    classPeriodToUpdate.TimingFrom = timingFrom;
+                                    classPeriodToUpdate.TimingTo = timingTo;
+                                    classPeriodToUpdate.Duration = duration;
+                                    classPeriodToUpdate.DateModified = DateTime.Now;
 
+                                    var isrowmessage = validate.ValidateStudentAttandance(classPeriodToUpdate);
+                                    if (isrowmessage.Status == true)
+                                    {
+                                        int rowIndex = row.Index + 1;
+                                        MessageBox.Show("Data is not filled in row" + " " + rowIndex + " " + "please check it!");
+                                        return;
+                                    }
+                                    dbContext.Entry(classPeriodToUpdate).State = EntityState.Modified;
+                                    dbContext.SaveChanges();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Class period not found or faild to update", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                        }
+                        MessageBox.Show("Data updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         classSelect.SelectedIndex = -1;
                         teacherSelect.SelectedIndex = -1;
                         sectionSelect.SelectedIndex = -1;
                         period.Text = "";
                         PeriodDataGridView.Rows.Clear();
+
+                        Submit.Text = "Submit";
+                        this.Hide();
+                        form = new ClassPeriodDetails();
+                        form.Show();
+
                     }
                     else
                     {
-                        MessageBox.Show("Record already exist");
+                        MessageBox.Show("Class teacher record not found or faild to update", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
@@ -476,7 +633,6 @@ namespace SchoolManagement.Academic
                     MessageBox.Show("Please enter the above details!!");
                     return;
                 }
-
             }
             catch (Exception ex)
             {

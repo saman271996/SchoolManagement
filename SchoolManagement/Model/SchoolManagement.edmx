@@ -81,6 +81,7 @@
           <Property Name="IsDelete" Type="bit" />
           <Property Name="DateAdded" Type="datetime" />
           <Property Name="DateModified" Type="datetime" />
+          <Property Name="Period" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Parent">
           <Key>
@@ -369,20 +370,6 @@
           <Property Name="DateAdded" Type="DateTime" Precision="3" />
           <Property Name="DateModified" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="ClassTeacherAcademic">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SchoolId" Type="Int32" />
-          <Property Name="ClassId" Type="Int32" />
-          <Property Name="SectionId" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="ClassTeacher" Type="Int32" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="IsDelete" Type="Boolean" />
-          <Property Name="DateAdded" Type="DateTime" Precision="3" />
-          <Property Name="DateModified" Type="DateTime" Precision="3" />
-        </EntityType>
         <EntityType Name="Parent">
           <Key>
             <PropertyRef Name="Id" />
@@ -574,7 +561,6 @@
           <EntitySet Name="Class_Section" EntityType="Self.Class_Section" />
           <EntitySet Name="ClassPeriodAcademics" EntityType="Self.ClassPeriodAcademic" />
           <EntitySet Name="ClassRoutineAcademics" EntityType="Self.ClassRoutineAcademic" />
-          <EntitySet Name="ClassTeacherAcademics" EntityType="Self.ClassTeacherAcademic" />
           <EntitySet Name="Parents" EntityType="Self.Parent" />
           <EntitySet Name="SchoolDetails" EntityType="Self.SchoolDetail" />
           <EntitySet Name="SchoolStaffs" EntityType="Self.SchoolStaff" />
@@ -585,6 +571,7 @@
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="UserSubscriptionPlanDetails" EntityType="Self.UserSubscriptionPlanDetail" />
           <EntitySet Name="StudentAttandances" EntityType="SchoolManagementModel.StudentAttandance" />
+          <EntitySet Name="ClassTeacherAcademics" EntityType="SchoolManagementModel.ClassTeacherAcademic" />
         </EntityContainer>
         <EntityType Name="StudentAttandance">
           <Key>
@@ -602,6 +589,21 @@
           <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ClassId" Type="Int32" />
           <Property Name="SectionId" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ClassTeacherAcademic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SchoolId" Type="Int32" />
+          <Property Name="ClassId" Type="Int32" />
+          <Property Name="SectionId" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="ClassTeacher" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="DateAdded" Type="DateTime" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Precision="3" />
+          <Property Name="Period" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -669,21 +671,6 @@
                 <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
                 <ScalarProperty Name="SectionId" ColumnName="SectionId" />
                 <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
-                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ClassTeacherAcademics">
-            <EntityTypeMapping TypeName="SchoolManagementModel.ClassTeacherAcademic">
-              <MappingFragment StoreEntitySet="ClassTeacherAcademic">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
-                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
-                <ScalarProperty Name="SectionId" ColumnName="SectionId" />
-                <ScalarProperty Name="ClassTeacher" ColumnName="ClassTeacher" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
                 <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
@@ -899,6 +886,22 @@
                 <ScalarProperty Name="AttandanceDate" ColumnName="AttandanceDate" />
                 <ScalarProperty Name="Attandance" ColumnName="Attandance" />
                 <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClassTeacherAcademics">
+            <EntityTypeMapping TypeName="SchoolManagementModel.ClassTeacherAcademic">
+              <MappingFragment StoreEntitySet="ClassTeacherAcademic">
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ClassTeacher" ColumnName="ClassTeacher" />
+                <ScalarProperty Name="SectionId" ColumnName="SectionId" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
                 <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

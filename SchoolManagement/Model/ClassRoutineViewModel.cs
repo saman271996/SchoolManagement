@@ -13,5 +13,10 @@ namespace SchoolManagement.Model
         public string SubjectName { get; set; }
         public string SectionName { get; set; }
         public string StaffName { get; set; }
+        public string Period { get; set; }
+        public int ClassId { get; set; }
+        public string SectionId { get; set; }
+        public int SchoolId { get; set; }
+        public int ClassTeacher { get;set; }
     }
 }
