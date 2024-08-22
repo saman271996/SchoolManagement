@@ -20,6 +20,7 @@
         <EntityTypeShape EntityType="SchoolManagementModel.UserSubscriptionPlanDetail" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SchoolManagementModel.StudentAttandance" Width="1.5" PointX="3.375" PointY="11.75" />
         <EntityTypeShape EntityType="SchoolManagementModel.ClassTeacherAcademic" Width="1.5" PointX="11.375" PointY="11.75" />
+        <EntityTypeShape EntityType="SchoolManagementModel.StudentFeeAccounting" Width="1.5" PointX="13.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

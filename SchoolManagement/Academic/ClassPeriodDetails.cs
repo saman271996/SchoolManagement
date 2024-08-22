@@ -152,7 +152,7 @@ namespace SchoolManagement.Academic
                                 frm.TopLevel = true;
                                 //frm.StartPosition = FormStartPosition.CenterScreen;
                                 frm.Show();
-                                frm.Submit.Text = "Update";
+                                frm.PeriodSubmit.Text = "Update";
                             }
 
                             var currentForm = Application.OpenForms.OfType<Form>().FirstOrDefault(f => f != frm);

@@ -413,5 +413,31 @@ namespace SchoolManagement
             return message;
         }
 
+        public MessageValidate ValidateStudentFee(StudentFeeAccounting studentFee)
+        {
+            MessageValidate message = new MessageValidate();
+            message.Status = false;
+            if (studentFee.ClassId == null)
+            {
+                message.Status = true;
+                message.Message = "Class Cannot filled, Please Check it!!";
+                return message;
+            }
+            if (string.IsNullOrEmpty(studentFee.YearFee))
+            {
+                message.Status = true;
+                message.Message = "Fees Cannot filled, Please Check it!!";
+                return message;
+            }
+            if (string.IsNullOrEmpty(studentFee.Installment))
+            {
+                message.Status = true;
+                message.Message = "Installment Cannot filled, Please Check it!!";
+                return message;
+            }
+
+            return message;
+        }
+
     }
 }

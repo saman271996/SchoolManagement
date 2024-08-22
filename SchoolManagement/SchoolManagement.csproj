@@ -296,6 +296,24 @@
     <Compile Include="Academic\SubjectAcademic.Designer.cs">
       <DependentUpon>SubjectAcademic.cs</DependentUpon>
     </Compile>
+    <Compile Include="Accounting\StudentFee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\StudentFee.Designer.cs">
+      <DependentUpon>StudentFee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\StudentFeeDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\StudentFeeDetails.Designer.cs">
+      <DependentUpon>StudentFeeDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\StudentFeeInstallmentDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\StudentFeeInstallmentDetail.Designer.cs">
+      <DependentUpon>StudentFeeInstallmentDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -342,6 +360,7 @@
     <Compile Include="Model\Class.cs">
       <DependentUpon>SchoolManagement.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\StudentFeeModel.cs" />
     <Compile Include="Model\ClassPeriodAcademic.cs">
       <DependentUpon>SchoolManagement.tt</DependentUpon>
     </Compile>
@@ -396,6 +415,9 @@
       <DependentUpon>SchoolManagement.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\StudentAttandanceView.cs" />
+    <Compile Include="Model\StudentFeeAccounting.cs">
+      <DependentUpon>SchoolManagement.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\StudentViewModel.cs" />
     <Compile Include="Model\Subject.cs">
       <DependentUpon>SchoolManagement.tt</DependentUpon>
@@ -487,6 +509,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Academic\SubjectAcademic.resx">
       <DependentUpon>SubjectAcademic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\StudentFee.resx">
+      <DependentUpon>StudentFee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\StudentFeeDetails.resx">
+      <DependentUpon>StudentFeeDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\StudentFeeInstallmentDetail.resx">
+      <DependentUpon>StudentFeeInstallmentDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminDashboard.resx">
       <DependentUpon>AdminDashboard.cs</DependentUpon>

@@ -31,6 +31,7 @@ namespace SchoolManagement.Academic
         private int SchoolId;
         private int subjectId;
         private List<int> selectedSubjects = new List<int>();
+        private bool isCellValueChanging = false;
         private static readonly string ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["SchoolManagementConnectionString"].ConnectionString;
         protected SqlConnection Con = new SqlConnection(ConnectionString);
         private SchoolManagementEntities1 dbContext = new SchoolManagementEntities1();
@@ -148,6 +149,8 @@ namespace SchoolManagement.Academic
 
                 if (isValidNumber && newRow > 0)
                 {
+                    PeriodDataGridView.Rows.Clear();
+
                     for (int i = 0; i < newRow; i++)
                     {
 
@@ -163,6 +166,7 @@ namespace SchoolManagement.Academic
             else
             {
                 MessageBox.Show("Please select a class and select a section");
+                period.Text = string.Empty;
             }
         }
 
@@ -275,7 +279,7 @@ namespace SchoolManagement.Academic
                     }
                 }
             }
-
+             
             foreach (DataGridViewRow row in PeriodDataGridView.Rows)
             {
                 if (e.RowIndex >= 0 && e.ColumnIndex == PeriodDataGridView.Columns["TeacherNameColumn"]?.Index)
@@ -391,16 +395,24 @@ namespace SchoolManagement.Academic
 
             if (e.RowIndex >= 0 && e.ColumnIndex == PeriodDataGridView.Columns["SubjectColumn"].Index)
             {
-                int selectedSubject = Convert.ToInt32(PeriodDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex]?.Value);
+                if (isCellValueChanging) return;
 
-                if (selectedSubjects.Contains(selectedSubject))
+                int selectedSubject;
+                if (int.TryParse(PeriodDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString(), out selectedSubject))
                 {
-                    MessageBox.Show("This subject is already selected please check it.");
-                    PeriodDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = null;
-                }
-                else
-                {
-                    selectedSubjects.Add(selectedSubject);
+                    if (selectedSubjects.Contains(selectedSubject))
+                    {
+                        isCellValueChanging = true;
+                        PeriodDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = null;
+                        isCellValueChanging = false;
+
+                        MessageBox.Show("This subject is already selected. Please choose another one.");
+                        selectedSubjects.Remove(selectedSubject);
+                    }
+                    else
+                    {
+                        selectedSubjects.Add(selectedSubject);
+                    }
                 }
             }
         }
@@ -452,7 +464,7 @@ namespace SchoolManagement.Academic
         {
             try
             {
-                if (Submit.Text == "Submit")
+                if (PeriodSubmit.Text.Trim() == "Submit")
                 {
                     List<ClassPeriodAcademic> classacedmic = new List<ClassPeriodAcademic>();
                     var selectedClass = (SubjectClassDropdlist)classSelect.SelectedItem;
@@ -538,7 +550,7 @@ namespace SchoolManagement.Academic
                         return;
                     }
                 }
-                else if (Submit.Text == "Update")
+                else if (PeriodSubmit.Text == "Update")
                 {
                     UpdateSection();
                 }
@@ -617,7 +629,7 @@ namespace SchoolManagement.Academic
                         period.Text = "";
                         PeriodDataGridView.Rows.Clear();
 
-                        Submit.Text = "Submit";
+                        PeriodSubmit.Text = "Submit";
                         this.Hide();
                         form = new ClassPeriodDetails();
                         form.Show();

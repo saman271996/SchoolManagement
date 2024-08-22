@@ -39,7 +39,7 @@ namespace SchoolManagement.Academic
             this.teacherSelect = new Krypton.Toolkit.KryptonComboBox();
             this.classSelect = new Krypton.Toolkit.KryptonComboBox();
             this.kryptonLabel5 = new Krypton.Toolkit.KryptonLabel();
-            this.Submit = new Krypton.Toolkit.KryptonButton();
+            this.PeriodSubmit = new Krypton.Toolkit.KryptonButton();
             this.period = new Krypton.Toolkit.KryptonTextBox();
             this.dtp = new System.Windows.Forms.DateTimePicker();
             this.PeriodDataGridView = new Krypton.Toolkit.KryptonDataGridView();
@@ -160,20 +160,20 @@ namespace SchoolManagement.Academic
             this.kryptonLabel5.TabIndex = 41;
             this.kryptonLabel5.Values.Text = "Total Period";
             // 
-            // Submit
+            // PeriodSubmit
             // 
-            this.Submit.Location = new System.Drawing.Point(10, 427);
-            this.Submit.Name = "Submit";
-            this.Submit.Size = new System.Drawing.Size(107, 33);
-            this.Submit.StateCommon.Back.Color1 = System.Drawing.Color.DodgerBlue;
-            this.Submit.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            this.PeriodSubmit.Location = new System.Drawing.Point(10, 427);
+            this.PeriodSubmit.Name = "PeriodSubmit";
+            this.PeriodSubmit.Size = new System.Drawing.Size(107, 33);
+            this.PeriodSubmit.StateCommon.Back.Color1 = System.Drawing.Color.DodgerBlue;
+            this.PeriodSubmit.StateCommon.Border.DrawBorders = ((Krypton.Toolkit.PaletteDrawBorders)((((Krypton.Toolkit.PaletteDrawBorders.Top | Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | Krypton.Toolkit.PaletteDrawBorders.Left) 
             | Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.Submit.StateCommon.Border.Rounding = 2F;
-            this.Submit.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Submit.TabIndex = 42;
-            this.Submit.Values.Text = "Submit ";
-            this.Submit.Click += new System.EventHandler(this.Submit_Click);
+            this.PeriodSubmit.StateCommon.Border.Rounding = 2F;
+            this.PeriodSubmit.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PeriodSubmit.TabIndex = 42;
+            this.PeriodSubmit.Values.Text = "Submit ";
+            this.PeriodSubmit.Click += new System.EventHandler(this.Submit_Click);
             // 
             // period
             // 
@@ -224,7 +224,7 @@ namespace SchoolManagement.Academic
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DodgerBlue;
             this.PeriodDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.PeriodDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.PeriodDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.PeriodDataGridView.Size = new System.Drawing.Size(580, 256);
             this.PeriodDataGridView.StateCommon.Background.Color1 = System.Drawing.Color.White;
             this.PeriodDataGridView.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
@@ -291,7 +291,7 @@ namespace SchoolManagement.Academic
             this.ClientSize = new System.Drawing.Size(584, 478);
             this.Controls.Add(this.PeriodDataGridView);
             this.Controls.Add(this.period);
-            this.Controls.Add(this.Submit);
+            this.Controls.Add(this.PeriodSubmit);
             this.Controls.Add(this.kryptonLabel5);
             this.Controls.Add(this.kryptonLabel2);
             this.Controls.Add(this.kryptonLabel4);
@@ -321,7 +321,7 @@ namespace SchoolManagement.Academic
         private Krypton.Toolkit.KryptonComboBox teacherSelect;
         public  Krypton.Toolkit.KryptonComboBox classSelect;
         private Krypton.Toolkit.KryptonLabel kryptonLabel5;
-        public Krypton.Toolkit.KryptonButton Submit;
+        public Krypton.Toolkit.KryptonButton PeriodSubmit;
         private Krypton.Toolkit.KryptonTextBox period;
         private DateTimePicker dtp;
         public  Krypton.Toolkit.KryptonDataGridView PeriodDataGridView;
