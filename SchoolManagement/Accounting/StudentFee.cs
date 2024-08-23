@@ -29,6 +29,7 @@ namespace SchoolManagement.Accounting
 
         private void StudentFee_Load(object sender, EventArgs e)
         {
+            
             StudentClassFeesRecord();
         }
         

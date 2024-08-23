@@ -34,6 +34,8 @@
             this.kryptonPanel1 = new Krypton.Toolkit.KryptonPanel();
             this.kryptonLabel1 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.StudentFeeSubmit = new Krypton.Toolkit.KryptonButton();
+            this.IdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SchoolIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ClassColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.YearlyFeesColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InstallmentColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -56,6 +58,8 @@
             this.StudentFeeDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.StudentFeeDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.StudentFeeDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdColumn,
+            this.SchoolIdColumn,
             this.ClassColumn,
             this.YearlyFeesColumn,
             this.InstallmentColumn});
@@ -104,6 +108,19 @@
             this.StudentFeeSubmit.TabIndex = 49;
             this.StudentFeeSubmit.Values.Text = "Submit ";
             this.StudentFeeSubmit.Click += new System.EventHandler(this.StudentFeeSubmit_Click);
+            // 
+            // IdColumn
+            // 
+            this.IdColumn.DataPropertyName = "Id";
+            this.IdColumn.HeaderText = "Id";
+            this.IdColumn.Name = "IdColumn";
+            this.IdColumn.Visible = false;
+            // 
+            // SchoolIdColumn
+            // 
+            this.SchoolIdColumn.HeaderText = "SchoolId";
+            this.SchoolIdColumn.Name = "SchoolIdColumn";
+            this.SchoolIdColumn.Visible = false;
             // 
             // ClassColumn
             // 
@@ -157,6 +174,8 @@
         private Krypton.Toolkit.KryptonPanel kryptonPanel1;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel kryptonLabel1;
         public Krypton.Toolkit.KryptonButton StudentFeeSubmit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SchoolIdColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ClassColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn YearlyFeesColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn InstallmentColumn;

@@ -29,13 +29,16 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.StuFeeDetailsDataGridView = new Krypton.Toolkit.KryptonDataGridView();
             this.IdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SchoolIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ClassNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.YearlyFeeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.InstallmentColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InstallmentColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.EditColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.kryptonLabel1 = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.kryptonPanel1 = new Krypton.Toolkit.KryptonPanel();
@@ -67,10 +70,9 @@
             this.StuFeeDetailsDataGridView.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.StuFeeDetailsDataGridView.Location = new System.Drawing.Point(12, 110);
             this.StuFeeDetailsDataGridView.Name = "StuFeeDetailsDataGridView";
-            this.StuFeeDetailsDataGridView.ReadOnly = true;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DodgerBlue;
-            this.StuFeeDetailsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.DodgerBlue;
+            this.StuFeeDetailsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.StuFeeDetailsDataGridView.Size = new System.Drawing.Size(531, 289);
             this.StuFeeDetailsDataGridView.StateCommon.Background.Color1 = System.Drawing.Color.White;
             this.StuFeeDetailsDataGridView.StateCommon.BackStyle = Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
@@ -84,7 +86,6 @@
             this.IdColumn.DataPropertyName = "Id";
             this.IdColumn.HeaderText = "Id";
             this.IdColumn.Name = "IdColumn";
-            this.IdColumn.ReadOnly = true;
             this.IdColumn.Visible = false;
             // 
             // SchoolIdColumn
@@ -92,38 +93,45 @@
             this.SchoolIdColumn.DataPropertyName = "SchoolId";
             this.SchoolIdColumn.HeaderText = "SchoolId";
             this.SchoolIdColumn.Name = "SchoolIdColumn";
-            this.SchoolIdColumn.ReadOnly = true;
             this.SchoolIdColumn.Visible = false;
             // 
             // ClassNameColumn
             // 
             this.ClassNameColumn.DataPropertyName = "ClassName";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ClassNameColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.ClassNameColumn.HeaderText = "ClassName";
             this.ClassNameColumn.Name = "ClassNameColumn";
-            this.ClassNameColumn.ReadOnly = true;
             this.ClassNameColumn.Width = 130;
             // 
             // YearlyFeeColumn
             // 
             this.YearlyFeeColumn.DataPropertyName = "YearFee";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.YearlyFeeColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.YearlyFeeColumn.HeaderText = "YearlyFee";
             this.YearlyFeeColumn.Name = "YearlyFeeColumn";
-            this.YearlyFeeColumn.ReadOnly = true;
             this.YearlyFeeColumn.Width = 130;
             // 
             // InstallmentColumn
             // 
             this.InstallmentColumn.DataPropertyName = "Installment";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.InstallmentColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            this.InstallmentColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
             this.InstallmentColumn.HeaderText = "Installment";
+            this.InstallmentColumn.Items.AddRange(new object[] {
+            "Yes",
+            "No"});
             this.InstallmentColumn.Name = "InstallmentColumn";
-            this.InstallmentColumn.ReadOnly = true;
+            this.InstallmentColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.InstallmentColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.InstallmentColumn.Width = 130;
             // 
             // EditColumn
             // 
             this.EditColumn.HeaderText = "Edit";
             this.EditColumn.Name = "EditColumn";
-            this.EditColumn.ReadOnly = true;
             this.EditColumn.Text = "Edit";
             this.EditColumn.UseColumnTextForButtonValue = true;
             // 
@@ -174,7 +182,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SchoolIdColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ClassNameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn YearlyFeeColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn InstallmentColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn InstallmentColumn;
         private System.Windows.Forms.DataGridViewButtonColumn EditColumn;
     }
 }
